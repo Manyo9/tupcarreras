@@ -1,7 +1,8 @@
-use  carreras
+use carreras
+GO
+
 insert into Carreras (nombre_titulo,anio_maximo)
 values ('Tecnicatura Universitaria en Programacion',2)
-
 
 --INSERT DE ASGINATURA 1er Cuatrimestre
 insert into Asignaturas (nombre)
@@ -55,7 +56,6 @@ values(1,1,'S',10)
 insert into Detalles_carrera(id_carrera,anio_cursado,cuatrimestre,id_asignatura)
 values(1,1,'S',11)
 
-
 ----------------SEGUNDO ANIO-----------------------------
 
 --INSERT DE ASGINATURA 1er Cuatrimestre 2do anio
@@ -70,7 +70,6 @@ values ('Elementos de Investigacion Operativa')
 insert into Asignaturas (nombre)
 values ('Laboratorio de Computacion III')
 
-
 --INSERT DE ASGINATURA 2do Cuatrimestre 2do anio
 insert into Asignaturas (nombre)
 values ('Metodologia de Sistemas I')
@@ -80,7 +79,6 @@ insert into Asignaturas (nombre)
 values ('Legislacion')
 insert into Asignaturas (nombre)
 values ('Laboratorio de Computacion IV')
-
 
 --INSERT Detalle_carrera Materias 1er Cuatrimestre 2do anio
 insert into Detalles_carrera(id_carrera,anio_cursado,cuatrimestre,id_asignatura)
@@ -109,30 +107,16 @@ values(1,2,'S',20)
 
 insert into Carreras (nombre_titulo,anio_maximo) values ('Tecnicatura Universitaria en Mantenimiento Industrial', 2)
 
+--Materias de primer anio
+--Primer cuat
+
 insert into Asignaturas (nombre) values ('Mantenimiento Industrial I')
 insert into Asignaturas (nombre) values ('Electrotecnia')
 insert into Asignaturas (nombre) values ('Matematica')
 insert into Asignaturas (nombre) values ('Quimica')
 insert into Asignaturas (nombre) values ('Relaciones Industriales')
 insert into Asignaturas (nombre) values ('Informatica I')
-insert into Asignaturas (nombre) values ('Mecanica II')
-insert into Asignaturas (nombre) values ('Sistema de Representacion')
-insert into Asignaturas (nombre) values ('Conocimientos de los materiales')
-insert into Asignaturas (nombre) values ('Neumatica e Hidraulica')
-insert into Asignaturas (nombre) values ('Mantenimiento Industrial II')
-insert into Asignaturas (nombre) values ('Elementos de Maquinas')
-insert into Asignaturas (nombre) values ('Tecnologia de Frio y Calor')
-insert into Asignaturas (nombre) values ('Instalaciones y Maquinas Eléctricas')
-insert into Asignaturas (nombre) values ('Informatica II')
-insert into Asignaturas (nombre) values ('Elementos de Automatizacion')
-insert into Asignaturas (nombre) values ('Ingles')
-insert into Asignaturas (nombre) values ('Instalaciones y Maquinas Eléctricas')
-insert into Asignaturas (nombre) values ('Seguridad Higiene y Proteccion Ambiental')
-insert into Asignaturas (nombre) values ('Costos y Control de Gestion')
-insert into Asignaturas (nombre) values ('Aseguramiento de la Calidad')
 
---Materias de primer anio
---Primer cuat
 insert into Detalles_carrera (id_carrera, anio_cursado, cuatrimestre, id_asignatura)
 values (2,1,'A',21)
 insert into Detalles_carrera (id_carrera, anio_cursado, cuatrimestre, id_asignatura)
@@ -146,6 +130,12 @@ values (2,1,'P',25)
 insert into Detalles_carrera (id_carrera, anio_cursado, cuatrimestre, id_asignatura)
 values (2,1,'P',26)
 --Segundo cuat
+
+insert into Asignaturas (nombre) values ('Mecanica II')
+insert into Asignaturas (nombre) values ('Sistema de Representacion')
+insert into Asignaturas (nombre) values ('Conocimientos de los materiales')
+insert into Asignaturas (nombre) values ('Neumatica e Hidraulica')
+
 insert into Detalles_carrera (id_carrera, anio_cursado, cuatrimestre, id_asignatura)
 values (2,1,'S',27)
 insert into Detalles_carrera (id_carrera, anio_cursado, cuatrimestre, id_asignatura)
@@ -157,6 +147,15 @@ values (2,1,'S',30)
 
 --Materias de segundo anio
 --Primer cuat
+
+insert into Asignaturas (nombre) values ('Mantenimiento Industrial II')
+insert into Asignaturas (nombre) values ('Elementos de Maquinas')
+insert into Asignaturas (nombre) values ('Tecnologia de Frio y Calor')
+insert into Asignaturas (nombre) values ('Instalaciones y Maquinas Eléctricas')
+insert into Asignaturas (nombre) values ('Informatica II')
+insert into Asignaturas (nombre) values ('Elementos de Automatizacion')
+insert into Asignaturas (nombre) values ('Ingles')
+
 insert into Detalles_carrera (id_carrera, anio_cursado, cuatrimestre, id_asignatura)
 values (2,2,'A',31)
 insert into Detalles_carrera (id_carrera, anio_cursado, cuatrimestre, id_asignatura)
@@ -174,6 +173,10 @@ values (2,2,'P',37)
 
 --Segundo cuat
 
+insert into Asignaturas (nombre) values ('Seguridad Higiene y Proteccion Ambiental')
+insert into Asignaturas (nombre) values ('Costos y Control de Gestion')
+insert into Asignaturas (nombre) values ('Aseguramiento de la Calidad')
+
 insert into Detalles_carrera (id_carrera, anio_cursado, cuatrimestre, id_asignatura)
 values (2,2,'S',38)
 insert into Detalles_carrera (id_carrera, anio_cursado, cuatrimestre, id_asignatura)
@@ -182,10 +185,8 @@ insert into Detalles_carrera (id_carrera, anio_cursado, cuatrimestre, id_asignat
 values (2,2,'S',40)
 
 
-Insert into Carreras (nombre_titulo)
-values('Tecnicatura universitaria en Industrias')
-
-
+Insert into Carreras (nombre_titulo,anio_maximo)
+values('Tecnicatura universitaria en Industrias',2)
 
 insert into Asignaturas (nombre)
 values ('Indutria Alimnetaria I')
@@ -215,9 +216,6 @@ insert into Asignaturas (nombre)
 values('Estadística')
 insert into Asignaturas (nombre)
 values('Bromatología')
-
-
-
 
 insert into Detalles_carrera (id_carrera,anio_cursado,cuatrimestre,id_asignatura)
 values(3,1,'A',41)--INDUSTRIA ALIMENTARIA
