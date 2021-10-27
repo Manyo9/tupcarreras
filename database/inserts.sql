@@ -1,5 +1,7 @@
+use  carreras
 insert into Carreras (nombre_titulo,anio_maximo)
 values ('Tecnicatura Universitaria en Programacion',2)
+
 
 --INSERT DE ASGINATURA 1er Cuatrimestre
 insert into Asignaturas (nombre)
@@ -178,3 +180,70 @@ insert into Detalles_carrera (id_carrera, anio_cursado, cuatrimestre, id_asignat
 values (2,2,'S',39)
 insert into Detalles_carrera (id_carrera, anio_cursado, cuatrimestre, id_asignatura)
 values (2,2,'S',40)
+
+
+Insert into Carreras (nombre_titulo)
+values('Tecnicatura universitaria en Industrias')
+
+
+
+insert into Asignaturas (nombre)
+values ('Indutria Alimnetaria I')
+insert into Asignaturas (nombre)
+values('Biologia General')
+insert into Asignaturas (nombre)
+values ('Matematica General')
+insert into Asignaturas (nombre)
+values ('Quimica General')
+insert into Asignaturas (nombre)
+values('Física')
+insert into Asignaturas (nombre)
+values('Química Analitica')
+insert into Asignaturas (nombre)
+values('Química Inorganica')
+insert into Asignaturas (nombre)
+values('Industrias Alimentarias II')
+insert into Asignaturas (nombre)
+values('Legislacion Sanitaria')
+insert into Asignaturas (nombre)
+values('Microbiologia de los Alimentos')
+insert into Asignaturas (nombre)
+values('Química Orgánica')
+insert into Asignaturas (nombre)
+values('Economía')
+insert into Asignaturas (nombre)
+values('Estadística')
+insert into Asignaturas (nombre)
+values('Bromatología')
+
+
+
+
+insert into Detalles_carrera (id_carrera,anio_cursado,cuatrimestre,id_asignatura)
+values(3,1,'A',41)--INDUSTRIA ALIMENTARIA
+insert into Detalles_carrera (id_carrera,anio_cursado,cuatrimestre,id_asignatura)
+values(3,1,'P',42)--BIOLOGIA GENERAL
+insert into Detalles_carrera (id_carrera,anio_cursado,cuatrimestre,id_asignatura)
+values(3,1,'P',43)--MATEMATICA GENERAL
+insert into Detalles_carrera (id_carrera,anio_cursado,cuatrimestre,id_asignatura)
+values(3,1,'P',44)--QUIMICA GENERAL
+insert into Detalles_carrera (id_carrera,anio_cursado,cuatrimestre,id_asignatura)
+values(3,1,'S',45)--FISICA
+insert into Detalles_carrera (id_carrera,anio_cursado,cuatrimestre,id_asignatura)
+values(3,1,'S',46)--QUIMICA ANALITA
+insert into Detalles_carrera (id_carrera,anio_cursado,cuatrimestre,id_asignatura)
+values(3,1,'S',47)---QUIMICA INORGANICA
+insert into Detalles_carrera (id_carrera,anio_cursado,cuatrimestre,id_asignatura)
+values(3,2,'A',48)--INSDUTRIAS ALIMENTARIAS II
+insert into Detalles_carrera (id_carrera,anio_cursado,cuatrimestre,id_asignatura)
+values(3,2,'A',49)--LEGISTLACION SANITARIA
+insert into Detalles_carrera (id_carrera,anio_cursado,cuatrimestre,id_asignatura)
+values(3,2,'A',50)--MICROBIOLOGIA DE LOS ALIMENTOS II
+insert into Detalles_carrera (id_carrera,anio_cursado,cuatrimestre,id_asignatura)
+values(3,2,'P',51)--QUIMICA ORGANICA
+insert into Detalles_carrera (id_carrera,anio_cursado,cuatrimestre,id_asignatura)
+values(3,2,'P',52)--ECONOMIA
+insert into Detalles_carrera (id_carrera,anio_cursado,cuatrimestre,id_asignatura)
+values(3,2,'S',53)--ESTADISTICA
+insert into Detalles_carrera (id_carrera,anio_cursado,cuatrimestre,id_asignatura)
+values(3,2,'S',54)--BROMATOLOGIA
