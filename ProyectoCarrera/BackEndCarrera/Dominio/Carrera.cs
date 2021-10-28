@@ -11,6 +11,7 @@ namespace BackEndCarrera.Dominio
         public string Nombre { get; set; }
         public string Titulo { get; set; }
         public int AnioMaximo { get; set; }
+        public int IdCarrera { get; set; }
         public List<DetalleCarrera> Detalles { get; set; }
         public Carrera()
         {

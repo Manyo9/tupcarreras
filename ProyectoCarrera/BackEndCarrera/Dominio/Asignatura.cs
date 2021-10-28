@@ -9,6 +9,7 @@ namespace BackEndCarrera.Dominio
     public class Asignatura
     {
         public string Nombre { get; set; }
+        public int IdAsignatura { get; set; }
         public Asignatura()
         {
 
