@@ -1,8 +1,8 @@
 use carreras
 GO
 
-insert into Carreras (nombre_titulo,anio_maximo)
-values ('Tecnicatura Universitaria en Programacion',2)
+insert into Carreras (nombre,titulo,anio_maximo)
+values ('Tecnicatura Universitaria en Programacion','Tecnico/a Universitario/a en Programacion',2)
 
 --INSERT DE ASGINATURA 1er Cuatrimestre
 insert into Asignaturas (nombre)
@@ -105,7 +105,8 @@ values(1,2,'S',20)
 
 --TECNICATURA UNIVERSITARIA EN MANTENIMIENTO INDUSTRIAL
 
-insert into Carreras (nombre_titulo,anio_maximo) values ('Tecnicatura Universitaria en Mantenimiento Industrial', 2)
+insert into Carreras (nombre,titulo,anio_maximo)
+values ('Tecnicatura Universitaria en Mantenimiento Industrial','Tecnico/a Universitario/a en Mantenimiento Industrial',2)
 
 --Materias de primer anio
 --Primer cuat
@@ -185,8 +186,8 @@ insert into Detalles_carrera (id_carrera, anio_cursado, cuatrimestre, id_asignat
 values (2,2,'S',40)
 
 
-Insert into Carreras (nombre_titulo,anio_maximo)
-values('Tecnicatura universitaria en Industrias',2)
+Insert into Carreras (nombre,titulo,anio_maximo)
+values('Tecnicatura Universitaria en Industrias','Tecnico/a Universitario/a en Industrias',2)
 
 insert into Asignaturas (nombre)
 values ('Indutria Alimnetaria I')
