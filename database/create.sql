@@ -31,4 +31,11 @@ references Carreras (id_carrera),
 constraint fk_detalle_asig foreign key (id_asignatura)
 references Asignaturas (id_asignatura)
 )
-go
+
+create table Usuarios
+(
+id_usuario int identity,
+nom_usuario varchar(32),
+contrasenia varchar(128)
+constraint pk_usuarios primary key (id_usuario)
+)
