@@ -1,0 +1,108 @@
+use carreras
+GO
+
+--crear nueva carrera
+create procedure SP_CREATE_CARRERAS
+@nombre varchar(70),
+@titulo varchar(70),
+@anio_maximo tinyint
+as
+	insert into Carreras (nombre,titulo,anio_maximo)
+	values (@nombre,@titulo,@anio_maximo)
+go
+
+--consultar carreras
+create procedure SP_READ_CARRERAS
+as
+	select * from carreras
+go
+
+--actualizar carreras
+create procedure SP_UPDATE_CARRERAS
+(@id_carrera int,
+@nombre varchar(70),
+@titulo varchar(70),
+@anio_maximo tinyint)
+as
+	update Carreras 
+	set nombre = @nombre,
+		titulo = @titulo,
+		anio_maximo = @anio_maximo
+	where id_carrera = @id_carrera
+go
+
+--borrar carrera
+create procedure SP_DELETE_CARRERAS
+(@id_carrera int)
+as
+	delete Carreras where id_carrera = @id_carrera
+go
+
+--crear nuevo detalle
+create procedure SP_CREATE_DETALLES
+(@id_carrera int,
+@anio_cursado tinyint,
+@cuatrimestre varchar(1),
+@id_asignatura int)
+as
+	insert into Detalles_carrera (id_carrera,anio_cursado,cuatrimestre,id_asignatura)
+	values (@id_carrera, @anio_cursado, @cuatrimestre, @id_asignatura)
+go
+
+--leer un detalle
+create procedure SP_READ_DETALLES
+(@id_carrera int)
+as
+	select * from Detalles_carrera where id_carrera = @id_carrera
+go
+
+--actualizar detalle
+create procedure SP_UPDATE_DETALLES
+(@id_detalle int,
+@anio_cursado tinyint,
+@cuatrimestre varchar(1),
+@id_asignatura int)
+as
+	update Detalles_carrera
+	set anio_cursado = @anio_cursado,
+		cuatrimestre = @cuatrimestre,
+		id_asignatura = @id_asignatura
+	where id_detalle = @id_detalle
+go
+
+--borrar un detalle
+create procedure SP_DELETE_DETALLES
+(@id_detalle int)
+as
+	delete Detalles_carrera where id_detalle = @id_detalle
+go
+
+--crear nueva asignatura
+create procedure SP_CREATE_ASIGNATURAS
+@nombre varchar(60)
+as
+	insert into Asignaturas (nombre)
+	values (@nombre)
+go
+
+--consultar asignaturas
+create procedure SP_READ_ASIGNATURAS
+as
+	select * from Asignaturas
+go
+
+--actualizar asignaturas
+create procedure SP_UPDATE_ASIGNATURAS
+(@id_asignatura int,
+@nombre varchar(60))
+as
+	update Asignaturas set nombre = @nombre where id_asignatura = @id_asignatura
+go
+
+--eliminar asignaturas
+create procedure SP_DELETE_ASIGNATURAS
+(@id_asignatura int)
+as
+	delete Asignaturas where id_asignatura = @id_asignatura
+go
+
