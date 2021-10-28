@@ -5,7 +5,8 @@ go
 
 create table Carreras
 (id_carrera int identity,
-nombre_titulo varchar(70),
+nombre varchar(70),
+titulo varchar(70),
 anio_maximo tinyint,
 constraint pk_carrera primary key (id_carrera)
 )
