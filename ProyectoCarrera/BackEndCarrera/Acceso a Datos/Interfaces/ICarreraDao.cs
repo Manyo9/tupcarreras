@@ -9,7 +9,7 @@ namespace BackEndCarrera.Acceso_a_Datos.Interfaces
 {
     public interface ICarreraDao
     {
-        List<DetalleCarrera> GetCarreras();
+        Carrera GetCarrerasById();
         bool Save(Carrera oCarrera);
     }
 }

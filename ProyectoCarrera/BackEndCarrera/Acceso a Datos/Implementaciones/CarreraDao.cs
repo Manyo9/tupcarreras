@@ -12,37 +12,52 @@ namespace BackEndCarrera.Acceso_a_Datos.Implementaciones
 {
     class CarreraDao : ICarreraDao
     {
-        public List<DetalleCarrera> GetCarreras()
+        public Carrera GetCarrerasById()
         {
-            List<DetalleCarrera> lst = new List<DetalleCarrera>();
-            //DetalleCarrera oDetalle;
+            Carrera oCarrera = new Carrera();
             SqlConnection cnn = new SqlConnection(@"Data Source=DESKTOP-K8CN8ON;Initial Catalog=carreras;Integrated Security=True");
 
 
             cnn.Open();
-            SqlCommand cmd = new SqlCommand("NOMBRE DEL SP", cnn);
-            DataTable tabla = new DataTable();
+            SqlCommand cmd = new SqlCommand("SP_READ_CARRERAS_BY_ID", cnn);
             cmd.CommandType = CommandType.StoredProcedure;
-            tabla.Load(cmd.ExecuteReader());
-            cnn.Close();
 
-            foreach (DataRow row in tabla.Rows)
+
+
+            SqlDataReader reader = cmd.ExecuteReader();
+            bool esPrimerRegistro = true;
+
+            while (reader.Read())
             {
-                //oDetalle = new DetalleCarrera();
-                //oDetalle.AnioDeCursado = Convert.ToInt32(row["anio_cursado"].ToString());
-                //oDetalle.Cuatrimestre = (row["cuatrimestre"].ToString());
+                if (esPrimerRegistro)
+                {
+                    //solo para el primer resultado recuperamos los datos del MAESTRO:
+                    oCarrera.Nombre = reader["nombre_carrera"].ToString();
+                    oCarrera.Titulo = (reader["titulo_carrera"].ToString());
+                    oCarrera.AnioMaximo = Convert.ToInt32(reader["anio_maximo"].ToString());
+                    oCarrera.IdCarrera = Convert.ToInt32(reader["id_carrera"].ToString());
+                    esPrimerRegistro = false;
+                }
 
-                //lst.Add(oDetalle);
 
+                DetalleCarrera oDetalle = new DetalleCarrera();
+                oDetalle.IdDetalle = Convert.ToInt32(reader["id_detalle"].ToString());
+                oDetalle.AnioDeCursado = Convert.ToInt32(reader["anio_cursado"].ToString());
+                oDetalle.Cuatrimestre = (reader["cuatrimestre"].ToString());
+                oDetalle.Materia.IdAsignatura = Convert.ToInt32(reader["id_asignatura"].ToString());
+                oDetalle.Materia.Nombre = (reader["nombre_asignatura"].ToString());
+                oCarrera.AgregarDetalle(oDetalle);
             }
-            return lst;
-        }
 
+            cnn.Close();
+            return oCarrera;
+
+        }
         public bool Save(Carrera oCarrera)
         {
             SqlTransaction transaction = null;
             SqlConnection cnn = new SqlConnection(@"Data Source=DESKTOP-K8CN8ON;Initial Catalog=carreras;Integrated Security=True");
-            
+
 
             bool flag = true;
 
@@ -58,7 +73,7 @@ namespace BackEndCarrera.Acceso_a_Datos.Implementaciones
                 cmd.Parameters.AddWithValue("@nombre_titulo", oCarrera.Titulo);
                 cmd.Parameters.AddWithValue("@anio_maximo", oCarrera.AnioMaximo);
                 cmd.Parameters.AddWithValue("@id_carrera", oCarrera.IdCarrera);
-                
+
                 cmd.ExecuteNonQuery();
 
 
@@ -74,7 +89,7 @@ namespace BackEndCarrera.Acceso_a_Datos.Implementaciones
                     comandoDetalle.Parameters.AddWithValue("@id_carrera", oCarrera.IdCarrera);
                     comandoDetalle.Parameters.AddWithValue("@anio_cursado", item.AnioDeCursado);
                     comandoDetalle.Parameters.AddWithValue("@cuatrimestre", item.Cuatrimestre);
-                    comandoDetalle.Parameters.AddWithValue("@id_asignatura",item.Materia.IdAsignatura);
+                    comandoDetalle.Parameters.AddWithValue("@id_asignatura", item.Materia.IdAsignatura);
                     comandoDetalle.ExecuteNonQuery();
                 }
 
@@ -93,7 +108,6 @@ namespace BackEndCarrera.Acceso_a_Datos.Implementaciones
             }
             return flag;
         }
-
-
     }
 }
+

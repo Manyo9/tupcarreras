@@ -10,7 +10,7 @@ namespace BackEndCarrera.Dominio
     {
         public int AnioDeCursado { get; set; }
         public string Cuatrimestre { get; set; }
-
+        public int IdDetalle { get; set; }
         public Asignatura Materia { get; set; }
         public DetalleCarrera()
         {

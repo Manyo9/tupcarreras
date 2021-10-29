@@ -17,5 +17,14 @@ namespace BackEndCarrera.Dominio
         {
             Detalles = new List<DetalleCarrera>();
         }
+        public void AgregarDetalle(DetalleCarrera detalle)
+        {
+            Detalles.Add(detalle);
+        }
+
+        public void QuitarDetalle(int nro)
+        {
+            Detalles.RemoveAt(nro);
+        }
     }
 }
