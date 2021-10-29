@@ -53,7 +53,9 @@ go
 create procedure SP_READ_DETALLES
 (@id_carrera int)
 as
-	select * from Detalles_carrera where id_carrera = @id_carrera
+	select * from Detalles_carrera dc
+	join Asignaturas a on dc.id_asignatura = a.id_asignatura
+	where id_carrera = @id_carrera
 go
 
 --actualizar detalle
