@@ -5,8 +5,8 @@ go
 
 create table Carreras
 (id_carrera int identity,
-nombre varchar(70),
-titulo varchar(70),
+nombre_carrera varchar(70),
+titulo_carrera varchar(70),
 anio_maximo tinyint,
 constraint pk_carrera primary key (id_carrera)
 )
@@ -14,7 +14,7 @@ constraint pk_carrera primary key (id_carrera)
 create table Asignaturas
 (
 id_asignatura int identity,
-nombre varchar(60)
+nombre_asignatura varchar(60)
 constraint pk_asignaturas primary key (id_asignatura)
 )
 

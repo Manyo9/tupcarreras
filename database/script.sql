@@ -17,6 +17,16 @@ as
 	select * from carreras
 go
 
+--consultar carreras por id
+create procedure SP_READ_CARRERAS_BY_ID
+(@id_carrera int)
+as
+	select * from Carreras c
+	join Detalles_carrera dt on dt.id_carrera = c.id_carrera
+	join Asignaturas a on a.id_asignatura = dt.id_asignatura
+	where c.id_carrera = @id_carrera
+go
+
 --actualizar carreras
 create procedure SP_UPDATE_CARRERAS
 (@id_carrera int,
