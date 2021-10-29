@@ -10,11 +10,13 @@ using System.Windows.Forms;
 
 namespace ProyectoCarrera
 {
-    public partial class FrmLogin : Form
+    public partial class Frm_Login : Form
     {
-        public FrmLogin()
+        public Frm_Login()
         {
             InitializeComponent();
         }
+
+       
     }
 }

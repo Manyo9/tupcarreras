@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace ProyectoCarrera
 {
-    public partial class Frm_Alta_Carrera : Form
+    public partial class frm_Reporte : Form
     {
-        public Frm_Alta_Carrera()
+        public frm_Reporte()
         {
             InitializeComponent();
         }
