@@ -7,7 +7,7 @@ create procedure SP_CREATE_CARRERAS
 @titulo varchar(70),
 @anio_maximo tinyint
 as
-	insert into Carreras (nombre,titulo,anio_maximo)
+	insert into Carreras (nombre_carrera,titulo_carrera,anio_maximo)
 	values (@nombre,@titulo,@anio_maximo)
 go
 
@@ -35,8 +35,8 @@ create procedure SP_UPDATE_CARRERAS
 @anio_maximo tinyint)
 as
 	update Carreras 
-	set nombre = @nombre,
-		titulo = @titulo,
+	set nombre_carrera = @nombre,
+		titulo_carrera = @titulo,
 		anio_maximo = @anio_maximo
 	where id_carrera = @id_carrera
 go
@@ -93,7 +93,7 @@ go
 create procedure SP_CREATE_ASIGNATURAS
 @nombre varchar(60)
 as
-	insert into Asignaturas (nombre)
+	insert into Asignaturas (nombre_asignatura)
 	values (@nombre)
 go
 
@@ -108,7 +108,7 @@ create procedure SP_UPDATE_ASIGNATURAS
 (@id_asignatura int,
 @nombre varchar(60))
 as
-	update Asignaturas set nombre = @nombre where id_asignatura = @id_asignatura
+	update Asignaturas set nombre_asignatura = @nombre where id_asignatura = @id_asignatura
 go
 
 --eliminar asignaturas
