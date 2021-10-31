@@ -17,6 +17,10 @@ namespace ProyectoCarrera
             InitializeComponent();
         }
 
-       
+        private void btnIniciarSesion_Click(object sender, EventArgs e)
+        {
+            Form1 nuevo = new Form1();
+            nuevo.ShowDialog();
+        }
     }
 }

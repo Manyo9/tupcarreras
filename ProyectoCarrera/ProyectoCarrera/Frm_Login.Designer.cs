@@ -61,6 +61,7 @@ namespace ProyectoCarrera
             this.btnIniciarSesion.TabIndex = 2;
             this.btnIniciarSesion.Text = "Iniciar Sesion";
             this.btnIniciarSesion.UseVisualStyleBackColor = true;
+            this.btnIniciarSesion.Click += new System.EventHandler(this.btnIniciarSesion_Click);
             // 
             // lblContraseña
             // 
@@ -87,7 +88,7 @@ namespace ProyectoCarrera
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             // 
-            // Login
+            // Frm_Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -98,7 +99,7 @@ namespace ProyectoCarrera
             this.Controls.Add(this.btnIniciarSesion);
             this.Controls.Add(this.txtUsuario);
             this.Controls.Add(this.lblUsuario);
-            this.Name = "Login";
+            this.Name = "Frm_Login";
             this.Text = "Login";
             this.ResumeLayout(false);
             this.PerformLayout();
