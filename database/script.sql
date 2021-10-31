@@ -114,9 +114,9 @@ go
 --actualizar asignaturas
 create procedure SP_UPDATE_ASIGNATURAS
 (@id_asignatura int,
-@nombre varchar(60))
+@nombre_asignatura varchar(60))
 as
-	update Asignaturas set nombre_asignatura = @nombre where id_asignatura = @id_asignatura
+	update Asignaturas set nombre_asignatura = @nombre_asignatura where id_asignatura = @id_asignatura
 go
 
 --eliminar asignaturas
