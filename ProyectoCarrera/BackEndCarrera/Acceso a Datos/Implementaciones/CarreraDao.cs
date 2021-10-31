@@ -12,6 +12,20 @@ namespace BackEndCarrera.Acceso_a_Datos.Implementaciones
 {
     class CarreraDao : ICarreraDao
     {
+
+        private static CarreraDao Instancia;
+        private CarreraDao()
+        {
+        }
+
+        public static CarreraDao GetInstancia()
+        {
+            if (Instancia == null)
+            {
+                Instancia = new CarreraDao();
+            }
+            return Instancia;
+        }
         public bool DeleteCarreras(Carrera oCarrera)
         {
             SqlConnection cnn = new SqlConnection(@"Data Source=DESKTOP-K8CN8ON;Initial Catalog=carreras;Integrated Security=True");

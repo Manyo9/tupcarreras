@@ -16,6 +16,6 @@ namespace BackEndCarrera.Acceso_a_Datos.Interfaces
         bool DeleteCarreras(Carrera oCarrera);
         bool DeleteDetalle(List<int> lst);
         bool UpdateCarreras(Carrera oCarrera);
-        bool UpdateAsignaturas(Asignatura oAsignatura);
+        bool UpdateAsignatura(Asignatura oAsignatura);
     }
 }

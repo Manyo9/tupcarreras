@@ -14,7 +14,7 @@ namespace BackEndCarrera.Servicios
 
         public CarreraService()
         {
-            dao = new CarreraDao();
+            dao = new DaoFactory().CrearCarreraDao();
         }
 
         public bool ActualizarAsignatura(Asignatura oAsignatura)
