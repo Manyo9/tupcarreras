@@ -126,11 +126,5 @@
   <ItemGroup>
     <None Include="Resources\tup_completo_blanco_transparente.png" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\BackEndCarrera\BackEndCarrera.csproj">
-      <Project>{c4de8159-0191-4936-8de4-6be840ab895b}</Project>
-      <Name>BackEndCarrera</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

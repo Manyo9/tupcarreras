@@ -9,15 +9,15 @@ namespace BackEndCarrera.Servicios
 {
     public interface IService
     {
-        Carrera BuscarCarreraPorId(int id);
-        List<Carrera> ObtenerCarreras();
-        List<Asignatura> ObtenerAsignaturas();
-        bool GuardarCarrera(Carrera oCarrera);
-        bool GuardarAsignatura(Asignatura oAsignatura);
-        bool EliminarCarrera(int id);
-        bool EliminarDetalle(List<int> lst);
-        bool EliminarAsignatura(int id);
-        bool ActualizarCarrera(Carrera oCarrera);
-        bool ActualizarAsignatura(Asignatura oAsignatura);
+        public Carrera BuscarCarreraPorId(int id);
+        public List<Carrera> ObtenerCarreras();
+        public List<Asignatura> ObtenerAsignaturas();
+        public bool GuardarCarrera(Carrera oCarrera);
+        public bool GuardarAsignatura(Asignatura oAsignatura);
+        public bool EliminarCarrera(int id);
+        public bool EliminarDetalle(List<int> lst);
+        public bool EliminarAsignatura(int id);
+        public bool ActualizarCarrera(Carrera oCarrera);
+        public bool ActualizarAsignatura(Asignatura oAsignatura);
     }
 }

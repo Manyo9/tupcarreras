@@ -14,7 +14,6 @@ namespace ProyectoCarrera
     public partial class Frm_Alta_Carrera : Form
     {
         private Accion modo;
-        Carrera oCarrera = new Carrera();
         
         public Frm_Alta_Carrera()
         {
@@ -146,16 +145,7 @@ namespace ProyectoCarrera
         }
         public void GuardarCarrera()
         {
-            oReceta.Nombre = txtNombre.Text;
 
-            if (receta.Save(oReceta))
-            {
-                MessageBox.Show("El presupuesto se grabo correctamente", "Notificacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else
-            {
-                MessageBox.Show("El presupuesto no se grabo correctamente", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
 
         private void cboMateria_SelectedIndexChanged(object sender, EventArgs e)
