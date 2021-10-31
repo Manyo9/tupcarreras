@@ -89,6 +89,14 @@ as
 	delete Detalles_carrera where id_detalle = @id_detalle
 go
 
+--borrar todos los detalles de una carrera
+create procedure SP_DELETE_DETALLES_BY_CARRERA
+(@id_carrera int)
+as
+	delete Detalles_Carrera
+	where id_carrera = @id_carrera
+go
+
 --crear nueva asignatura
 create procedure SP_CREATE_ASIGNATURAS
 @nombre varchar(60)
@@ -117,4 +125,3 @@ create procedure SP_DELETE_ASIGNATURAS
 as
 	delete Asignaturas where id_asignatura = @id_asignatura
 go
-
