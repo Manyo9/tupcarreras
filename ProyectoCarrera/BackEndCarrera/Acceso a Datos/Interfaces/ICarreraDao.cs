@@ -10,10 +10,12 @@ namespace BackEndCarrera.Acceso_a_Datos.Interfaces
     public interface ICarreraDao
     {
         Carrera GetCarrerasById();
-        bool Save(Carrera oCarrera);
         List<Asignatura> GetAsignatura();
-        bool UpdateCarreras(Carrera oCarrera);        
+        bool SaveCarrera(Carrera oCarrera);
+        bool SaveAsignatura(Asignatura oAsignatura);    
         bool DeleteCarreras(Carrera oCarrera);
         bool DeleteDetalle(List<int> lst);
+        bool UpdateCarreras(Carrera oCarrera);
+        bool UpdateAsignaturas(Asignatura oAsignatura);
     }
 }

@@ -146,7 +146,7 @@ namespace BackEndCarrera.Acceso_a_Datos.Implementaciones
             return oCarrera;
         }
 
-        public bool Save(Carrera oCarrera)
+        public bool SaveCarrera(Carrera oCarrera)
         {
             SqlTransaction transaction = null;
             SqlConnection cnn = new SqlConnection(@"Data Source=DESKTOP-K8CN8ON;Initial Catalog=carreras;Integrated Security=True");
@@ -213,7 +213,7 @@ namespace BackEndCarrera.Acceso_a_Datos.Implementaciones
             {
                 cnn.Open();
                 transaction = cnn.BeginTransaction();
-                SqlCommand cmd = new SqlCommand("SP_UPDATE_CARRERAS", cnn);
+                SqlCommand cmd = new SqlCommand("SP_UPDATE_CARRERAS", cnn,transaction);
 
                 //MAESTRO CARRERA
                 cmd.Parameters.AddWithValue("id_carrera", oCarrera.IdCarrera);
@@ -251,9 +251,71 @@ namespace BackEndCarrera.Acceso_a_Datos.Implementaciones
                 if (cnn != null && cnn.State == ConnectionState.Open)
                     cnn.Close();
             }
+            return flag;
+        }
+
+        public bool SaveAsignatura(Asignatura oAsignatura)
+        {
+            SqlConnection cnn = new SqlConnection(@"Data Source=DESKTOP-K8CN8ON;Initial Catalog=carreras;Integrated Security=True");
+            SqlTransaction transaction = null;
+            bool flag = true;
+
+            try
+            {
+                cnn.Open();
+                transaction = cnn.BeginTransaction();
+                SqlCommand cmd = new SqlCommand("SP_CREATE_ASIGNATURAS", cnn, transaction);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("nombre", oAsignatura.Nombre);
+                cmd.ExecuteNonQuery();
+                transaction.Commit();
+            }
+            catch (Exception)
+            {
+                transaction.Rollback();
+                throw;
+            }
+
+            finally
+            {
+                if (cnn != null && cnn.State == ConnectionState.Open)
+                    cnn.Close();
+            }
+            return flag;
+        }
+        public bool UpdateAsignatura(Asignatura oAsignatura)
+        {
+            SqlConnection cnn = new SqlConnection(@"Data Source=DESKTOP-K8CN8ON;Initial Catalog=carreras;Integrated Security=True");
+            SqlTransaction transaction = null;
+            bool flag = true;
+
+            try
+            {
+                cnn.Open();
+                SqlCommand cmd = new SqlCommand("SP_UPDATE_ASIGNATURAS",cnn,transaction);
+                transaction = cnn.BeginTransaction();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("id_asignatura",oAsignatura.IdAsignatura);
+                cmd.Parameters.AddWithValue("nombre_asignatura", oAsignatura.Nombre);
+                cmd.ExecuteNonQuery();
+
+                transaction.Commit();
+            }
+            catch (Exception)
+            {
+                transaction.Rollback();
+                flag = false;
+                throw;
+            }
+            finally
+            {
+                if (cnn != null && cnn.State == ConnectionState.Open)
+                    cnn.Close();
+            }
 
             return flag;
         }
+
     }
 }
 
