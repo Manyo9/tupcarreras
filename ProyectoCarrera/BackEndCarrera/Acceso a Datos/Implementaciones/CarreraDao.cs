@@ -108,6 +108,119 @@ namespace BackEndCarrera.Acceso_a_Datos.Implementaciones
             }
             return flag;
         }
+
+        List<Asignatura> GetAsignaturas()
+        {
+            List<Asignatura> lst = new List<Asignatura>();
+            SqlConnection cnn = new SqlConnection(@"Data Source=DESKTOP-K8CN8ON;Initial Catalog=carreras;Integrated Security=True");
+                      
+            cnn.Open();
+            SqlCommand cmd = new SqlCommand("SP_READ_ASIGNATURAS", cnn);
+            DataTable tabla = new DataTable();
+            cmd.CommandType = CommandType.StoredProcedure;
+            tabla.Load(cmd.ExecuteReader());
+            cnn.Close();
+            
+            foreach (DataRow row in tabla.Rows)
+            {
+                Asignatura oAsignatura = new Asignatura();
+                oAsignatura.IdAsignatura = Convert.ToInt32(row["id_asignatura"].ToString());
+                oAsignatura.Nombre = (row["nombre_asignatura"].ToString());
+                lst.Add(oAsignatura);
+            }
+
+            return lst;
+        }
+
+        bool UpdateCarreras(Carrera oCarrera)
+        {
+            SqlConnection cnn = new SqlConnection(@"Data Source=DESKTOP-K8CN8ON;Initial Catalog=carreras;Integrated Security=True");
+            SqlTransaction transaction = null;
+
+            bool flag = true;
+
+            try
+            {
+                cnn.Open();
+                transaction = cnn.BeginTransaction();
+                SqlCommand cmd = new SqlCommand("SP_UPDATE_CARRERAS",cnn);
+
+                //MAESTRO CARRERA
+                cmd.Parameters.AddWithValue("id_carrera", oCarrera.IdCarrera);
+                cmd.Parameters.AddWithValue("nombre_carrera", oCarrera.Nombre);
+                cmd.Parameters.AddWithValue("titulo_carrera", oCarrera.Titulo);
+                cmd.Parameters.AddWithValue("anio_maximo", oCarrera.AnioMaximo);
+                cmd.ExecuteNonQuery();
+
+
+
+                foreach (DetalleCarrera item in oCarrera.Detalles)
+                {
+                    SqlCommand comandoDetalle = new SqlCommand();
+                    comandoDetalle.Connection = cnn;
+                    comandoDetalle.Transaction = transaction;
+                    comandoDetalle.CommandText = "SP_UPDATE_DETALLES";
+                    comandoDetalle.CommandType = CommandType.StoredProcedure;
+                    comandoDetalle.Parameters.AddWithValue("@id_detalle", item.IdDetalle);
+                    comandoDetalle.Parameters.AddWithValue("@anio_cursado", item.AnioDeCursado);
+                    comandoDetalle.Parameters.AddWithValue("@cuatrimestre", item.Cuatrimestre);
+                    comandoDetalle.Parameters.AddWithValue("@id_asignatura", item.Materia.IdAsignatura);
+                    comandoDetalle.ExecuteNonQuery();
+                }
+
+                transaction.Commit();
+            }
+            catch (Exception)
+            {
+                flag = false;
+                transaction.Rollback();
+                throw;
+            }
+            finally
+            {
+                if (cnn != null && cnn.State == ConnectionState.Open)
+                    cnn.Close();
+            }
+
+            return flag;
+        }
+
+        bool DeleteCarreras(Carrera oCarrera)
+        {
+            SqlConnection cnn = new SqlConnection(@"Data Source=DESKTOP-K8CN8ON;Initial Catalog=carreras;Integrated Security=True");
+            SqlTransaction transaction = null;
+
+            SqlCommand cmd = new SqlCommand("SP_DELETE_DETALLES_BY_CARRERA", cnn, transaction);
+            cmd.CommandType = CommandType.StoredProcedure;
+            SqlCommand cmdCarrera = new SqlCommand("SP_DELETE_CARRERAS", cnn, transaction);
+            cmdCarrera.CommandType = CommandType.StoredProcedure;
+
+            bool flag = true;
+            try
+            {
+                cnn.Open();
+                transaction = cnn.BeginTransaction();
+                cmd.Parameters.AddWithValue("id_carrera", oCarrera.IdCarrera);
+                cmd.ExecuteNonQuery();
+                cmdCarrera.Parameters.AddWithValue("id_carrera",oCarrera.IdCarrera);
+                cmdCarrera.ExecuteNonQuery();
+                transaction.Commit();
+            }
+            catch (Exception)
+            {
+                transaction.Rollback();
+                flag = false;
+                throw;
+            }
+            finally
+            {
+                if (cnn != null && cnn.State == ConnectionState.Open)
+                    cnn.Close();
+            }
+            return flag;
+        }
+
+
     }
 }
 

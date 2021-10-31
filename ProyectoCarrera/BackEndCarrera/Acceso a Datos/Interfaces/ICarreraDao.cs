@@ -11,5 +11,8 @@ namespace BackEndCarrera.Acceso_a_Datos.Interfaces
     {
         Carrera GetCarrerasById();
         bool Save(Carrera oCarrera);
+        List<Asignatura> GetAsignatura();
+        bool UpdateCarreras(Carrera oCarrera);        
+        bool DeleteCarreras(Carrera oCarrera);
     }
 }
