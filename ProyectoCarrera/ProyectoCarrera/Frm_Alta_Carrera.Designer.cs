@@ -44,31 +44,32 @@ namespace ProyectoCarrera
             this.lstCarrera = new System.Windows.Forms.ListBox();
             this.btnNuevo = new System.Windows.Forms.Button();
             this.DgvMateria = new System.Windows.Forms.DataGridView();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cuatrimestre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColMateria = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColAnioCursado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Acciones = new System.Windows.Forms.DataGridViewButtonColumn();
             this.txtTitulo = new System.Windows.Forms.TextBox();
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnBorrar = new System.Windows.Forms.Button();
             this.btnAceptar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.numAnioCursado = new System.Windows.Forms.NumericUpDown();
-            this.numCantidadAnios = new System.Windows.Forms.NumericUpDown();
-            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cuatrimestre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColMateria = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColAnioCursado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Acciones = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.nudCantidadAnios = new System.Windows.Forms.NumericUpDown();
             this.btnMateria = new System.Windows.Forms.Button();
+            this.btnSalir = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DgvMateria)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numAnioCursado)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numCantidadAnios)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudCantidadAnios)).BeginInit();
             this.SuspendLayout();
             // 
             // lblCarrera
             // 
             this.lblCarrera.AutoSize = true;
-            this.lblCarrera.Font = new System.Drawing.Font("Futura Md BT", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCarrera.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCarrera.Location = new System.Drawing.Point(30, 43);
             this.lblCarrera.Name = "lblCarrera";
-            this.lblCarrera.Size = new System.Drawing.Size(163, 22);
+            this.lblCarrera.Size = new System.Drawing.Size(155, 24);
             this.lblCarrera.TabIndex = 0;
             this.lblCarrera.Text = "Ingrese Carrera";
             // 
@@ -102,7 +103,7 @@ namespace ProyectoCarrera
             // lblAñoDeCursada
             // 
             this.lblAñoDeCursada.AutoSize = true;
-            this.lblAñoDeCursada.Location = new System.Drawing.Point(324, 248);
+            this.lblAñoDeCursada.Location = new System.Drawing.Point(296, 230);
             this.lblAñoDeCursada.Name = "lblAñoDeCursada";
             this.lblAñoDeCursada.Size = new System.Drawing.Size(83, 13);
             this.lblAñoDeCursada.TabIndex = 18;
@@ -111,7 +112,7 @@ namespace ProyectoCarrera
             // lblMateria
             // 
             this.lblMateria.AutoSize = true;
-            this.lblMateria.Location = new System.Drawing.Point(324, 100);
+            this.lblMateria.Location = new System.Drawing.Point(296, 100);
             this.lblMateria.Name = "lblMateria";
             this.lblMateria.Size = new System.Drawing.Size(42, 13);
             this.lblMateria.TabIndex = 20;
@@ -120,7 +121,7 @@ namespace ProyectoCarrera
             // lblCuatrimestre
             // 
             this.lblCuatrimestre.AutoSize = true;
-            this.lblCuatrimestre.Location = new System.Drawing.Point(324, 185);
+            this.lblCuatrimestre.Location = new System.Drawing.Point(293, 169);
             this.lblCuatrimestre.Name = "lblCuatrimestre";
             this.lblCuatrimestre.Size = new System.Drawing.Size(65, 13);
             this.lblCuatrimestre.TabIndex = 19;
@@ -129,15 +130,16 @@ namespace ProyectoCarrera
             // cboMateria
             // 
             this.cboMateria.FormattingEnabled = true;
-            this.cboMateria.Location = new System.Drawing.Point(382, 95);
+            this.cboMateria.Location = new System.Drawing.Point(344, 97);
             this.cboMateria.Name = "cboMateria";
             this.cboMateria.Size = new System.Drawing.Size(172, 21);
             this.cboMateria.TabIndex = 8;
+            this.cboMateria.SelectedIndexChanged += new System.EventHandler(this.cboMateria_SelectedIndexChanged);
             // 
             // rbtnSegundo
             // 
             this.rbtnSegundo.AutoSize = true;
-            this.rbtnSegundo.Location = new System.Drawing.Point(442, 181);
+            this.rbtnSegundo.Location = new System.Drawing.Point(385, 169);
             this.rbtnSegundo.Name = "rbtnSegundo";
             this.rbtnSegundo.Size = new System.Drawing.Size(68, 17);
             this.rbtnSegundo.TabIndex = 5;
@@ -148,7 +150,7 @@ namespace ProyectoCarrera
             // rbtnPrimero
             // 
             this.rbtnPrimero.AutoSize = true;
-            this.rbtnPrimero.Location = new System.Drawing.Point(442, 158);
+            this.rbtnPrimero.Location = new System.Drawing.Point(385, 146);
             this.rbtnPrimero.Name = "rbtnPrimero";
             this.rbtnPrimero.Size = new System.Drawing.Size(60, 17);
             this.rbtnPrimero.TabIndex = 4;
@@ -159,7 +161,7 @@ namespace ProyectoCarrera
             // rbtnAnual
             // 
             this.rbtnAnual.AutoSize = true;
-            this.rbtnAnual.Location = new System.Drawing.Point(442, 204);
+            this.rbtnAnual.Location = new System.Drawing.Point(385, 192);
             this.rbtnAnual.Name = "rbtnAnual";
             this.rbtnAnual.Size = new System.Drawing.Size(52, 17);
             this.rbtnAnual.TabIndex = 6;
@@ -177,14 +179,14 @@ namespace ProyectoCarrera
             // lstCarrera
             // 
             this.lstCarrera.FormattingEnabled = true;
-            this.lstCarrera.Location = new System.Drawing.Point(587, 43);
+            this.lstCarrera.Location = new System.Drawing.Point(535, 43);
             this.lstCarrera.Name = "lstCarrera";
-            this.lstCarrera.Size = new System.Drawing.Size(150, 264);
+            this.lstCarrera.Size = new System.Drawing.Size(202, 264);
             this.lstCarrera.TabIndex = 7;
             // 
             // btnNuevo
             // 
-            this.btnNuevo.Location = new System.Drawing.Point(68, 517);
+            this.btnNuevo.Location = new System.Drawing.Point(49, 517);
             this.btnNuevo.Name = "btnNuevo";
             this.btnNuevo.Size = new System.Drawing.Size(75, 23);
             this.btnNuevo.TabIndex = 10;
@@ -203,72 +205,11 @@ namespace ProyectoCarrera
             this.ColMateria,
             this.ColAnioCursado,
             this.Acciones});
-            this.DgvMateria.Location = new System.Drawing.Point(49, 360);
+            this.DgvMateria.Location = new System.Drawing.Point(49, 326);
             this.DgvMateria.Name = "DgvMateria";
             this.DgvMateria.ReadOnly = true;
-            this.DgvMateria.Size = new System.Drawing.Size(688, 115);
+            this.DgvMateria.Size = new System.Drawing.Size(688, 147);
             this.DgvMateria.TabIndex = 9;
-            this.DgvMateria.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvMateria_CellContentClick);
-            // 
-            // txtTitulo
-            // 
-            this.txtTitulo.Location = new System.Drawing.Point(130, 162);
-            this.txtTitulo.Name = "txtTitulo";
-            this.txtTitulo.Size = new System.Drawing.Size(131, 20);
-            this.txtTitulo.TabIndex = 1;
-            // 
-            // btnEditar
-            // 
-            this.btnEditar.Location = new System.Drawing.Point(167, 517);
-            this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(75, 23);
-            this.btnEditar.TabIndex = 11;
-            this.btnEditar.Text = "Editar";
-            this.btnEditar.UseVisualStyleBackColor = true;
-            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
-            // 
-            // btnBorrar
-            // 
-            this.btnBorrar.Location = new System.Drawing.Point(283, 517);
-            this.btnBorrar.Name = "btnBorrar";
-            this.btnBorrar.Size = new System.Drawing.Size(75, 23);
-            this.btnBorrar.TabIndex = 12;
-            this.btnBorrar.Text = "Borrar";
-            this.btnBorrar.UseVisualStyleBackColor = true;
-            this.btnBorrar.Click += new System.EventHandler(this.btnBorrar_Click);
-            // 
-            // btnAceptar
-            // 
-            this.btnAceptar.Location = new System.Drawing.Point(542, 517);
-            this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(75, 23);
-            this.btnAceptar.TabIndex = 13;
-            this.btnAceptar.Text = "Aceptar";
-            this.btnAceptar.UseVisualStyleBackColor = true;
-            // 
-            // btnCancelar
-            // 
-            this.btnCancelar.Location = new System.Drawing.Point(650, 517);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
-            this.btnCancelar.TabIndex = 14;
-            this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.UseVisualStyleBackColor = true;
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
-            // 
-            // numAnioCursado
-            // 
-            this.numAnioCursado.Location = new System.Drawing.Point(442, 248);
-            this.numAnioCursado.Name = "numAnioCursado";
-            this.numAnioCursado.Size = new System.Drawing.Size(91, 20);
-            this.numAnioCursado.TabIndex = 3;
-            // 
-            // numCantidadAnios
-            // 
-            this.numCantidadAnios.Location = new System.Drawing.Point(170, 223);
-            this.numCantidadAnios.Name = "numCantidadAnios";
-            this.numCantidadAnios.Size = new System.Drawing.Size(91, 20);
-            this.numCantidadAnios.TabIndex = 2;
             // 
             // id
             // 
@@ -304,22 +245,94 @@ namespace ProyectoCarrera
             this.Acciones.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.Acciones.Text = "Quitar";
             // 
+            // txtTitulo
+            // 
+            this.txtTitulo.Location = new System.Drawing.Point(130, 162);
+            this.txtTitulo.Name = "txtTitulo";
+            this.txtTitulo.Size = new System.Drawing.Size(131, 20);
+            this.txtTitulo.TabIndex = 1;
+            // 
+            // btnEditar
+            // 
+            this.btnEditar.Location = new System.Drawing.Point(157, 517);
+            this.btnEditar.Name = "btnEditar";
+            this.btnEditar.Size = new System.Drawing.Size(75, 23);
+            this.btnEditar.TabIndex = 11;
+            this.btnEditar.Text = "Editar";
+            this.btnEditar.UseVisualStyleBackColor = true;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
+            // 
+            // btnBorrar
+            // 
+            this.btnBorrar.Location = new System.Drawing.Point(272, 517);
+            this.btnBorrar.Name = "btnBorrar";
+            this.btnBorrar.Size = new System.Drawing.Size(75, 23);
+            this.btnBorrar.TabIndex = 12;
+            this.btnBorrar.Text = "Borrar";
+            this.btnBorrar.UseVisualStyleBackColor = true;
+            this.btnBorrar.Click += new System.EventHandler(this.btnBorrar_Click);
+            // 
+            // btnAceptar
+            // 
+            this.btnAceptar.Location = new System.Drawing.Point(458, 517);
+            this.btnAceptar.Name = "btnAceptar";
+            this.btnAceptar.Size = new System.Drawing.Size(75, 23);
+            this.btnAceptar.TabIndex = 13;
+            this.btnAceptar.Text = "Aceptar";
+            this.btnAceptar.UseVisualStyleBackColor = true;
+            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Location = new System.Drawing.Point(561, 517);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
+            this.btnCancelar.TabIndex = 14;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
+            // numAnioCursado
+            // 
+            this.numAnioCursado.Location = new System.Drawing.Point(385, 228);
+            this.numAnioCursado.Name = "numAnioCursado";
+            this.numAnioCursado.Size = new System.Drawing.Size(91, 20);
+            this.numAnioCursado.TabIndex = 3;
+            // 
+            // nudCantidadAnios
+            // 
+            this.nudCantidadAnios.Location = new System.Drawing.Point(170, 221);
+            this.nudCantidadAnios.Name = "nudCantidadAnios";
+            this.nudCantidadAnios.Size = new System.Drawing.Size(91, 20);
+            this.nudCantidadAnios.TabIndex = 2;
+            // 
             // btnMateria
             // 
-            this.btnMateria.Location = new System.Drawing.Point(433, 295);
+            this.btnMateria.Location = new System.Drawing.Point(296, 263);
             this.btnMateria.Name = "btnMateria";
             this.btnMateria.Size = new System.Drawing.Size(100, 23);
             this.btnMateria.TabIndex = 21;
             this.btnMateria.Text = "Agregar Materia";
             this.btnMateria.UseVisualStyleBackColor = true;
             // 
+            // btnSalir
+            // 
+            this.btnSalir.Location = new System.Drawing.Point(662, 517);
+            this.btnSalir.Name = "btnSalir";
+            this.btnSalir.Size = new System.Drawing.Size(75, 23);
+            this.btnSalir.TabIndex = 22;
+            this.btnSalir.Text = "Salir";
+            this.btnSalir.UseVisualStyleBackColor = true;
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
+            // 
             // Frm_Alta_Carrera
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 584);
+            this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnMateria);
-            this.Controls.Add(this.numCantidadAnios);
+            this.Controls.Add(this.nudCantidadAnios);
             this.Controls.Add(this.numAnioCursado);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAceptar);
@@ -346,7 +359,7 @@ namespace ProyectoCarrera
             this.Load += new System.EventHandler(this.Frm_Alta_Carrera_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DgvMateria)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numAnioCursado)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numCantidadAnios)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudCantidadAnios)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -375,12 +388,13 @@ namespace ProyectoCarrera
         private System.Windows.Forms.Button btnAceptar;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.NumericUpDown numAnioCursado;
-        private System.Windows.Forms.NumericUpDown numCantidadAnios;
+        private System.Windows.Forms.NumericUpDown nudCantidadAnios;
         private System.Windows.Forms.DataGridViewTextBoxColumn id;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cuatrimestre;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColMateria;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColAnioCursado;
         private System.Windows.Forms.DataGridViewButtonColumn Acciones;
         private System.Windows.Forms.Button btnMateria;
+        private System.Windows.Forms.Button btnSalir;
     }
 }
