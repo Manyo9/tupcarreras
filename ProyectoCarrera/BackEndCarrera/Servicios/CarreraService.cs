@@ -27,14 +27,14 @@ namespace BackEndCarrera.Servicios
             return dao.UpdateCarreras(oCarrera);
         }
 
-        public Carrera BuscarCarreraPorId()
+        public Carrera BuscarCarreraPorId(int id)
         {
-            return dao.GetCarrerasById();
+            return dao.GetCarrerasById(id);
         }
 
-        public bool EliminarCarrera(Carrera oCarrera)
+        public bool EliminarCarrera(int id)
         {
-            return dao.DeleteCarreras(oCarrera);
+            return dao.DeleteCarreras(id);
         }
 
         public bool EliminarDetalle(List<int> lst)
@@ -52,9 +52,17 @@ namespace BackEndCarrera.Servicios
             return dao.SaveCarrera(oCarrera);
         }
 
-        public List<Asignatura> ObtenerAsignatura()
+        public List<Asignatura> ObtenerAsignaturas()
         {
-            return dao.GetAsignatura();
+            return dao.GetAsignaturas();
+        }
+        public List<Carrera> ObtenerCarreras()
+        {
+            return dao.GetCarreras();
+        }
+        public bool EliminarAsignatura(int id)
+        {
+            return dao.DeleteAsignatura(id);
         }
     }
 }
