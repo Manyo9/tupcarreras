@@ -16,5 +16,10 @@ namespace Frontend
         {
             InitializeComponent();
         }
+
+        private void Frm_Reporte_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
