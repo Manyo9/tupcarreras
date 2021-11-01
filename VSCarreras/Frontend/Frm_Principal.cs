@@ -10,39 +10,11 @@ using System.Windows.Forms;
 
 namespace Frontend
 {
-    public partial class Form1 : Form
+    public partial class Frm_Principal : Form
     {
-        public Form1()
+        public Frm_Principal()
         {
             InitializeComponent();
-        }
-
-        private void nueToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Frm_Alta_Carrera nuevo = new Frm_Alta_Carrera();
-                nuevo.ShowDialog();
-        }
-
-        private void generarReporteToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Frm_Reporte nuevo = new Frm_Reporte();
-            nuevo.ShowDialog();
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void aBMCToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Frm_Materia nuevo = new Frm_Materia();
-            nuevo.ShowDialog();
         }
     }
 }

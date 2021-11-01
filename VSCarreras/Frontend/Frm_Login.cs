@@ -19,7 +19,7 @@ namespace Frontend
 
         private void btnIniciarSesion_Click(object sender, EventArgs e)
         {
-            Form1 nuevo = new Form1();
+            Frm_Principal nuevo = new Frm_Principal();
             nuevo.ShowDialog();
         }
 
