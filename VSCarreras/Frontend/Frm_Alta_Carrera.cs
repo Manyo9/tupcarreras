@@ -188,14 +188,16 @@ namespace Frontend
         }
         public async Task CargarComboAsync()
         {
-            string url = "https://localhost:44361/api/asignaturas/";
+            string url = "https://localhost:44361/api/Carrera/asignaturas";
             var resultado = await ClienteHttp.GetInstancia().GetAsync(url);
             List<Asignatura> materias = new List<Asignatura>();
             materias = JsonConvert.DeserializeObject<List<Asignatura>>(resultado);
+            MessageBox.Show(resultado.ToString());
+            MessageBox.Show(materias.ToString());
+
             cboMateria.DataSource = materias;
             cboMateria.DisplayMember = "Nombre";
             cboMateria.ValueMember = "IdAsignatura";
-            
         }
 
         private void cboMateria_SelectedIndexChanged(object sender, EventArgs e)

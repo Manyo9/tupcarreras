@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Backend.Servicios;
+using Newtonsoft.Json;
+using Backend.Dominio;
 
 namespace WebAPI.Controllers
 {
@@ -41,11 +43,12 @@ namespace WebAPI.Controllers
             }
         }
 
-        // POST api/<CarreraController>
+        // POST api/Carrera
         [HttpPost]
         public void Post([FromBody] string json)
         {
-
+            Carrera oCarrera = JsonConvert.DeserializeObject<Carrera>(json);
+            servicio.GuardarCarrera(oCarrera);
         }
 
         // PUT api/<CarreraController>/5
@@ -72,7 +75,7 @@ namespace WebAPI.Controllers
         // GET api/Carrera/asignaturas
         // trae todas las asignaturas
 
-        [HttpGet("/asignaturas/")]
+        [HttpGet("asignaturas")]
         public IActionResult GetAsignaturas()
         {
             return Ok(servicio.ObtenerAsignaturas());
@@ -80,7 +83,7 @@ namespace WebAPI.Controllers
 
         // GET api/Carrera/asignaturas/1
         // Elimina una asignatura por id
-        [HttpDelete("/asignaturas/{id}")]
+        [HttpDelete("asignaturas/{id}")]
         public IActionResult DeleteAsignaturaById(int id)
         {
             if (id == 0 || id == null)
