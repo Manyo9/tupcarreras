@@ -16,5 +16,25 @@ namespace Frontend
         {
             InitializeComponent();
         }
+
+        private void nuevaCarreraToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_Alta_Carrera nuevo = new Frm_Alta_Carrera();
+            nuevo.ShowDialog();
+        }
+
+        private void nuevaMateriaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_Materia nuevo = new Frm_Materia();
+            nuevo.ShowDialog();
+        }
+
+        private void generarReporteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_Reporte nuevo = new Frm_Reporte();
+            nuevo.ShowDialog();
+        }
+
+        
     }
 }
