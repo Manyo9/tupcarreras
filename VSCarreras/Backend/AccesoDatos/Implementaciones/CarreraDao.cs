@@ -390,5 +390,38 @@ namespace Backend.AccesoDatos.Implementaciones
             return flag;
         }
 
+        public bool LoginIn(string user, string password)
+        {
+            SqlConnection cnn = new SqlConnection(@"Data Source=.\SQLEXPRESS;Initial Catalog=carreras;Integrated Security=True");
+            DataTable tabla = new DataTable();
+            try
+            {
+                cnn.Open();
+                SqlCommand cmd = new SqlCommand("SP_LOGIN", cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("nom_usuario", user);
+                cmd.Parameters.AddWithValue("contrasenia", password);                
+                cmd.ExecuteReader();
+                if(tabla.Rows.Count==0||tabla==null)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+
+            }
+            catch (Exception)
+            {              
+                throw;
+            }
+            finally
+            {
+                if (cnn != null && cnn.State == ConnectionState.Open)
+                    cnn.Close();
+            }
+        }
+
     }
 }

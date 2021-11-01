@@ -19,5 +19,6 @@ namespace Backend.AccesoDatos.Interfaces
         bool DeleteAsignatura(int id);
         bool UpdateCarreras(Carrera oCarrera);
         bool UpdateAsignatura(Asignatura oAsignatura);
+        bool LoginIn(string user,string password);
     }
 }

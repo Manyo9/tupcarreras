@@ -19,5 +19,6 @@ namespace Backend.Servicios
         public bool EliminarAsignatura(int id);
         public bool ActualizarCarrera(Carrera oCarrera);
         public bool ActualizarAsignatura(Asignatura oAsignatura);
+        public bool IniciarSesion(string user, string password);
     }
 }

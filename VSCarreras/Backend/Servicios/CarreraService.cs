@@ -64,6 +64,10 @@ namespace Backend.Servicios
         {
             return dao.DeleteAsignatura(id);
         }
+        public bool IniciarSesion(string user,string password)
+        {
+            return dao.LoginIn(user, password);
+        }
     }
 }
 
