@@ -17,7 +17,9 @@ namespace Frontend
     public partial class Frm_Alta_Carrera : Form
     {
         private Accion modo;
-        private Carrera oCarrera;
+        private Carrera oCarrera = new Carrera();
+        List<Asignatura> materias = new List<Asignatura>();
+        List<Carrera> carreras = new List<Carrera>();
         private ClienteHttp cliente;
         public Frm_Alta_Carrera()
         {
@@ -35,25 +37,25 @@ namespace Frontend
         {
             modo = Accion.READ;
             habilitar(false);
-            CargarComboAsync();
+            CargarFormAsync();
         }
         private void limpiar()
         {
-           
+
             txtNombre.Text = "";
             txtTitulo.Text = "";
-            numAnioCursado.Text= "";
-            nudCantidadAnios.Text="";
+            nudAnioCursado.Text = "";
+            nudCantidadAnios.Text = "";
             rbtnAnual.Checked = false;
             rbtnPrimero.Checked = false;
             rbtnSegundo.Checked = false;
             cboMateria.SelectedIndex = -1;
 
         }
-      
+
         private void habilitar(bool x)
         {
-            numAnioCursado.Enabled = x;
+            nudAnioCursado.Enabled = x;
             nudCantidadAnios.Enabled = x;
             txtNombre.Enabled = x;
             txtTitulo.Enabled = x;
@@ -66,16 +68,16 @@ namespace Frontend
             btnEditar.Enabled = !x;
             btnBorrar.Enabled = !x;
             lstCarrera.Enabled = !x;
-            DgvMateria.Enabled = !x;
+            dgvMateria.Enabled = !x;
             btnMateria.Enabled = x;
         }
 
         private void btnNuevo_Click(object sender, EventArgs e)
         {
-           modo = Accion.CREATE; 
-           limpiar();         
-           habilitar(true);
-           txtNombre.Focus();
+            modo = Accion.CREATE;
+            limpiar();
+            habilitar(true);
+            txtNombre.Focus();
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -85,7 +87,7 @@ namespace Frontend
             habilitar(false);
             txtNombre.Focus();
         }
-    
+
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
@@ -100,7 +102,7 @@ namespace Frontend
             //if (MessageBox.Show("Se borrará permanentemente , desea seguir?",
             //              "BORRAR", MessageBoxButtons.YesNo, MessageBoxIcon.Question,
             //              MessageBoxDefaultButton.Button2) == DialogResult.Yes) ;
-                
+
         }
 
 
@@ -120,9 +122,9 @@ namespace Frontend
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            if(modo.Equals(Accion.CREATE) || modo.Equals(Accion.UPDATE)|| modo.Equals(Accion.DELETE))
+            if (modo.Equals(Accion.CREATE) || modo.Equals(Accion.UPDATE) || modo.Equals(Accion.DELETE))
             {
-                if (DgvMateria.Rows.Count == 0)
+                if (dgvMateria.Rows.Count == 0)
                 {
                     MessageBox.Show("Debe ingresar al menos una materia en el plan", "Validaciones", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     cboMateria.Focus();
@@ -140,7 +142,7 @@ namespace Frontend
                     txtNombre.Focus();
                     return;
                 }
-                if(nudCantidadAnios.Value<=0 || nudCantidadAnios.Value>=100)
+                if (nudCantidadAnios.Value <= 0 || nudCantidadAnios.Value >= 100)
                 {
                     MessageBox.Show("Debe ingresar un numero entre 1 y 99", "Validacion", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     nudCantidadAnios.Focus();
@@ -163,7 +165,7 @@ namespace Frontend
                                 MessageBoxDefaultButton.Button2) == DialogResult.Yes) {
                         BorrarCarrera();
                         limpiar();
-                    }                
+                    }
                 }
             }
         }
@@ -190,16 +192,115 @@ namespace Frontend
         {
             string url = "https://localhost:44361/api/Carrera/asignaturas";
             var resultado = await ClienteHttp.GetInstancia().GetAsync(url);
-            List<Asignatura> materias = new List<Asignatura>();
             materias = JsonConvert.DeserializeObject<List<Asignatura>>(resultado);
             cboMateria.DataSource = materias;
             cboMateria.DisplayMember = "Nombre";
             cboMateria.ValueMember = "IdAsignatura";
         }
 
+        public async Task CargarListAsync()
+        {
+            string url = "https://localhost:44361/api/Carrera";
+            var resultado = await ClienteHttp.GetInstancia().GetAsync(url);
+            carreras = JsonConvert.DeserializeObject<List<Carrera>>(resultado);
+            lstCarrera.DataSource = carreras;
+            lstCarrera.DisplayMember = "nombre";
+            lstCarrera.ValueMember = "idCarrera";
+        }
+
         private void cboMateria_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnMateria_Click(object sender, EventArgs e)
+        {
+
+            if (cboMateria.SelectedIndex == -1)
+            {
+                MessageBox.Show("Debe seleccionar una materia", "Validacion", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                cboMateria.Focus();
+                return;
+            }
+            if (nudAnioCursado.Value <= 0 || nudAnioCursado.Value > carreras[lstCarrera.SelectedIndex].AnioMaximo)
+            {
+                MessageBox.Show("Debe seleccionar un año de cursado entre uno y el año final de la carrera seleccionada", "Validacion", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                nudAnioCursado.Focus();
+                return;
+            }
+            if (ExisteMateriaEnGrilla(cboMateria.Text))
+            {
+                MessageBox.Show("Materia ya ingresada", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            Asignatura oAsignatura = (Asignatura)cboMateria.SelectedItem;
+            DetalleCarrera detalle = new DetalleCarrera();
+            string cuatrimestre;
+            if (rbtnAnual.Checked)
+            {
+                cuatrimestre = "A";
+            }
+            else if (rbtnPrimero.Checked)
+            {
+                cuatrimestre = "P";
+            }
+            else
+            {
+                cuatrimestre = "S";
+            }
+
+            if (!ExisteMateriaEnGrilla(oAsignatura.Nombre))
+            {
+                detalle = new DetalleCarrera(Convert.ToInt32(nudAnioCursado.Value), cuatrimestre, oAsignatura);
+                dgvMateria.Rows.Add(new object[] { detalle.Cuatrimestre, oAsignatura.Nombre, detalle.AnioDeCursado });
+            }
+
+            oCarrera.AgregarDetalle(detalle);
+        }
+        private bool ExisteMateriaEnGrilla(string text)
+        {
+            foreach (DataGridViewRow fila in dgvMateria.Rows)
+            {
+                if (fila.Cells["Materia"].Value.Equals(text))
+                    return true;
+            }
+            return false;
+        }
+        private void dgvMateria_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvMateria.CurrentCell.ColumnIndex == 4)
+            {
+                oCarrera.QuitarDetalle(dgvMateria.CurrentRow.Index);
+                dgvMateria.Rows.Remove(dgvMateria.CurrentRow);
+            }
+        }
+        public async Task TraerCarreraAsync(int n)
+        {
+            string url = "https://localhost:44361/api/Carrera/" + n.ToString();
+            var resultado = await ClienteHttp.GetInstancia().GetAsync(url);
+            oCarrera = JsonConvert.DeserializeObject<Carrera>(resultado);
+        }
+
+        public async Task CargarCampos()
+        {
+            txtNombre.Text = carreras[lstCarrera.SelectedIndex].Nombre;
+            txtTitulo.Text = carreras[lstCarrera.SelectedIndex].Titulo;
+            nudCantidadAnios.Value = Convert.ToInt32(carreras[lstCarrera.SelectedIndex].AnioMaximo);
+            await TraerCarreraAsync(carreras[lstCarrera.SelectedIndex].IdCarrera);
+        }
+
+
+        private void lstCarrera_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CargarCampos();
+        }
+
+        public async Task CargarFormAsync()
+        {
+            await CargarComboAsync();
+            await CargarListAsync();
+            CargarCampos();
         }
     }
 }

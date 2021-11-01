@@ -43,10 +43,10 @@ namespace Frontend
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.lstCarrera = new System.Windows.Forms.ListBox();
             this.btnNuevo = new System.Windows.Forms.Button();
-            this.DgvMateria = new System.Windows.Forms.DataGridView();
+            this.dgvMateria = new System.Windows.Forms.DataGridView();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cuatrimestre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColMateria = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Materia = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColAnioCursado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Acciones = new System.Windows.Forms.DataGridViewButtonColumn();
             this.txtTitulo = new System.Windows.Forms.TextBox();
@@ -54,20 +54,21 @@ namespace Frontend
             this.btnBorrar = new System.Windows.Forms.Button();
             this.btnAceptar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
-            this.numAnioCursado = new System.Windows.Forms.NumericUpDown();
+            this.nudAnioCursado = new System.Windows.Forms.NumericUpDown();
             this.nudCantidadAnios = new System.Windows.Forms.NumericUpDown();
             this.btnMateria = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.DgvMateria)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numAnioCursado)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMateria)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudAnioCursado)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCantidadAnios)).BeginInit();
             this.SuspendLayout();
             // 
             // lblCarrera
             // 
             this.lblCarrera.AutoSize = true;
-            this.lblCarrera.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCarrera.Location = new System.Drawing.Point(30, 43);
+            this.lblCarrera.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblCarrera.Location = new System.Drawing.Point(35, 50);
+            this.lblCarrera.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCarrera.Name = "lblCarrera";
             this.lblCarrera.Size = new System.Drawing.Size(155, 24);
             this.lblCarrera.TabIndex = 0;
@@ -76,72 +77,80 @@ namespace Frontend
             // lblNombre
             // 
             this.lblNombre.AutoSize = true;
-            this.lblNombre.Location = new System.Drawing.Point(46, 100);
+            this.lblNombre.Location = new System.Drawing.Point(35, 120);
+            this.lblNombre.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNombre.Name = "lblNombre";
-            this.lblNombre.Size = new System.Drawing.Size(44, 13);
+            this.lblNombre.Size = new System.Drawing.Size(51, 15);
             this.lblNombre.TabIndex = 15;
             this.lblNombre.Text = "Nombre";
             // 
             // lblTitulo
             // 
             this.lblTitulo.AutoSize = true;
-            this.lblTitulo.Location = new System.Drawing.Point(46, 162);
+            this.lblTitulo.Location = new System.Drawing.Point(35, 195);
+            this.lblTitulo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(35, 13);
+            this.lblTitulo.Size = new System.Drawing.Size(37, 15);
             this.lblTitulo.TabIndex = 16;
             this.lblTitulo.Text = "Título";
             // 
             // lblAñoMax
             // 
             this.lblAñoMax.AutoSize = true;
-            this.lblAñoMax.Location = new System.Drawing.Point(46, 223);
+            this.lblAñoMax.Location = new System.Drawing.Point(54, 257);
+            this.lblAñoMax.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblAñoMax.Name = "lblAñoMax";
-            this.lblAñoMax.Size = new System.Drawing.Size(90, 13);
+            this.lblAñoMax.Size = new System.Drawing.Size(99, 15);
             this.lblAñoMax.TabIndex = 17;
             this.lblAñoMax.Text = "Cantidad de años";
             // 
             // lblAñoDeCursada
             // 
             this.lblAñoDeCursada.AutoSize = true;
-            this.lblAñoDeCursada.Location = new System.Drawing.Point(296, 230);
+            this.lblAñoDeCursada.Location = new System.Drawing.Point(345, 265);
+            this.lblAñoDeCursada.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblAñoDeCursada.Name = "lblAñoDeCursada";
-            this.lblAñoDeCursada.Size = new System.Drawing.Size(83, 13);
+            this.lblAñoDeCursada.Size = new System.Drawing.Size(92, 15);
             this.lblAñoDeCursada.TabIndex = 18;
             this.lblAñoDeCursada.Text = "Año de Cursado";
             // 
             // lblMateria
             // 
             this.lblMateria.AutoSize = true;
-            this.lblMateria.Location = new System.Drawing.Point(296, 100);
+            this.lblMateria.Location = new System.Drawing.Point(345, 115);
+            this.lblMateria.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMateria.Name = "lblMateria";
-            this.lblMateria.Size = new System.Drawing.Size(42, 13);
+            this.lblMateria.Size = new System.Drawing.Size(47, 15);
             this.lblMateria.TabIndex = 20;
             this.lblMateria.Text = "Materia";
             // 
             // lblCuatrimestre
             // 
             this.lblCuatrimestre.AutoSize = true;
-            this.lblCuatrimestre.Location = new System.Drawing.Point(293, 169);
+            this.lblCuatrimestre.Location = new System.Drawing.Point(342, 195);
+            this.lblCuatrimestre.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCuatrimestre.Name = "lblCuatrimestre";
-            this.lblCuatrimestre.Size = new System.Drawing.Size(65, 13);
+            this.lblCuatrimestre.Size = new System.Drawing.Size(75, 15);
             this.lblCuatrimestre.TabIndex = 19;
             this.lblCuatrimestre.Text = "Cuatrimestre";
             // 
             // cboMateria
             // 
             this.cboMateria.FormattingEnabled = true;
-            this.cboMateria.Location = new System.Drawing.Point(344, 97);
+            this.cboMateria.Location = new System.Drawing.Point(401, 112);
+            this.cboMateria.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cboMateria.Name = "cboMateria";
-            this.cboMateria.Size = new System.Drawing.Size(172, 21);
+            this.cboMateria.Size = new System.Drawing.Size(200, 23);
             this.cboMateria.TabIndex = 8;
             this.cboMateria.SelectedIndexChanged += new System.EventHandler(this.cboMateria_SelectedIndexChanged);
             // 
             // rbtnSegundo
             // 
             this.rbtnSegundo.AutoSize = true;
-            this.rbtnSegundo.Location = new System.Drawing.Point(385, 169);
+            this.rbtnSegundo.Location = new System.Drawing.Point(449, 195);
+            this.rbtnSegundo.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.rbtnSegundo.Name = "rbtnSegundo";
-            this.rbtnSegundo.Size = new System.Drawing.Size(68, 17);
+            this.rbtnSegundo.Size = new System.Drawing.Size(72, 19);
             this.rbtnSegundo.TabIndex = 5;
             this.rbtnSegundo.TabStop = true;
             this.rbtnSegundo.Text = "Segundo";
@@ -150,9 +159,10 @@ namespace Frontend
             // rbtnPrimero
             // 
             this.rbtnPrimero.AutoSize = true;
-            this.rbtnPrimero.Location = new System.Drawing.Point(385, 146);
+            this.rbtnPrimero.Location = new System.Drawing.Point(449, 168);
+            this.rbtnPrimero.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.rbtnPrimero.Name = "rbtnPrimero";
-            this.rbtnPrimero.Size = new System.Drawing.Size(60, 17);
+            this.rbtnPrimero.Size = new System.Drawing.Size(67, 19);
             this.rbtnPrimero.TabIndex = 4;
             this.rbtnPrimero.TabStop = true;
             this.rbtnPrimero.Text = "Primero";
@@ -161,9 +171,10 @@ namespace Frontend
             // rbtnAnual
             // 
             this.rbtnAnual.AutoSize = true;
-            this.rbtnAnual.Location = new System.Drawing.Point(385, 192);
+            this.rbtnAnual.Location = new System.Drawing.Point(449, 222);
+            this.rbtnAnual.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.rbtnAnual.Name = "rbtnAnual";
-            this.rbtnAnual.Size = new System.Drawing.Size(52, 17);
+            this.rbtnAnual.Size = new System.Drawing.Size(56, 19);
             this.rbtnAnual.TabIndex = 6;
             this.rbtnAnual.TabStop = true;
             this.rbtnAnual.Text = "Anual";
@@ -171,45 +182,51 @@ namespace Frontend
             // 
             // txtNombre
             // 
-            this.txtNombre.Location = new System.Drawing.Point(130, 100);
+            this.txtNombre.Location = new System.Drawing.Point(35, 142);
+            this.txtNombre.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(131, 20);
+            this.txtNombre.Size = new System.Drawing.Size(269, 23);
             this.txtNombre.TabIndex = 0;
             // 
             // lstCarrera
             // 
             this.lstCarrera.FormattingEnabled = true;
-            this.lstCarrera.Location = new System.Drawing.Point(535, 43);
+            this.lstCarrera.ItemHeight = 15;
+            this.lstCarrera.Location = new System.Drawing.Point(624, 50);
+            this.lstCarrera.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.lstCarrera.Name = "lstCarrera";
-            this.lstCarrera.Size = new System.Drawing.Size(202, 264);
+            this.lstCarrera.Size = new System.Drawing.Size(235, 304);
             this.lstCarrera.TabIndex = 7;
+            this.lstCarrera.SelectedIndexChanged += new System.EventHandler(this.lstCarrera_SelectedIndexChanged);
             // 
             // btnNuevo
             // 
-            this.btnNuevo.Location = new System.Drawing.Point(49, 517);
+            this.btnNuevo.Location = new System.Drawing.Point(57, 597);
+            this.btnNuevo.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnNuevo.Name = "btnNuevo";
-            this.btnNuevo.Size = new System.Drawing.Size(75, 23);
+            this.btnNuevo.Size = new System.Drawing.Size(88, 27);
             this.btnNuevo.TabIndex = 10;
             this.btnNuevo.Text = "Nuevo";
             this.btnNuevo.UseVisualStyleBackColor = true;
             this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
             // 
-            // DgvMateria
+            // dgvMateria
             // 
-            this.DgvMateria.AllowUserToAddRows = false;
-            this.DgvMateria.AllowUserToDeleteRows = false;
-            this.DgvMateria.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DgvMateria.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvMateria.AllowUserToAddRows = false;
+            this.dgvMateria.AllowUserToDeleteRows = false;
+            this.dgvMateria.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvMateria.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.id,
             this.Cuatrimestre,
-            this.ColMateria,
+            this.Materia,
             this.ColAnioCursado,
             this.Acciones});
-            this.DgvMateria.Location = new System.Drawing.Point(49, 326);
-            this.DgvMateria.Name = "DgvMateria";
-            this.DgvMateria.ReadOnly = true;
-            this.DgvMateria.Size = new System.Drawing.Size(688, 147);
-            this.DgvMateria.TabIndex = 9;
+            this.dgvMateria.Location = new System.Drawing.Point(35, 376);
+            this.dgvMateria.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.dgvMateria.Name = "dgvMateria";
+            this.dgvMateria.ReadOnly = true;
+            this.dgvMateria.Size = new System.Drawing.Size(825, 170);
+            this.dgvMateria.TabIndex = 9;
             // 
             // id
             // 
@@ -224,11 +241,11 @@ namespace Frontend
             this.Cuatrimestre.Name = "Cuatrimestre";
             this.Cuatrimestre.ReadOnly = true;
             // 
-            // ColMateria
+            // Materia
             // 
-            this.ColMateria.HeaderText = "Materia";
-            this.ColMateria.Name = "ColMateria";
-            this.ColMateria.ReadOnly = true;
+            this.Materia.HeaderText = "Materia";
+            this.Materia.Name = "Materia";
+            this.Materia.ReadOnly = true;
             // 
             // ColAnioCursado
             // 
@@ -247,16 +264,18 @@ namespace Frontend
             // 
             // txtTitulo
             // 
-            this.txtTitulo.Location = new System.Drawing.Point(130, 162);
+            this.txtTitulo.Location = new System.Drawing.Point(35, 218);
+            this.txtTitulo.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtTitulo.Name = "txtTitulo";
-            this.txtTitulo.Size = new System.Drawing.Size(131, 20);
+            this.txtTitulo.Size = new System.Drawing.Size(269, 23);
             this.txtTitulo.TabIndex = 1;
             // 
             // btnEditar
             // 
-            this.btnEditar.Location = new System.Drawing.Point(157, 517);
+            this.btnEditar.Location = new System.Drawing.Point(183, 597);
+            this.btnEditar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(75, 23);
+            this.btnEditar.Size = new System.Drawing.Size(88, 27);
             this.btnEditar.TabIndex = 11;
             this.btnEditar.Text = "Editar";
             this.btnEditar.UseVisualStyleBackColor = true;
@@ -264,9 +283,10 @@ namespace Frontend
             // 
             // btnBorrar
             // 
-            this.btnBorrar.Location = new System.Drawing.Point(272, 517);
+            this.btnBorrar.Location = new System.Drawing.Point(317, 597);
+            this.btnBorrar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnBorrar.Name = "btnBorrar";
-            this.btnBorrar.Size = new System.Drawing.Size(75, 23);
+            this.btnBorrar.Size = new System.Drawing.Size(88, 27);
             this.btnBorrar.TabIndex = 12;
             this.btnBorrar.Text = "Borrar";
             this.btnBorrar.UseVisualStyleBackColor = true;
@@ -274,9 +294,10 @@ namespace Frontend
             // 
             // btnAceptar
             // 
-            this.btnAceptar.Location = new System.Drawing.Point(458, 517);
+            this.btnAceptar.Location = new System.Drawing.Point(534, 597);
+            this.btnAceptar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(75, 23);
+            this.btnAceptar.Size = new System.Drawing.Size(88, 27);
             this.btnAceptar.TabIndex = 13;
             this.btnAceptar.Text = "Aceptar";
             this.btnAceptar.UseVisualStyleBackColor = true;
@@ -284,42 +305,48 @@ namespace Frontend
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(561, 517);
+            this.btnCancelar.Location = new System.Drawing.Point(654, 597);
+            this.btnCancelar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
+            this.btnCancelar.Size = new System.Drawing.Size(88, 27);
             this.btnCancelar.TabIndex = 14;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
-            // numAnioCursado
+            // nudAnioCursado
             // 
-            this.numAnioCursado.Location = new System.Drawing.Point(385, 228);
-            this.numAnioCursado.Name = "numAnioCursado";
-            this.numAnioCursado.Size = new System.Drawing.Size(91, 20);
-            this.numAnioCursado.TabIndex = 3;
+            this.nudAnioCursado.Location = new System.Drawing.Point(449, 263);
+            this.nudAnioCursado.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.nudAnioCursado.Name = "nudAnioCursado";
+            this.nudAnioCursado.Size = new System.Drawing.Size(106, 23);
+            this.nudAnioCursado.TabIndex = 3;
             // 
             // nudCantidadAnios
             // 
-            this.nudCantidadAnios.Location = new System.Drawing.Point(170, 221);
+            this.nudCantidadAnios.Location = new System.Drawing.Point(198, 255);
+            this.nudCantidadAnios.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.nudCantidadAnios.Name = "nudCantidadAnios";
-            this.nudCantidadAnios.Size = new System.Drawing.Size(91, 20);
+            this.nudCantidadAnios.Size = new System.Drawing.Size(106, 23);
             this.nudCantidadAnios.TabIndex = 2;
             // 
             // btnMateria
             // 
-            this.btnMateria.Location = new System.Drawing.Point(296, 263);
+            this.btnMateria.Location = new System.Drawing.Point(345, 303);
+            this.btnMateria.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnMateria.Name = "btnMateria";
-            this.btnMateria.Size = new System.Drawing.Size(100, 23);
+            this.btnMateria.Size = new System.Drawing.Size(117, 27);
             this.btnMateria.TabIndex = 21;
             this.btnMateria.Text = "Agregar Materia";
             this.btnMateria.UseVisualStyleBackColor = true;
+            this.btnMateria.Click += new System.EventHandler(this.btnMateria_Click);
             // 
             // btnSalir
             // 
-            this.btnSalir.Location = new System.Drawing.Point(662, 517);
+            this.btnSalir.Location = new System.Drawing.Point(772, 597);
+            this.btnSalir.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(75, 23);
+            this.btnSalir.Size = new System.Drawing.Size(88, 27);
             this.btnSalir.TabIndex = 22;
             this.btnSalir.Text = "Salir";
             this.btnSalir.UseVisualStyleBackColor = true;
@@ -327,19 +354,19 @@ namespace Frontend
             // 
             // Frm_Alta_Carrera
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 584);
+            this.ClientSize = new System.Drawing.Size(933, 674);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnMateria);
             this.Controls.Add(this.nudCantidadAnios);
-            this.Controls.Add(this.numAnioCursado);
+            this.Controls.Add(this.nudAnioCursado);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAceptar);
             this.Controls.Add(this.btnBorrar);
             this.Controls.Add(this.btnEditar);
             this.Controls.Add(this.txtTitulo);
-            this.Controls.Add(this.DgvMateria);
+            this.Controls.Add(this.dgvMateria);
             this.Controls.Add(this.btnNuevo);
             this.Controls.Add(this.lstCarrera);
             this.Controls.Add(this.txtNombre);
@@ -354,11 +381,12 @@ namespace Frontend
             this.Controls.Add(this.lblTitulo);
             this.Controls.Add(this.lblNombre);
             this.Controls.Add(this.lblCarrera);
+            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "Frm_Alta_Carrera";
             this.Text = "Gestionar Carreras";
             this.Load += new System.EventHandler(this.Frm_Alta_Carrera_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.DgvMateria)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numAnioCursado)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMateria)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudAnioCursado)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCantidadAnios)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -381,20 +409,20 @@ namespace Frontend
         private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.ListBox lstCarrera;
         private System.Windows.Forms.Button btnNuevo;
-        private System.Windows.Forms.DataGridView DgvMateria;
+        private System.Windows.Forms.DataGridView dgvMateria;
         private System.Windows.Forms.TextBox txtTitulo;
         private System.Windows.Forms.Button btnEditar;
         private System.Windows.Forms.Button btnBorrar;
         private System.Windows.Forms.Button btnAceptar;
         private System.Windows.Forms.Button btnCancelar;
-        private System.Windows.Forms.NumericUpDown numAnioCursado;
+        private System.Windows.Forms.NumericUpDown nudAnioCursado;
         private System.Windows.Forms.NumericUpDown nudCantidadAnios;
-        private System.Windows.Forms.DataGridViewTextBoxColumn id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Cuatrimestre;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColMateria;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColAnioCursado;
-        private System.Windows.Forms.DataGridViewButtonColumn Acciones;
         private System.Windows.Forms.Button btnMateria;
         private System.Windows.Forms.Button btnSalir;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cuatrimestre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Materia;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColAnioCursado;
+        private System.Windows.Forms.DataGridViewButtonColumn Acciones;
     }
 }

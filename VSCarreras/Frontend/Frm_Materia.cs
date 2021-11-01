@@ -7,40 +7,34 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Frontend.Cliente;
+using Backend.Dominio;
+using Newtonsoft.Json;
 
 namespace Frontend
 {
     public partial class Frm_Materia : Form
     {
+        private ClienteHttp cliente;
+        private Accion modo;
+        List<Asignatura> materias = new List<Asignatura>();
         public Frm_Materia()
         {
             InitializeComponent();
         }
+        public enum Accion
+        {
+            CREATE,
+            READ,
+            UPDATE,
+            DELETE
+        }
 
         private void Frm_Materia_Load(object sender, EventArgs e)
         {
+            modo = Accion.READ;
             habilitar(false);
-
-            ////conexion = new conxion
-            //conexion.open();
-            //string
-            //sql command comando
-            //SqlDataAdapter adaptador = new SqlDaraAdapter(comando);
-            //DataTable tabla = new DataTable();
-            //adaptador.Fill(tabla);
-            //cboMateriasCargadas.DataSource=tabla;
-            //cboMateriasCargadas.ValueMember="Id";
-            //cboMateriasCargadas.DisplayMember="nombre";
-
-            //AutoCompleteStringCollection coleccion = new AutoCompleteStringCollection();
-            //foreach (DataRow row in tabla.Rows)
-            //{
-            //  coleccion.Add(Convert.TiString(row["Nombre"]));  //consulta de sql
-            //}
-            //cboMateriasCargadas.AutoCompleteCustomSource=coleccion;
-            //cboMateriasCargadas.AutoCompleteMode= AutoCompleteMode.SuggestAppend;
-            //cboMateriasCargadas.AutoCompleteSource= AutoCompleteSource.CustomSource;
-
+            CargarFormAsync();
         }
 
         private void cboMateriasCargadas_SelectedIndexChanged(object sender, EventArgs e)
@@ -51,15 +45,12 @@ namespace Frontend
         private void limpiar()
         {
             txtNombreMateria.Text = "";
-            cboMateriasCargadas.SelectedIndex = -1;
-
         }
 
         private void habilitar(bool x)
         {
 
             txtNombreMateria.Enabled = x;
-            cboMateriasCargadas.Enabled = x;
             btnEditar.Enabled = !x;
             btnBorrar.Enabled = x;
             lstMaterias.Enabled = !x;
@@ -94,5 +85,34 @@ namespace Frontend
         {
             this.WindowState = FormWindowState.Minimized;
         }
+        public async Task CargarComboAsync()
+        {
+            string url = "https://localhost:44361/api/Carrera/asignaturas";
+            var resultado = await ClienteHttp.GetInstancia().GetAsync(url);
+            materias = JsonConvert.DeserializeObject<List<Asignatura>>(resultado);
+            lstMaterias.DataSource = materias;
+            lstMaterias.DisplayMember = "Nombre";
+            lstMaterias.ValueMember = "IdAsignatura";
+        }
+        public async Task CargarFormAsync()
+        {
+            await CargarComboAsync();
+            CargarCampo();
+        }
+        public void CargarCampo()
+        {
+            txtNombreMateria.Text = materias[lstMaterias.SelectedIndex].Nombre;
+        }
+
+        private void lstMaterias_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CargarCampo();
+        }
+
+        //private void btnRefrescar_Click(object sender, EventArgs e)
+        //{
+        //    MessageBox.Show(materias.ToString());
+        //    CargarCampo();
+        //}
     }
 }
