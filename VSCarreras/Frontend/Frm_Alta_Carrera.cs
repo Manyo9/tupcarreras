@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Backend.Dominio;
+using Frontend.Cliente;
+using Newtonsoft.Json;
 
 
 namespace Frontend
@@ -14,7 +17,8 @@ namespace Frontend
     public partial class Frm_Alta_Carrera : Form
     {
         private Accion modo;
-        
+        private Carrera oCarrera;
+        private ClienteHttp cliente;
         public Frm_Alta_Carrera()
         {
             InitializeComponent();
@@ -31,6 +35,7 @@ namespace Frontend
         {
             modo = Accion.READ;
             habilitar(false);
+            CargarComboAsync();
         }
         private void limpiar()
         {
@@ -141,11 +146,56 @@ namespace Frontend
                     nudCantidadAnios.Focus();
                     return;
                 }
+                if (modo.Equals(Accion.CREATE))
+                {
+                    GuardarCarrera();
+                    limpiar();
+                }
+                else if (modo.Equals(Accion.UPDATE))
+                {
+                    EditarCarrera();
+                    limpiar();
+                }
+                else if (modo.Equals(Accion.DELETE))
+                {
+                    if (MessageBox.Show("Se borrará permanentemente , desea seguir?",
+                                  "BORRAR", MessageBoxButtons.YesNo, MessageBoxIcon.Question,
+                                MessageBoxDefaultButton.Button2) == DialogResult.Yes) {
+                        BorrarCarrera();
+                        limpiar();
+                    }                
+                }
             }
         }
         public void GuardarCarrera()
         {
+            Carrera oCarrera = new Carrera();
+            oCarrera.Nombre = txtNombre.Text.ToString();
+            oCarrera.Titulo = txtTitulo.Text.ToString();
+            oCarrera.AnioMaximo = Convert.ToInt32(nudCantidadAnios.Value);
+        }
+        public void EditarCarrera()
+        {
+            Carrera oCarrera = new Carrera();
+            oCarrera.Nombre = txtNombre.Text.ToString();
+            oCarrera.Titulo = txtTitulo.Text.ToString();
+            oCarrera.AnioMaximo = Convert.ToInt32(nudCantidadAnios.Value);
+        }
 
+        public void BorrarCarrera()
+        {
+            // primera row de la listbox
+        }
+        public async Task CargarComboAsync()
+        {
+            string url = "https://localhost:44361/api/asignaturas/";
+            var resultado = await ClienteHttp.GetInstancia().GetAsync(url);
+            List<Asignatura> materias = new List<Asignatura>();
+            materias = JsonConvert.DeserializeObject<List<Asignatura>>(resultado);
+            cboMateria.DataSource = materias;
+            cboMateria.DisplayMember = "Nombre";
+            cboMateria.ValueMember = "IdAsignatura";
+            
         }
 
         private void cboMateria_SelectedIndexChanged(object sender, EventArgs e)

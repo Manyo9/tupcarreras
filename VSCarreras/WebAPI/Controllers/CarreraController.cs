@@ -43,8 +43,9 @@ namespace WebAPI.Controllers
 
         // POST api/<CarreraController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] string json)
         {
+
         }
 
         // PUT api/<CarreraController>/5
