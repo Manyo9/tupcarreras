@@ -45,17 +45,11 @@ namespace WebAPI.Controllers
 
         // POST api/Carrera
         [HttpPost]
-        public void Post([FromBody] string json)
+        public void PostCarrera([FromBody] string json)
         {
             Carrera oCarrera = JsonConvert.DeserializeObject<Carrera>(json);
             servicio.GuardarCarrera(oCarrera);
         }
-
-        // PUT api/<CarreraController>/5
-        //[HttpPut("{id}")]
-        //public void Put(int id, [FromBody] string value)
-        //{
-        //}
 
         // DELETE api/Carrera/1
         // elimina una carrera por id
@@ -79,6 +73,12 @@ namespace WebAPI.Controllers
         public IActionResult GetAsignaturas()
         {
             return Ok(servicio.ObtenerAsignaturas());
+        }
+
+        [HttpPost("asignaturas")]
+        public void PostAsignatura(Asignatura oAsignatura)
+        {
+            servicio.GuardarAsignatura(oAsignatura);
         }
 
         // GET api/Carrera/asignaturas/1

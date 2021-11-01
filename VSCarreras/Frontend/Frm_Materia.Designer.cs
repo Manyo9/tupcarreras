@@ -37,10 +37,10 @@ namespace Frontend
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnBorrar = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.cboMateriasCargadas = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnMinimize = new System.Windows.Forms.PictureBox();
             this.btnClose = new System.Windows.Forms.PictureBox();
+            this.btnAplicar = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnMinimize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnClose)).BeginInit();
@@ -54,9 +54,9 @@ namespace Frontend
             this.label1.Location = new System.Drawing.Point(68, 109);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(117, 19);
+            this.label1.Size = new System.Drawing.Size(124, 19);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Ingrese Materia";
+            this.label1.Text = "Nombre Materia";
             // 
             // txtNombreMateria
             // 
@@ -70,11 +70,12 @@ namespace Frontend
             // 
             this.lstMaterias.FormattingEnabled = true;
             this.lstMaterias.ItemHeight = 15;
-            this.lstMaterias.Location = new System.Drawing.Point(68, 285);
+            this.lstMaterias.Location = new System.Drawing.Point(68, 225);
             this.lstMaterias.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.lstMaterias.Name = "lstMaterias";
-            this.lstMaterias.Size = new System.Drawing.Size(366, 169);
+            this.lstMaterias.Size = new System.Drawing.Size(366, 229);
             this.lstMaterias.TabIndex = 5;
+            this.lstMaterias.SelectedIndexChanged += new System.EventHandler(this.lstMaterias_SelectedIndexChanged);
             // 
             // btnAgregar
             // 
@@ -136,16 +137,6 @@ namespace Frontend
             this.label3.TabIndex = 9;
             this.label3.Text = "Materias Cargadas";
             // 
-            // cboMateriasCargadas
-            // 
-            this.cboMateriasCargadas.FormattingEnabled = true;
-            this.cboMateriasCargadas.Location = new System.Drawing.Point(68, 235);
-            this.cboMateriasCargadas.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.cboMateriasCargadas.Name = "cboMateriasCargadas";
-            this.cboMateriasCargadas.Size = new System.Drawing.Size(366, 23);
-            this.cboMateriasCargadas.TabIndex = 10;
-            this.cboMateriasCargadas.SelectedIndexChanged += new System.EventHandler(this.cboMateriasCargadas_SelectedIndexChanged);
-            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
@@ -178,6 +169,15 @@ namespace Frontend
             this.btnClose.TabStop = false;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
+            // btnAplicar
+            // 
+            this.btnAplicar.Location = new System.Drawing.Point(340, 539);
+            this.btnAplicar.Name = "btnAplicar";
+            this.btnAplicar.Size = new System.Drawing.Size(75, 23);
+            this.btnAplicar.TabIndex = 12;
+            this.btnAplicar.Text = "Aplicar";
+            this.btnAplicar.UseVisualStyleBackColor = true;
+            // 
             // Frm_Materia
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -185,8 +185,8 @@ namespace Frontend
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.BackColor = System.Drawing.Color.MidnightBlue;
             this.ClientSize = new System.Drawing.Size(510, 592);
+            this.Controls.Add(this.btnAplicar);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.cboMateriasCargadas);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnBorrar);
             this.Controls.Add(this.btnEditar);
@@ -216,9 +216,10 @@ namespace Frontend
         private System.Windows.Forms.Button btnEditar;
         private System.Windows.Forms.Button btnBorrar;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox cboMateriasCargadas;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox btnClose;
         private System.Windows.Forms.PictureBox btnMinimize;
+        private System.Windows.Forms.Button btnAplicar;
+        private System.Windows.Forms.Button btnRefrescar;
     }
 }

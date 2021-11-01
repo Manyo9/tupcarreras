@@ -9,13 +9,18 @@ namespace Backend.Dominio
     {
         public int AnioDeCursado { get; set; }
         public string Cuatrimestre { get; set; }
-        public int IdDetalle { get; set; }
         public Asignatura Materia { get; set; }
+        public int IdDetalle { get; set; }
+
         public DetalleCarrera()
         {
             Materia = new Asignatura();
-            Materia.IdAsignatura = 0;
-            Materia.Nombre = "";
+        }
+        public DetalleCarrera(int anioDeCursado, string cuatrimestre, Asignatura materia)
+        {
+            AnioDeCursado = anioDeCursado;
+            Cuatrimestre = cuatrimestre;
+            Materia = materia;
         }
     }
 }

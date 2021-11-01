@@ -125,3 +125,11 @@ create procedure SP_DELETE_ASIGNATURAS
 as
 	delete Asignaturas where id_asignatura = @id_asignatura
 go
+
+--login
+create procedure SP_LOGIN
+(@nom_usuario varchar(32),
+@contrasenia varchar(128))
+as
+	select * from Usuarios where @nom_usuario = nom_usuario and @contrasenia = contrasenia
+go
