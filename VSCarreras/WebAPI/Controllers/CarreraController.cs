@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Backend.Servicios;
 using Newtonsoft.Json;
 using Backend.Dominio;
+using System.Net.Mime;
 
 namespace WebAPI.Controllers
 {
@@ -76,9 +77,24 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("asignaturas")]
-        public void PostAsignatura(Asignatura oAsignatura)
+        public IActionResult PostAsignatura(Asignatura oAsignatura)
         {
-            servicio.GuardarAsignatura(oAsignatura);
+            if (oAsignatura.Nombre.Trim() == "")
+            {
+                return BadRequest("Falta ingresar nombre de asignatura");
+            }
+            else 
+            {
+                if (servicio.GuardarAsignatura(oAsignatura))
+                {
+                    return Ok("Guardado con éxito");
+                }
+                else
+                {
+                    return BadRequest("Se produjo un error al intentar crear nueva asignatura");
+                }
+                
+            }
         }
 
         // GET api/Carrera/asignaturas/1
@@ -93,6 +109,23 @@ namespace WebAPI.Controllers
             else
             {
                 return Ok(servicio.EliminarAsignatura(id));
+            }
+        }
+
+        [HttpPost("/login/")]
+        public IActionResult PostLogin(Credenciales oCredenciales)
+        {
+            if ( oCredenciales.Usuario.Trim() == "" || oCredenciales.Password.Trim() == "")
+            {
+                return BadRequest(false);
+            }
+            else if (servicio.IniciarSesion(oCredenciales))
+            {
+                return Ok(true);
+            }
+            else
+            {
+                return NotFound(false);
             }
         }
     }

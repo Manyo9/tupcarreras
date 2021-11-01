@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Frontend.Cliente;
+using Backend.Dominio;
+using Newtonsoft.Json;
 
 namespace Frontend
 {
@@ -15,7 +18,8 @@ namespace Frontend
         private const int WM_NCHITTEST = 0x84;
         private const int HTCLIENT = 0x1;
         private const int HTCAPTION = 0x2;
-
+        private ClienteHttp cliente;
+        private Credenciales credenciales = new Credenciales();
         ///
         /// drag form
         ///
@@ -44,10 +48,21 @@ namespace Frontend
 
         }
 
-        private void btnIniciarSesion_Click_1(object sender, EventArgs e)
+        private async void btnIniciarSesion_Click_1(object sender, EventArgs e)
         {
-            Frm_Principal nuevo = new Frm_Principal();
-            nuevo.ShowDialog();
+            credenciales.Usuario = txtUsuario.Text;
+            credenciales.Password = txtContraseña.Text;
+            string login = await LoginAsync();
+            if (login == "true")
+            {
+                Frm_Principal nuevo = new Frm_Principal();
+                nuevo.ShowDialog();
+            }
+            else {
+                MessageBox.Show("Login inválido");
+            }
+             
+            
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -59,5 +74,13 @@ namespace Frontend
         {
             this.WindowState = FormWindowState.Minimized;
         }
+        public async Task<string> LoginAsync()
+        {
+            string url = "https://localhost:44361/login";
+            string datos = JsonConvert.SerializeObject(credenciales);
+            var resultado = await ClienteHttp.GetInstancia().PostAsync(url,datos);
+            return resultado;
+        }
+
     }
 }

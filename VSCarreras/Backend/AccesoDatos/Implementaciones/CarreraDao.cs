@@ -390,7 +390,7 @@ namespace Backend.AccesoDatos.Implementaciones
             return flag;
         }
 
-        public bool LoginIn(string user, string password)
+        public bool LoginIn(Credenciales oCredenciales)
         {
             SqlConnection cnn = new SqlConnection(@"Data Source=.\SQLEXPRESS;Initial Catalog=carreras;Integrated Security=True");
             DataTable tabla = new DataTable();
@@ -399,9 +399,9 @@ namespace Backend.AccesoDatos.Implementaciones
                 cnn.Open();
                 SqlCommand cmd = new SqlCommand("SP_LOGIN", cnn);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("nom_usuario", user);
-                cmd.Parameters.AddWithValue("contrasenia", password);                
-                cmd.ExecuteReader();
+                cmd.Parameters.AddWithValue("nom_usuario", oCredenciales.Usuario);
+                cmd.Parameters.AddWithValue("contrasenia", oCredenciales.Password);                
+                tabla.Load(cmd.ExecuteReader());
                 if(tabla.Rows.Count==0||tabla==null)
                 {
                     return false;
