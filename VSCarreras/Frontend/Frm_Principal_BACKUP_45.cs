@@ -17,11 +17,17 @@ namespace Frontend
             InitializeComponent();
         }
 
+<<<<<<< HEAD
+        private void gestionarCarrerasToolStripMenuItem_Click(object sender, EventArgs e)
+=======
         private void nuevaCarreraToolStripMenuItem_Click(object sender, EventArgs e)
+>>>>>>> 01a087b025d56cefb6418898387d51798e850c08
         {
             Frm_Alta_Carrera nuevo = new Frm_Alta_Carrera();
             nuevo.ShowDialog();
         }
+<<<<<<< HEAD
+=======
 
         private void nuevaMateriaToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -36,5 +42,6 @@ namespace Frontend
         }
 
         
+>>>>>>> 01a087b025d56cefb6418898387d51798e850c08
     }
 }

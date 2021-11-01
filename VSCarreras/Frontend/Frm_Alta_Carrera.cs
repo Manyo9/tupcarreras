@@ -192,9 +192,6 @@ namespace Frontend
             var resultado = await ClienteHttp.GetInstancia().GetAsync(url);
             List<Asignatura> materias = new List<Asignatura>();
             materias = JsonConvert.DeserializeObject<List<Asignatura>>(resultado);
-            MessageBox.Show(resultado.ToString());
-            MessageBox.Show(materias.ToString());
-
             cboMateria.DataSource = materias;
             cboMateria.DisplayMember = "Nombre";
             cboMateria.ValueMember = "IdAsignatura";
