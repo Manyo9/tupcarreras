@@ -27,5 +27,21 @@ namespace Frontend
         {
 
         }
+
+        private void btnIniciarSesion_Click_1(object sender, EventArgs e)
+        {
+            Frm_Principal nuevo = new Frm_Principal();
+            nuevo.ShowDialog();
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
+        }
+
+        private void btnMinimized_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
     }
 }

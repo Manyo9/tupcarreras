@@ -84,5 +84,15 @@ namespace Frontend
                          MessageBoxDefaultButton.Button2) == DialogResult.Yes) ;
 
         }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
+        }
+
+        private void btnMinimize_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
     }
 }
