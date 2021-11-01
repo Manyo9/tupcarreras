@@ -29,16 +29,6 @@ namespace Frontend
         /// </summary>
         private void InitializeComponent()
         {
-<<<<<<< HEAD
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.archivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.materiaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.carrerasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.gestionarCarrerasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuStrip1.SuspendLayout();
-            this.SuspendLayout();
-            // 
-=======
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_Principal));
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -64,19 +54,11 @@ namespace Frontend
             this.statusStrip1.TabIndex = 0;
             this.statusStrip1.Text = "statusStrip1";
             // 
->>>>>>> 01a087b025d56cefb6418898387d51798e850c08
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.archivoToolStripMenuItem,
             this.materiaToolStripMenuItem,
-<<<<<<< HEAD
-            this.carrerasToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 24);
-            this.menuStrip1.TabIndex = 0;
-=======
             this.carreraToolStripMenuItem,
             this.reporteToolStripMenuItem,
             this.acercaDeToolStripMenuItem});
@@ -85,7 +67,6 @@ namespace Frontend
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
             this.menuStrip1.Size = new System.Drawing.Size(914, 24);
             this.menuStrip1.TabIndex = 1;
->>>>>>> 01a087b025d56cefb6418898387d51798e850c08
             this.menuStrip1.Text = "menuStrip1";
             // 
             // archivoToolStripMenuItem
@@ -96,43 +77,12 @@ namespace Frontend
             // 
             // materiaToolStripMenuItem
             // 
-<<<<<<< HEAD
-=======
             this.materiaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.nuevaMateriaToolStripMenuItem});
->>>>>>> 01a087b025d56cefb6418898387d51798e850c08
             this.materiaToolStripMenuItem.Name = "materiaToolStripMenuItem";
             this.materiaToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
             this.materiaToolStripMenuItem.Text = "Materia";
             // 
-<<<<<<< HEAD
-            // carrerasToolStripMenuItem
-            // 
-            this.carrerasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.gestionarCarrerasToolStripMenuItem});
-            this.carrerasToolStripMenuItem.Name = "carrerasToolStripMenuItem";
-            this.carrerasToolStripMenuItem.Size = new System.Drawing.Size(62, 20);
-            this.carrerasToolStripMenuItem.Text = "Carreras";
-            // 
-            // gestionarCarrerasToolStripMenuItem
-            // 
-            this.gestionarCarrerasToolStripMenuItem.Name = "gestionarCarrerasToolStripMenuItem";
-            this.gestionarCarrerasToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.gestionarCarrerasToolStripMenuItem.Text = "Gestionar Carreras";
-            this.gestionarCarrerasToolStripMenuItem.Click += new System.EventHandler(this.gestionarCarrerasToolStripMenuItem_Click);
-            // 
-            // Frm_Principal
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.menuStrip1);
-            this.MainMenuStrip = this.menuStrip1;
-            this.Name = "Frm_Principal";
-            this.Text = "Frm_Principal";
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
-=======
             // nuevaMateriaToolStripMenuItem
             // 
             this.nuevaMateriaToolStripMenuItem.Name = "nuevaMateriaToolStripMenuItem";
@@ -204,7 +154,6 @@ namespace Frontend
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
->>>>>>> 01a087b025d56cefb6418898387d51798e850c08
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -212,13 +161,6 @@ namespace Frontend
 
         #endregion
 
-<<<<<<< HEAD
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem archivoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem materiaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem carrerasToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem gestionarCarrerasToolStripMenuItem;
-=======
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem archivoToolStripMenuItem;
@@ -230,6 +172,5 @@ namespace Frontend
         private System.Windows.Forms.ToolStripMenuItem generarReporteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem acercaDeToolStripMenuItem;
         private System.Windows.Forms.PictureBox pictureBox1;
->>>>>>> 01a087b025d56cefb6418898387d51798e850c08
     }
 }
