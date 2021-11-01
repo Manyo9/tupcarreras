@@ -132,31 +132,32 @@ namespace Backend.AccesoDatos.Implementaciones
             SqlCommand cmd = new SqlCommand("SP_READ_CARRERAS_BY_ID", cnn);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("id_carrera", id);
+            DataTable tabla = new DataTable();
 
-
-
-            SqlDataReader reader = cmd.ExecuteReader();
+            tabla.Load(cmd.ExecuteReader());
+            //SqlDataReader reader = cmd.ExecuteReader();
             bool esPrimerRegistro = true;
 
-            while (reader.Read())
+            //while (reader.Read())
+            foreach(DataRow row in tabla.Rows)
             {
                 if (esPrimerRegistro)
                 {
                     //solo para el primer resultado recuperamos los datos del MAESTRO:
-                    oCarrera.Nombre = reader["nombre_carrera"].ToString();
-                    oCarrera.Titulo = (reader["titulo_carrera"].ToString());
-                    oCarrera.AnioMaximo = Convert.ToInt32(reader["anio_maximo"].ToString());
-                    oCarrera.IdCarrera = Convert.ToInt32(reader["id_carrera"].ToString());
+                    oCarrera.Nombre = row["nombre_carrera"].ToString();
+                    oCarrera.Titulo = (row["titulo_carrera"].ToString());
+                    oCarrera.AnioMaximo = Convert.ToInt32(row["anio_maximo"].ToString());
+                    oCarrera.IdCarrera = Convert.ToInt32(row["id_carrera"].ToString());
                     esPrimerRegistro = false;
                 }
 
 
                 DetalleCarrera oDetalle = new DetalleCarrera();
-                oDetalle.IdDetalle = Convert.ToInt32(reader["id_detalle"].ToString());
-                oDetalle.AnioDeCursado = Convert.ToInt32(reader["anio_cursado"].ToString());
-                oDetalle.Cuatrimestre = (reader["cuatrimestre"].ToString());
-                oDetalle.Materia.IdAsignatura = Convert.ToInt32(reader["id_asignatura"].ToString());
-                oDetalle.Materia.Nombre = (reader["nombre_asignatura"].ToString());
+                oDetalle.IdDetalle = Convert.ToInt32(row["id_detalle"].ToString());
+                oDetalle.AnioDeCursado = Convert.ToInt32(row["anio_cursado"].ToString());
+                oDetalle.Cuatrimestre = (row["cuatrimestre"].ToString());
+                oDetalle.Materia.IdAsignatura = Convert.ToInt32(row["id_asignatura"].ToString());
+                oDetalle.Materia.Nombre = (row["nombre_asignatura"].ToString());
                 oCarrera.AgregarDetalle(oDetalle);
             }
 

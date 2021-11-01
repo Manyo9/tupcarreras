@@ -13,7 +13,9 @@ namespace Backend.Dominio
         public Asignatura Materia { get; set; }
         public DetalleCarrera()
         {
-
+            Materia = new Asignatura();
+            Materia.IdAsignatura = 0;
+            Materia.Nombre = "";
         }
     }
 }
