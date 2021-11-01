@@ -35,6 +35,6 @@ namespace Frontend
             nuevo.ShowDialog();
         }
 
-        
+      
     }
 }

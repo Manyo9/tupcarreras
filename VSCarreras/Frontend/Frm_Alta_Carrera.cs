@@ -16,6 +16,23 @@ namespace Frontend
 {
     public partial class Frm_Alta_Carrera : Form
     {
+
+        private const int WM_NCHITTEST = 0x84;
+        private const int HTCLIENT = 0x1;
+        private const int HTCAPTION = 0x2;
+
+        ///
+        /// para mover el form con el mouse
+        ///
+        protected override void WndProc(ref Message message)
+        {
+            base.WndProc(ref message);
+
+            if (message.Msg == WM_NCHITTEST && (int)message.Result == HTCLIENT)
+                message.Result = (IntPtr)HTCAPTION;
+        }
+
+
         private Accion modo;
         private Carrera oCarrera = new Carrera();
         List<Asignatura> materias = new List<Asignatura>();
@@ -301,6 +318,16 @@ namespace Frontend
             await CargarComboAsync();
             await CargarListAsync();
             CargarCampos();
+        }
+
+        private void btnMinimized_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
         }
     }
 }

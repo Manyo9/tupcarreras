@@ -15,6 +15,23 @@ namespace Frontend
 {
     public partial class Frm_Materia : Form
     {
+        private const int WM_NCHITTEST = 0x84;
+        private const int HTCLIENT = 0x1;
+        private const int HTCAPTION = 0x2;
+
+        ///
+        /// para mover el form con el mouse
+        ///
+        protected override void WndProc(ref Message message)
+        {
+            base.WndProc(ref message);
+
+            if (message.Msg == WM_NCHITTEST && (int)message.Result == HTCLIENT)
+                message.Result = (IntPtr)HTCAPTION;
+        }
+
+
+
         private ClienteHttp cliente;
         private Accion modo;
         List<Asignatura> materias = new List<Asignatura>();

@@ -58,49 +58,62 @@ namespace Frontend
             this.nudCantidadAnios = new System.Windows.Forms.NumericUpDown();
             this.btnMateria = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.btnClose = new System.Windows.Forms.PictureBox();
+            this.btnMinimized = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMateria)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudAnioCursado)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCantidadAnios)).BeginInit();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnClose)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnMinimized)).BeginInit();
             this.SuspendLayout();
             // 
             // lblCarrera
             // 
             this.lblCarrera.AutoSize = true;
-            this.lblCarrera.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblCarrera.Location = new System.Drawing.Point(35, 50);
+            this.lblCarrera.Font = new System.Drawing.Font("Gadugi", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblCarrera.ForeColor = System.Drawing.Color.White;
+            this.lblCarrera.Location = new System.Drawing.Point(6, 6);
             this.lblCarrera.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCarrera.Name = "lblCarrera";
-            this.lblCarrera.Size = new System.Drawing.Size(155, 24);
+            this.lblCarrera.Size = new System.Drawing.Size(227, 19);
             this.lblCarrera.TabIndex = 0;
-            this.lblCarrera.Text = "Ingrese Carrera";
+            this.lblCarrera.Text = "ADMINISTRADOR DE CARRERAS";
             // 
             // lblNombre
             // 
             this.lblNombre.AutoSize = true;
-            this.lblNombre.Location = new System.Drawing.Point(35, 120);
+            this.lblNombre.Font = new System.Drawing.Font("Gadugi", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblNombre.ForeColor = System.Drawing.Color.White;
+            this.lblNombre.Location = new System.Drawing.Point(35, 83);
             this.lblNombre.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNombre.Name = "lblNombre";
-            this.lblNombre.Size = new System.Drawing.Size(51, 15);
+            this.lblNombre.Size = new System.Drawing.Size(67, 19);
             this.lblNombre.TabIndex = 15;
             this.lblNombre.Text = "Nombre";
             // 
             // lblTitulo
             // 
             this.lblTitulo.AutoSize = true;
-            this.lblTitulo.Location = new System.Drawing.Point(35, 195);
+            this.lblTitulo.Font = new System.Drawing.Font("Gadugi", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblTitulo.ForeColor = System.Drawing.Color.White;
+            this.lblTitulo.Location = new System.Drawing.Point(35, 180);
             this.lblTitulo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(37, 15);
+            this.lblTitulo.Size = new System.Drawing.Size(50, 19);
             this.lblTitulo.TabIndex = 16;
             this.lblTitulo.Text = "Título";
             // 
             // lblAñoMax
             // 
             this.lblAñoMax.AutoSize = true;
-            this.lblAñoMax.Location = new System.Drawing.Point(54, 257);
+            this.lblAñoMax.Font = new System.Drawing.Font("Gadugi", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblAñoMax.ForeColor = System.Drawing.Color.White;
+            this.lblAñoMax.Location = new System.Drawing.Point(35, 281);
             this.lblAñoMax.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblAñoMax.Name = "lblAñoMax";
-            this.lblAñoMax.Size = new System.Drawing.Size(99, 15);
+            this.lblAñoMax.Size = new System.Drawing.Size(129, 19);
             this.lblAñoMax.TabIndex = 17;
             this.lblAñoMax.Text = "Cantidad de años";
             // 
@@ -117,7 +130,7 @@ namespace Frontend
             // lblMateria
             // 
             this.lblMateria.AutoSize = true;
-            this.lblMateria.Location = new System.Drawing.Point(345, 115);
+            this.lblMateria.Location = new System.Drawing.Point(342, 83);
             this.lblMateria.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMateria.Name = "lblMateria";
             this.lblMateria.Size = new System.Drawing.Size(47, 15);
@@ -136,11 +149,14 @@ namespace Frontend
             // 
             // cboMateria
             // 
+            this.cboMateria.BackColor = System.Drawing.Color.Lavender;
+            this.cboMateria.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cboMateria.Font = new System.Drawing.Font("Gadugi", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.cboMateria.FormattingEnabled = true;
-            this.cboMateria.Location = new System.Drawing.Point(401, 112);
+            this.cboMateria.Location = new System.Drawing.Point(345, 112);
             this.cboMateria.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cboMateria.Name = "cboMateria";
-            this.cboMateria.Size = new System.Drawing.Size(200, 23);
+            this.cboMateria.Size = new System.Drawing.Size(256, 24);
             this.cboMateria.TabIndex = 8;
             this.cboMateria.SelectedIndexChanged += new System.EventHandler(this.cboMateria_SelectedIndexChanged);
             // 
@@ -182,10 +198,14 @@ namespace Frontend
             // 
             // txtNombre
             // 
-            this.txtNombre.Location = new System.Drawing.Point(35, 142);
+            this.txtNombre.BackColor = System.Drawing.Color.Lavender;
+            this.txtNombre.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtNombre.Font = new System.Drawing.Font("Gadugi", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtNombre.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txtNombre.Location = new System.Drawing.Point(35, 118);
             this.txtNombre.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(269, 23);
+            this.txtNombre.Size = new System.Drawing.Size(269, 18);
             this.txtNombre.TabIndex = 0;
             // 
             // lstCarrera
@@ -264,10 +284,15 @@ namespace Frontend
             // 
             // txtTitulo
             // 
+            this.txtTitulo.BackColor = System.Drawing.Color.Lavender;
+            this.txtTitulo.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtTitulo.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtTitulo.Font = new System.Drawing.Font("Gadugi", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtTitulo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.txtTitulo.Location = new System.Drawing.Point(35, 218);
             this.txtTitulo.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtTitulo.Name = "txtTitulo";
-            this.txtTitulo.Size = new System.Drawing.Size(269, 23);
+            this.txtTitulo.Size = new System.Drawing.Size(269, 18);
             this.txtTitulo.TabIndex = 1;
             // 
             // btnEditar
@@ -316,23 +341,32 @@ namespace Frontend
             // 
             // nudAnioCursado
             // 
+            this.nudAnioCursado.BackColor = System.Drawing.Color.Lavender;
+            this.nudAnioCursado.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.nudAnioCursado.Font = new System.Drawing.Font("Gadugi", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.nudAnioCursado.Location = new System.Drawing.Point(449, 263);
             this.nudAnioCursado.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.nudAnioCursado.Name = "nudAnioCursado";
-            this.nudAnioCursado.Size = new System.Drawing.Size(106, 23);
+            this.nudAnioCursado.Size = new System.Drawing.Size(106, 21);
             this.nudAnioCursado.TabIndex = 3;
+            this.nudAnioCursado.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // nudCantidadAnios
             // 
-            this.nudCantidadAnios.Location = new System.Drawing.Point(198, 255);
+            this.nudCantidadAnios.BackColor = System.Drawing.Color.Lavender;
+            this.nudCantidadAnios.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.nudCantidadAnios.Font = new System.Drawing.Font("Gadugi", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.nudCantidadAnios.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.nudCantidadAnios.Location = new System.Drawing.Point(198, 279);
             this.nudCantidadAnios.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.nudCantidadAnios.Name = "nudCantidadAnios";
-            this.nudCantidadAnios.Size = new System.Drawing.Size(106, 23);
+            this.nudCantidadAnios.Size = new System.Drawing.Size(106, 21);
             this.nudCantidadAnios.TabIndex = 2;
+            this.nudCantidadAnios.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // btnMateria
             // 
-            this.btnMateria.Location = new System.Drawing.Point(345, 303);
+            this.btnMateria.Location = new System.Drawing.Point(484, 327);
             this.btnMateria.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnMateria.Name = "btnMateria";
             this.btnMateria.Size = new System.Drawing.Size(117, 27);
@@ -352,11 +386,46 @@ namespace Frontend
             this.btnSalir.UseVisualStyleBackColor = true;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.SteelBlue;
+            this.panel1.Controls.Add(this.btnClose);
+            this.panel1.Controls.Add(this.btnMinimized);
+            this.panel1.Controls.Add(this.lblCarrera);
+            this.panel1.Location = new System.Drawing.Point(-4, -1);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(946, 30);
+            this.panel1.TabIndex = 23;
+            // 
+            // btnClose
+            // 
+            this.btnClose.Image = global::Frontend.Properties.Resources.Pasted_20211101_130216_preview_rev_1;
+            this.btnClose.Location = new System.Drawing.Point(914, 5);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(20, 20);
+            this.btnClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnClose.TabIndex = 25;
+            this.btnClose.TabStop = false;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // btnMinimized
+            // 
+            this.btnMinimized.Image = global::Frontend.Properties.Resources.minimizar;
+            this.btnMinimized.Location = new System.Drawing.Point(888, 3);
+            this.btnMinimized.Name = "btnMinimized";
+            this.btnMinimized.Size = new System.Drawing.Size(24, 24);
+            this.btnMinimized.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnMinimized.TabIndex = 24;
+            this.btnMinimized.TabStop = false;
+            this.btnMinimized.Click += new System.EventHandler(this.btnMinimized_Click);
+            // 
             // Frm_Alta_Carrera
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.LightSteelBlue;
             this.ClientSize = new System.Drawing.Size(933, 674);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnMateria);
             this.Controls.Add(this.nudCantidadAnios);
@@ -380,7 +449,7 @@ namespace Frontend
             this.Controls.Add(this.lblAñoMax);
             this.Controls.Add(this.lblTitulo);
             this.Controls.Add(this.lblNombre);
-            this.Controls.Add(this.lblCarrera);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "Frm_Alta_Carrera";
             this.Text = "Gestionar Carreras";
@@ -388,6 +457,10 @@ namespace Frontend
             ((System.ComponentModel.ISupportInitialize)(this.dgvMateria)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudAnioCursado)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCantidadAnios)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnClose)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnMinimized)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -424,5 +497,8 @@ namespace Frontend
         private System.Windows.Forms.DataGridViewTextBoxColumn Materia;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColAnioCursado;
         private System.Windows.Forms.DataGridViewButtonColumn Acciones;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.PictureBox btnClose;
+        private System.Windows.Forms.PictureBox btnMinimized;
     }
 }
