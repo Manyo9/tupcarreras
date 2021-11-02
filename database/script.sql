@@ -22,9 +22,10 @@ create procedure SP_READ_CARRERAS_BY_ID
 (@id_carrera int)
 as
 	select * from Carreras c
-	join Detalles_carrera dt on dt.id_carrera = c.id_carrera
-	join Asignaturas a on a.id_asignatura = dt.id_asignatura
+	full join Detalles_carrera dt on dt.id_carrera = c.id_carrera
+	full join Asignaturas a on a.id_asignatura = dt.id_asignatura
 	where c.id_carrera = @id_carrera
+	order by c.id_carrera,dt.anio_cursado,dt.cuatrimestre,a.nombre_asignatura
 go
 
 --actualizar carreras
@@ -108,7 +109,7 @@ go
 --consultar asignaturas
 create procedure SP_READ_ASIGNATURAS
 as
-	select * from Asignaturas
+	select * from Asignaturas order by nombre_asignatura
 go
 
 --actualizar asignaturas
