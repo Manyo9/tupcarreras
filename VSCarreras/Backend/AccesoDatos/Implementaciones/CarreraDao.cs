@@ -34,20 +34,25 @@ namespace Backend.AccesoDatos.Implementaciones
             Carrera oCarrera = new Carrera();
             oCarrera = GetCarrerasById(id);
 
-            SqlCommand cmd = new SqlCommand("SP_DELETE_DETALLES_BY_CARRERA", cnn, transaction);
-            cmd.CommandType = CommandType.StoredProcedure;
-            SqlCommand cmdCarrera = new SqlCommand("SP_DELETE_CARRERAS", cnn, transaction);
-            cmdCarrera.CommandType = CommandType.StoredProcedure;
+
+
 
             bool flag = true;
             try
             {
                 cnn.Open();
                 transaction = cnn.BeginTransaction();
-                cmd.Parameters.AddWithValue("id_carrera", oCarrera.IdCarrera);
+
+                SqlCommand cmd = new SqlCommand("SP_DELETE_DETALLES_BY_CARRERA", cnn, transaction);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@id_carrera", oCarrera.IdCarrera);
                 cmd.ExecuteNonQuery();
-                cmdCarrera.Parameters.AddWithValue("id_carrera", oCarrera.IdCarrera);
+
+                SqlCommand cmdCarrera = new SqlCommand("SP_DELETE_CARRERAS", cnn, transaction);
+                cmdCarrera.CommandType = CommandType.StoredProcedure;
+                cmdCarrera.Parameters.AddWithValue("@id_carrera", oCarrera.IdCarrera);
                 cmdCarrera.ExecuteNonQuery();
+
                 transaction.Commit();
             }
             catch (Exception)
@@ -170,21 +175,33 @@ namespace Backend.AccesoDatos.Implementaciones
             SqlTransaction transaction = null;
             SqlConnection cnn = new SqlConnection(@"Data Source=.\SQLEXPRESS;Initial Catalog=carreras;Integrated Security=True");
 
+            cnn.Open();
+            SqlCommand cmdId = new SqlCommand("SP_PROXIMO_ID",cnn); 
+            cmdId.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter param = new SqlParameter();
+            param.ParameterName = "@next";
+            param.SqlDbType = SqlDbType.Int;
+            param.Direction = ParameterDirection.Output;
+             
+            cmdId.Parameters.Add(param);
+            cmdId.ExecuteNonQuery();
+            cnn.Close();
 
             bool flag = true;
+            int id_carrera = (int)param.Value;
 
             try
             {
                 cnn.Open();
                 transaction = cnn.BeginTransaction();
-                // HACE FALTA TRAER EL PROXIMO ID PARA DETALLES
                 //MAESTRO CARRERA
                 SqlCommand cmd = new SqlCommand("SP_CREATE_CARRERAS", cnn, transaction);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@nombre", oCarrera.Nombre);
-                cmd.Parameters.AddWithValue("@nombre_titulo", oCarrera.Titulo);
+                cmd.Parameters.AddWithValue("@titulo", oCarrera.Titulo);
                 cmd.Parameters.AddWithValue("@anio_maximo", oCarrera.AnioMaximo);
-         
+
                 cmd.ExecuteNonQuery();
 
                 //DETALLE CARRERA
@@ -196,7 +213,7 @@ namespace Backend.AccesoDatos.Implementaciones
                     comandoDetalle.Transaction = transaction;
                     comandoDetalle.CommandText = "SP_CREATE_DETALLES";
                     comandoDetalle.CommandType = CommandType.StoredProcedure;
-                    comandoDetalle.Parameters.AddWithValue("@id_carrera", oCarrera.IdCarrera);
+                    comandoDetalle.Parameters.AddWithValue("@id_carrera", id_carrera);
                     comandoDetalle.Parameters.AddWithValue("@anio_cursado", item.AnioDeCursado);
                     comandoDetalle.Parameters.AddWithValue("@cuatrimestre", item.Cuatrimestre);
                     comandoDetalle.Parameters.AddWithValue("@id_asignatura", item.Materia.IdAsignatura);
@@ -233,10 +250,10 @@ namespace Backend.AccesoDatos.Implementaciones
                 SqlCommand cmd = new SqlCommand("SP_UPDATE_CARRERAS", cnn, transaction);
 
                 //MAESTRO CARRERA
-                cmd.Parameters.AddWithValue("id_carrera", oCarrera.IdCarrera);
-                cmd.Parameters.AddWithValue("nombre_carrera", oCarrera.Nombre);
-                cmd.Parameters.AddWithValue("titulo_carrera", oCarrera.Titulo);
-                cmd.Parameters.AddWithValue("anio_maximo", oCarrera.AnioMaximo);
+                cmd.Parameters.AddWithValue("@id_carrera", oCarrera.IdCarrera);
+                cmd.Parameters.AddWithValue("@nombre", oCarrera.Nombre);
+                cmd.Parameters.AddWithValue("@titulo", oCarrera.Titulo);
+                cmd.Parameters.AddWithValue("@anio_maximo", oCarrera.AnioMaximo);
                 cmd.ExecuteNonQuery();
 
 
@@ -283,7 +300,7 @@ namespace Backend.AccesoDatos.Implementaciones
                 transaction = cnn.BeginTransaction();
                 SqlCommand cmd = new SqlCommand("SP_CREATE_ASIGNATURAS", cnn, transaction);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("nombre", oAsignatura.Nombre);
+                cmd.Parameters.AddWithValue("@nombre", oAsignatura.Nombre);
                 cmd.ExecuteNonQuery();
                 transaction.Commit();
             }
@@ -312,8 +329,8 @@ namespace Backend.AccesoDatos.Implementaciones
                 SqlCommand cmd = new SqlCommand("SP_UPDATE_ASIGNATURAS", cnn, transaction);
                 transaction = cnn.BeginTransaction();
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("id_asignatura", oAsignatura.IdAsignatura);
-                cmd.Parameters.AddWithValue("nombre_asignatura", oAsignatura.Nombre);
+                cmd.Parameters.AddWithValue("@id_asignatura", oAsignatura.IdAsignatura);
+                cmd.Parameters.AddWithValue("@nombre_asignatura", oAsignatura.Nombre);
                 cmd.ExecuteNonQuery();
 
                 transaction.Commit();

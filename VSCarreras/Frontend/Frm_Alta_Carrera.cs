@@ -102,6 +102,7 @@ namespace Frontend
             limpiar();
             habilitar(false);
             txtNombre.Focus();
+            oCarrera.IdCarrera = 0;
         }
 
 
@@ -114,6 +115,7 @@ namespace Frontend
         private void btnBorrar_Click(object sender, EventArgs e)
         {
             modo = Accion.DELETE;
+            oCarrera.IdCarrera = ((Carrera)lstCarrera.SelectedItem).IdCarrera;
             habilitar(true);
             //if (MessageBox.Show("Se borrará permanentemente , desea seguir?",
             //              "BORRAR", MessageBoxButtons.YesNo, MessageBoxIcon.Question,
@@ -169,7 +171,6 @@ namespace Frontend
                     oCarrera.Nombre = txtNombre.Text;
                     oCarrera.Titulo = txtTitulo.Text;
                     oCarrera.AnioMaximo = Convert.ToInt32(nudCantidadAnios.Value);
-                    MessageBox.Show(oCarrera.ToString());
                     await GuardarCarreraAsync();
                     limpiar();
                     await CargarListAsync();
@@ -185,7 +186,7 @@ namespace Frontend
                     if (MessageBox.Show("Se borrará permanentemente , desea seguir?",
                                   "BORRAR", MessageBoxButtons.YesNo, MessageBoxIcon.Question,
                                 MessageBoxDefaultButton.Button2) == DialogResult.Yes) {
-                        BorrarCarreraAsync(((Carrera)lstCarrera.SelectedItem).IdCarrera);
+                        await BorrarCarreraAsync(oCarrera.IdCarrera);
                         limpiar();
                     }
                 }
@@ -242,7 +243,7 @@ namespace Frontend
                 cboMateria.Focus();
                 return;
             }
-            if (nudAnioCursado.Value <= 0 || nudAnioCursado.Value > carreras[lstCarrera.SelectedIndex].AnioMaximo)
+            if (nudAnioCursado.Value <= 0 || nudAnioCursado.Value > nudCantidadAnios.Value)
             {
                 MessageBox.Show("Debe seleccionar un año de cursado entre uno y el año final de la carrera seleccionada", "Validacion", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 nudAnioCursado.Focus();
