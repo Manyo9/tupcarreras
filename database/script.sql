@@ -143,3 +143,11 @@ BEGIN
 	return @next
 END
 GO
+
+--reporte
+create proc Repo_Carrera
+as 
+select d.id_carrera,COUNT(d.id_carrera),c.nombre_carrera
+from Detalles_carrera d join Carreras c on d.id_carrera=c.id_carrera
+group by d.id_carrera ,c.nombre_carrera
+order by 2 desc
