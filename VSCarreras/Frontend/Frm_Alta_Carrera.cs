@@ -83,7 +83,7 @@ namespace Frontend
             btnEditar.Enabled = !x;
             btnBorrar.Enabled = !x;
             lstCarrera.Enabled = !x;
-            dgvMateria.Enabled = !x;
+            dgvMateria.Enabled = x;
             btnMateria.Enabled = x;
         }
 
@@ -94,6 +94,7 @@ namespace Frontend
             habilitar(true);
             txtNombre.Focus();
             oCarrera.Detalles.Clear();
+            oCarrera.IdCarrera = 0;
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -103,6 +104,7 @@ namespace Frontend
             habilitar(false);
             txtNombre.Focus();
             oCarrera.IdCarrera = 0;
+            oCarrera.Detalles.Clear();
         }
 
 
@@ -140,7 +142,7 @@ namespace Frontend
 
         private async void btnAceptar_Click(object sender, EventArgs e)
         {
-            if (modo.Equals(Accion.CREATE) || modo.Equals(Accion.UPDATE) || modo.Equals(Accion.DELETE))
+            if (modo.Equals(Accion.CREATE) || modo.Equals(Accion.UPDATE))
             {
                 if (dgvMateria.Rows.Count == 0)
                 {
@@ -181,14 +183,16 @@ namespace Frontend
                     await EditarCarreraAsync();
                     limpiar();
                 }
-                else if (modo.Equals(Accion.DELETE))
+            }
+            else if (modo.Equals(Accion.DELETE))
+            {
+                if (MessageBox.Show("Se borrará permanentemente , desea seguir?",
+                              "BORRAR", MessageBoxButtons.YesNo, MessageBoxIcon.Question,
+                            MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                 {
-                    if (MessageBox.Show("Se borrará permanentemente , desea seguir?",
-                                  "BORRAR", MessageBoxButtons.YesNo, MessageBoxIcon.Question,
-                                MessageBoxDefaultButton.Button2) == DialogResult.Yes) {
-                        await BorrarCarreraAsync(oCarrera.IdCarrera);
-                        limpiar();
-                    }
+                    await BorrarCarreraAsync(oCarrera.IdCarrera);
+                    limpiar();
+                    await CargarListAsync();
                 }
             }
         }
@@ -209,8 +213,7 @@ namespace Frontend
 
         public async Task<string> BorrarCarreraAsync(int n)
         {
-            string url = "https://localhost:44361/api/Carrera" + n.ToString();
-            string datos = JsonConvert.SerializeObject((Carrera)lstCarrera.SelectedItem);
+            string url = "https://localhost:44361/api/Carrera/" + n.ToString();
             var resultado = await ClienteHttp.GetInstancia().DeleteAsync(url);
             return resultado;
         }
@@ -288,14 +291,6 @@ namespace Frontend
             }
             return false;
         }
-        private void dgvMateria_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (dgvMateria.CurrentCell.ColumnIndex == 4)
-            {
-                oCarrera.QuitarDetalle(dgvMateria.CurrentRow.Index);
-                dgvMateria.Rows.Remove(dgvMateria.CurrentRow);
-            }
-        }
         public async Task TraerCarreraAsync(int n)
         {
             string url = "https://localhost:44361/api/Carrera/" + n.ToString();
@@ -313,7 +308,7 @@ namespace Frontend
 
             foreach (DetalleCarrera detalle in oCarrera.Detalles)
             {
-                dgvMateria.Rows.Add(new object[] { String.Empty, detalle.Cuatrimestre, detalle.Materia.Nombre, detalle.AnioDeCursado});
+                dgvMateria.Rows.Add(new object[] { detalle.IdDetalle, detalle.Cuatrimestre, detalle.Materia.Nombre, detalle.AnioDeCursado});
             }
 
             
@@ -338,6 +333,31 @@ namespace Frontend
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Dispose();
+        }
+        public async Task<string> BorrarDetalleAsync(int n)
+        {
+            string url = "https://localhost:44361/api/Carrera/detalle/" + n.ToString();
+            string datos = JsonConvert.SerializeObject((Carrera)lstCarrera.SelectedItem);
+            var resultado = await ClienteHttp.GetInstancia().DeleteAsync(url);
+            return resultado;
+        }
+
+        private async void dgvMateria_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvMateria.CurrentCell.ColumnIndex == 4)
+            {
+                if (modo.Equals(Accion.CREATE))
+                {
+                    oCarrera.QuitarDetalle(dgvMateria.CurrentRow.Index);
+                    dgvMateria.Rows.Remove(dgvMateria.CurrentRow);
+                }
+                else if (modo.Equals(Accion.UPDATE))
+                {
+                    await BorrarDetalleAsync(Convert.ToInt32(dgvMateria.CurrentRow.Cells["id"].Value));
+                    oCarrera.QuitarDetalle(dgvMateria.CurrentRow.Index);
+                    dgvMateria.Rows.Remove(dgvMateria.CurrentRow);
+                }
+            }
         }
     }
 }

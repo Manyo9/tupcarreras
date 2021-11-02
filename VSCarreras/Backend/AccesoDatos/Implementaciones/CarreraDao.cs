@@ -41,10 +41,13 @@ namespace Backend.AccesoDatos.Implementaciones
                 cnn.Open();
                 transaction = cnn.BeginTransaction();
 
-                SqlCommand cmd = new SqlCommand("SP_DELETE_DETALLES_BY_CARRERA", cnn, transaction);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@id_carrera", oCarrera.IdCarrera);
-                cmd.ExecuteNonQuery();
+                if (oCarrera.Detalles.Count > 0)
+                {
+                    SqlCommand cmd = new SqlCommand("SP_DELETE_DETALLES_BY_CARRERA", cnn, transaction);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@id_carrera", oCarrera.IdCarrera);
+                    cmd.ExecuteNonQuery();
+                }
 
                 SqlCommand cmdCarrera = new SqlCommand("SP_DELETE_CARRERAS", cnn, transaction);
                 cmdCarrera.CommandType = CommandType.StoredProcedure;
@@ -151,12 +154,18 @@ namespace Backend.AccesoDatos.Implementaciones
                 }
 
                 DetalleCarrera oDetalle = new DetalleCarrera();
-                oDetalle.IdDetalle = Convert.ToInt32(row["id_detalle"].ToString());
-                oDetalle.AnioDeCursado = Convert.ToInt32(row["anio_cursado"].ToString());
-                oDetalle.Cuatrimestre = (row["cuatrimestre"].ToString());
-                oDetalle.Materia.IdAsignatura = Convert.ToInt32(row["id_asignatura"].ToString());
-                oDetalle.Materia.Nombre = (row["nombre_asignatura"].ToString());
-                oCarrera.AgregarDetalle(oDetalle);
+
+                object value = row["id_detalle"];
+                if (value != DBNull.Value)
+                { 
+                    oDetalle.IdDetalle = Convert.ToInt32(row["id_detalle"].ToString());
+                    oDetalle.AnioDeCursado = Convert.ToInt32(row["anio_cursado"].ToString());
+                    oDetalle.Cuatrimestre = (row["cuatrimestre"].ToString());
+                    oDetalle.Materia.IdAsignatura = Convert.ToInt32(row["id_asignatura"].ToString());
+                    oDetalle.Materia.Nombre = (row["nombre_asignatura"].ToString());
+                    oCarrera.AgregarDetalle(oDetalle);
+                }
+
             }
 
             cnn.Close();
@@ -248,19 +257,19 @@ namespace Backend.AccesoDatos.Implementaciones
                 cmd.Parameters.AddWithValue("@anio_maximo", oCarrera.AnioMaximo);
                 cmd.ExecuteNonQuery();
 
-                foreach (DetalleCarrera item in oCarrera.Detalles)
-                {
-                    SqlCommand comandoDetalle = new SqlCommand();
-                    comandoDetalle.Connection = cnn;
-                    comandoDetalle.Transaction = transaction;
-                    comandoDetalle.CommandText = "SP_UPDATE_DETALLES";
-                    comandoDetalle.CommandType = CommandType.StoredProcedure;
-                    comandoDetalle.Parameters.AddWithValue("@id_detalle", item.IdDetalle);
-                    comandoDetalle.Parameters.AddWithValue("@anio_cursado", item.AnioDeCursado);
-                    comandoDetalle.Parameters.AddWithValue("@cuatrimestre", item.Cuatrimestre);
-                    comandoDetalle.Parameters.AddWithValue("@id_asignatura", item.Materia.IdAsignatura);
-                    comandoDetalle.ExecuteNonQuery();
-                }
+                //foreach (DetalleCarrera item in oCarrera.Detalles)
+                //{
+                //    SqlCommand comandoDetalle = new SqlCommand();
+                //    comandoDetalle.Connection = cnn;
+                //    comandoDetalle.Transaction = transaction;
+                //    comandoDetalle.CommandText = "SP_UPDATE_DETALLES";
+                //    comandoDetalle.CommandType = CommandType.StoredProcedure;
+                //    comandoDetalle.Parameters.AddWithValue("@id_detalle", item.IdDetalle);
+                //    comandoDetalle.Parameters.AddWithValue("@anio_cursado", item.AnioDeCursado);
+                //    comandoDetalle.Parameters.AddWithValue("@cuatrimestre", item.Cuatrimestre);
+                //    comandoDetalle.Parameters.AddWithValue("@id_asignatura", item.Materia.IdAsignatura);
+                //    comandoDetalle.ExecuteNonQuery();
+                //}
 
                 transaction.Commit();
             }

@@ -70,9 +70,13 @@ namespace WebAPI.Controllers
             {
                 return BadRequest("missingParam");
             }
-            else
+            else if (servicio.EliminarCarrera(id))
             {
-                return Ok(servicio.EliminarCarrera(id));
+                return Ok(true);
+            }
+            else 
+            {
+                return BadRequest(false);
             }
         }
 
@@ -135,6 +139,18 @@ namespace WebAPI.Controllers
             else
             {
                 return NotFound(false);
+            }
+        }
+        [HttpDelete("detalle/{id}")]
+        public IActionResult DeleteDetalleById(int id)
+        {
+            if (id == 0 || id == null)
+            {
+                return BadRequest("missingParam");
+            }
+            else
+            {
+                return Ok(servicio.EliminarDetalle(id));
             }
         }
     }

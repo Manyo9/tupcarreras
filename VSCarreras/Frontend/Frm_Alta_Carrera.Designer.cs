@@ -44,6 +44,11 @@ namespace Frontend
             this.lstCarrera = new System.Windows.Forms.ListBox();
             this.btnNuevo = new System.Windows.Forms.Button();
             this.dgvMateria = new System.Windows.Forms.DataGridView();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cuatrimestre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Materia = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColAnioCursado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Acciones = new System.Windows.Forms.DataGridViewButtonColumn();
             this.txtTitulo = new System.Windows.Forms.TextBox();
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnBorrar = new System.Windows.Forms.Button();
@@ -56,11 +61,6 @@ namespace Frontend
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnClose = new System.Windows.Forms.PictureBox();
             this.btnMinimized = new System.Windows.Forms.PictureBox();
-            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cuatrimestre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Materia = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColAnioCursado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Acciones = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMateria)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudAnioCursado)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCantidadAnios)).BeginInit();
@@ -246,6 +246,42 @@ namespace Frontend
             this.dgvMateria.ReadOnly = true;
             this.dgvMateria.Size = new System.Drawing.Size(825, 170);
             this.dgvMateria.TabIndex = 9;
+            this.dgvMateria.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMateria_CellContentClick_1);
+            // 
+            // id
+            // 
+            this.id.HeaderText = "ID";
+            this.id.Name = "id";
+            this.id.ReadOnly = true;
+            this.id.Visible = false;
+            // 
+            // Cuatrimestre
+            // 
+            this.Cuatrimestre.HeaderText = "Cuatrimestre";
+            this.Cuatrimestre.Name = "Cuatrimestre";
+            this.Cuatrimestre.ReadOnly = true;
+            // 
+            // Materia
+            // 
+            this.Materia.HeaderText = "Materia";
+            this.Materia.Name = "Materia";
+            this.Materia.ReadOnly = true;
+            this.Materia.Width = 250;
+            // 
+            // ColAnioCursado
+            // 
+            this.ColAnioCursado.HeaderText = "Año de Cursado";
+            this.ColAnioCursado.Name = "ColAnioCursado";
+            this.ColAnioCursado.ReadOnly = true;
+            // 
+            // Acciones
+            // 
+            this.Acciones.HeaderText = "Acciones";
+            this.Acciones.Name = "Acciones";
+            this.Acciones.ReadOnly = true;
+            this.Acciones.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Acciones.Text = "Quitar";
+            this.Acciones.UseColumnTextForButtonValue = true;
             // 
             // txtTitulo
             // 
@@ -289,7 +325,7 @@ namespace Frontend
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(88, 27);
             this.btnAceptar.TabIndex = 13;
-            this.btnAceptar.Text = "Aceptar";
+            this.btnAceptar.Text = "Confirmar";
             this.btnAceptar.UseVisualStyleBackColor = true;
             this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
@@ -383,41 +419,6 @@ namespace Frontend
             this.btnMinimized.TabIndex = 24;
             this.btnMinimized.TabStop = false;
             this.btnMinimized.Click += new System.EventHandler(this.btnMinimized_Click);
-            // 
-            // id
-            // 
-            this.id.HeaderText = "ID";
-            this.id.Name = "id";
-            this.id.ReadOnly = true;
-            this.id.Visible = false;
-            // 
-            // Cuatrimestre
-            // 
-            this.Cuatrimestre.HeaderText = "Cuatrimestre";
-            this.Cuatrimestre.Name = "Cuatrimestre";
-            this.Cuatrimestre.ReadOnly = true;
-            // 
-            // Materia
-            // 
-            this.Materia.HeaderText = "Materia";
-            this.Materia.Name = "Materia";
-            this.Materia.ReadOnly = true;
-            this.Materia.Width = 250;
-            // 
-            // ColAnioCursado
-            // 
-            this.ColAnioCursado.HeaderText = "Año de Cursado";
-            this.ColAnioCursado.Name = "ColAnioCursado";
-            this.ColAnioCursado.ReadOnly = true;
-            // 
-            // Acciones
-            // 
-            this.Acciones.HeaderText = "Acciones";
-            this.Acciones.Name = "Acciones";
-            this.Acciones.ReadOnly = true;
-            this.Acciones.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Acciones.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.Acciones.Text = "Quitar";
             // 
             // Frm_Alta_Carrera
             // 
