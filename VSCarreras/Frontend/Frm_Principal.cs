@@ -40,5 +40,10 @@ namespace Frontend
             MessageBox.Show("Programa desarrollado por el Grupo 16:\n" +
                 "Agustin Mangini, Pablo Monticoli y Marisa Fenoglio ");
         }
+
+        private void salirToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("¿Está segura que desea salir?", "Salir", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+        }
     }
 }

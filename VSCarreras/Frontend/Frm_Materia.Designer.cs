@@ -105,7 +105,7 @@ namespace Frontend
             // 
             // btnEditar
             // 
-            this.btnEditar.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnEditar.BackColor = System.Drawing.Color.MediumBlue;
             this.btnEditar.FlatAppearance.BorderSize = 0;
             this.btnEditar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEditar.Font = new System.Drawing.Font("Gadugi", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -121,7 +121,7 @@ namespace Frontend
             // 
             // btnBorrar
             // 
-            this.btnBorrar.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.btnBorrar.BackColor = System.Drawing.Color.DarkBlue;
             this.btnBorrar.FlatAppearance.BorderSize = 0;
             this.btnBorrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBorrar.Font = new System.Drawing.Font("Gadugi", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -149,7 +149,7 @@ namespace Frontend
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.SteelBlue;
+            this.panel1.BackColor = System.Drawing.Color.LightSteelBlue;
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.btnMinimize);
             this.panel1.Controls.Add(this.btnClose);
@@ -225,7 +225,7 @@ namespace Frontend
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.BackColor = System.Drawing.Color.SteelBlue;
             this.ClientSize = new System.Drawing.Size(717, 441);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAplicar);
