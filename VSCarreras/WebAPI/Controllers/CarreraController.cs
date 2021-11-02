@@ -46,10 +46,19 @@ namespace WebAPI.Controllers
 
         // POST api/Carrera
         [HttpPost]
-        public void PostCarrera([FromBody] string json)
+        public IActionResult AgregarCarrera(Carrera oCarrera)
         {
-            Carrera oCarrera = JsonConvert.DeserializeObject<Carrera>(json);
-            servicio.GuardarCarrera(oCarrera);
+            if (oCarrera.AnioMaximo == null || oCarrera.AnioMaximo <= 0 || oCarrera.AnioMaximo >= 100 || oCarrera.Nombre.Trim() == "")
+            {
+                return BadRequest("missingParam");
+            }
+            else if (servicio.GuardarCarrera(oCarrera))
+            {
+                return Ok(true);
+            }
+            else {
+                return BadRequest(false);
+            }               
         }
 
         // DELETE api/Carrera/1
@@ -59,7 +68,7 @@ namespace WebAPI.Controllers
         {
             if (id == 0 || id == null)
             {
-                return BadRequest("Id es requerido!");
+                return BadRequest("missingParam");
             }
             else
             {
@@ -81,17 +90,17 @@ namespace WebAPI.Controllers
         {
             if (oAsignatura.Nombre.Trim() == "")
             {
-                return BadRequest("Falta ingresar nombre de asignatura");
+                return BadRequest("missingParam");
             }
             else 
             {
                 if (servicio.GuardarAsignatura(oAsignatura))
                 {
-                    return Ok("Guardado con éxito");
+                    return Ok(true);
                 }
                 else
                 {
-                    return BadRequest("Se produjo un error al intentar crear nueva asignatura");
+                    return BadRequest(false);
                 }
                 
             }
@@ -104,7 +113,7 @@ namespace WebAPI.Controllers
         {
             if (id == 0 || id == null)
             {
-                return BadRequest("Id es requerido!");
+                return BadRequest("missingId");
             }
             else
             {
@@ -117,7 +126,7 @@ namespace WebAPI.Controllers
         {
             if ( oCredenciales.Usuario.Trim() == "" || oCredenciales.Password.Trim() == "")
             {
-                return BadRequest(false);
+                return BadRequest("missingParam");
             }
             else if (servicio.IniciarSesion(oCredenciales))
             {

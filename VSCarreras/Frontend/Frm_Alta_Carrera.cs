@@ -34,9 +34,9 @@ namespace Frontend
 
 
         private Accion modo;
-        private Carrera oCarrera = new Carrera();
         List<Asignatura> materias = new List<Asignatura>();
         List<Carrera> carreras = new List<Carrera>();
+        Carrera oCarrera = new Carrera();
         private ClienteHttp cliente;
         public Frm_Alta_Carrera()
         {
@@ -166,7 +166,7 @@ namespace Frontend
                 }
                 if (modo.Equals(Accion.CREATE))
                 {
-                    GuardarCarrera();
+                    GuardarCarreraAsync();
                     limpiar();
                 }
                 else if (modo.Equals(Accion.UPDATE))
@@ -179,30 +179,33 @@ namespace Frontend
                     if (MessageBox.Show("Se borrará permanentemente , desea seguir?",
                                   "BORRAR", MessageBoxButtons.YesNo, MessageBoxIcon.Question,
                                 MessageBoxDefaultButton.Button2) == DialogResult.Yes) {
-                        BorrarCarrera();
+                        BorrarCarreraAsync(((Carrera)lstCarrera.SelectedItem).IdCarrera);
                         limpiar();
                     }
                 }
             }
         }
-        public void GuardarCarrera()
+        public async Task<string> GuardarCarreraAsync()
         {
-            Carrera oCarrera = new Carrera();
-            oCarrera.Nombre = txtNombre.Text.ToString();
-            oCarrera.Titulo = txtTitulo.Text.ToString();
-            oCarrera.AnioMaximo = Convert.ToInt32(nudCantidadAnios.Value);
+            string url = "https://localhost:44361/api/Carrera";
+            string datos = JsonConvert.SerializeObject((Carrera)lstCarrera.SelectedItem);
+            var resultado = await ClienteHttp.GetInstancia().PostAsync(url, datos);
+            return resultado;
         }
-        public void EditarCarrera()
+        public async Task<string> EditarCarrera()
         {
-            Carrera oCarrera = new Carrera();
-            oCarrera.Nombre = txtNombre.Text.ToString();
-            oCarrera.Titulo = txtTitulo.Text.ToString();
-            oCarrera.AnioMaximo = Convert.ToInt32(nudCantidadAnios.Value);
+            string url = "https://localhost:44361/api/Carrera";
+            string datos = JsonConvert.SerializeObject((Carrera)lstCarrera.SelectedItem);
+            var resultado = await ClienteHttp.GetInstancia().PostAsync(url, datos);
+            return resultado;
         }
 
-        public void BorrarCarrera()
+        public async Task<string> BorrarCarreraAsync(int n)
         {
-            // primera row de la listbox
+            string url = "https://localhost:44361/api/Carrera" + n.ToString();
+            string datos = JsonConvert.SerializeObject((Carrera)lstCarrera.SelectedItem);
+            var resultado = await ClienteHttp.GetInstancia().DeleteAsync(url);
+            return resultado;
         }
         public async Task CargarComboAsync()
         {
@@ -222,11 +225,6 @@ namespace Frontend
             lstCarrera.DataSource = carreras;
             lstCarrera.DisplayMember = "nombre";
             lstCarrera.ValueMember = "idCarrera";
-        }
-
-        private void cboMateria_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void btnMateria_Click(object sender, EventArgs e)
@@ -269,10 +267,10 @@ namespace Frontend
             if (!ExisteMateriaEnGrilla(oAsignatura.Nombre))
             {
                 detalle = new DetalleCarrera(Convert.ToInt32(nudAnioCursado.Value), cuatrimestre, oAsignatura);
-                dgvMateria.Rows.Add(new object[] { detalle.Cuatrimestre, oAsignatura.Nombre, detalle.AnioDeCursado });
+                dgvMateria.Rows.Add(new object[] {String.Empty, detalle.Cuatrimestre, oAsignatura.Nombre, detalle.AnioDeCursado });
             }
 
-            oCarrera.AgregarDetalle(detalle);
+            ((Carrera)lstCarrera.SelectedItem).AgregarDetalle(detalle);
         }
         private bool ExisteMateriaEnGrilla(string text)
         {
@@ -287,7 +285,7 @@ namespace Frontend
         {
             if (dgvMateria.CurrentCell.ColumnIndex == 4)
             {
-                oCarrera.QuitarDetalle(dgvMateria.CurrentRow.Index);
+                ((Carrera)lstCarrera.SelectedItem).QuitarDetalle(dgvMateria.CurrentRow.Index);
                 dgvMateria.Rows.Remove(dgvMateria.CurrentRow);
             }
         }
@@ -298,25 +296,35 @@ namespace Frontend
             oCarrera = JsonConvert.DeserializeObject<Carrera>(resultado);
         }
 
-        public async Task CargarCampos()
+        public async Task CargarCampos(int n)
         {
-            txtNombre.Text = carreras[lstCarrera.SelectedIndex].Nombre;
-            txtTitulo.Text = carreras[lstCarrera.SelectedIndex].Titulo;
-            nudCantidadAnios.Value = Convert.ToInt32(carreras[lstCarrera.SelectedIndex].AnioMaximo);
-            await TraerCarreraAsync(carreras[lstCarrera.SelectedIndex].IdCarrera);
+
+            await TraerCarreraAsync(n);
+            txtNombre.Text = oCarrera.Nombre;
+            txtTitulo.Text = oCarrera.Titulo;
+            nudCantidadAnios.Value = Convert.ToInt32(oCarrera.AnioMaximo);
+            //MessageBox.Show(((Carrera)(lstCarrera.SelectedItem)).ToString());
+
+            foreach (DetalleCarrera detalle in oCarrera.Detalles)
+            {
+                dgvMateria.Rows.Add(new object[] { String.Empty, detalle.Cuatrimestre, detalle.Materia.Nombre, detalle.AnioDeCursado});
+            }
+
+            
         }
 
 
-        private void lstCarrera_SelectedIndexChanged(object sender, EventArgs e)
+        private async void lstCarrera_SelectedIndexChanged(object sender, EventArgs e)
         {
-            CargarCampos();
+            dgvMateria.Rows.Clear();
+            await CargarCampos(((Carrera)(lstCarrera.SelectedItem)).IdCarrera);
         }
 
         public async Task CargarFormAsync()
         {
             await CargarComboAsync();
             await CargarListAsync();
-            CargarCampos();
+            //await CargarCampos(1);
         }
 
         private void btnMinimized_Click(object sender, EventArgs e)

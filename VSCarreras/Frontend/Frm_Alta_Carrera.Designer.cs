@@ -158,7 +158,6 @@ namespace Frontend
             this.cboMateria.Name = "cboMateria";
             this.cboMateria.Size = new System.Drawing.Size(256, 24);
             this.cboMateria.TabIndex = 8;
-            this.cboMateria.SelectedIndexChanged += new System.EventHandler(this.cboMateria_SelectedIndexChanged);
             // 
             // rbtnSegundo
             // 

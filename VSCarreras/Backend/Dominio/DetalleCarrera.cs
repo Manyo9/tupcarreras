@@ -22,5 +22,9 @@ namespace Backend.Dominio
             Cuatrimestre = cuatrimestre;
             Materia = materia;
         }
+        public override string ToString()
+        {
+            return ("Año de cursado"+AnioDeCursado.ToString()+ " Cuatrimestre "+Cuatrimestre+" Materia "+Materia.Nombre+" IdDetalle "+IdDetalle.ToString());
+        }
     }
 }

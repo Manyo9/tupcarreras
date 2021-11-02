@@ -25,5 +25,12 @@ namespace Backend.Dominio
         {
             Detalles.RemoveAt(nro);
         }
+
+        public override string ToString()
+        {
+            return ("Nombre: "+Nombre+" Titulo: "+Titulo+" Año máximo: "+
+                AnioMaximo+" Id Carrera: "+IdCarrera.ToString()+" Detalles: "+Detalles.Count);
+        }
+
     }
 }
