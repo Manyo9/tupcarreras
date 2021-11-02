@@ -14,6 +14,7 @@ namespace Backend.Dominio
         public List<DetalleCarrera> Detalles { get; set; }
         public Carrera()
         {
+            IdCarrera = 0;
             Detalles = new List<DetalleCarrera>();
         }
         public void AgregarDetalle(DetalleCarrera detalle)

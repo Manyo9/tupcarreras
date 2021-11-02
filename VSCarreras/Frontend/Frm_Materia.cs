@@ -30,7 +30,6 @@ namespace Frontend
                 message.Result = (IntPtr)HTCAPTION;
         }
 
-        private ClienteHttp cliente;
         private Accion modo;
 
         List<Asignatura> materias = new List<Asignatura>();

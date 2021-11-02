@@ -260,7 +260,6 @@ namespace Frontend
         private System.Windows.Forms.PictureBox btnClose;
         private System.Windows.Forms.PictureBox btnMinimize;
         private System.Windows.Forms.Button btnAplicar;
-        private System.Windows.Forms.Button btnRefrescar;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnCancelar;
     }

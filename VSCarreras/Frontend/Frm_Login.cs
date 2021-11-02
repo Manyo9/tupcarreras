@@ -18,7 +18,6 @@ namespace Frontend
         private const int WM_NCHITTEST = 0x84;
         private const int HTCLIENT = 0x1;
         private const int HTCAPTION = 0x2;
-        private ClienteHttp cliente;
         private Credenciales credenciales = new Credenciales();
         ///
         /// drag form

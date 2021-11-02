@@ -37,7 +37,6 @@ namespace Frontend
         List<Asignatura> materias = new List<Asignatura>();
         List<Carrera> carreras = new List<Carrera>();
         Carrera oCarrera = new Carrera();
-        private ClienteHttp cliente;
         public Frm_Alta_Carrera()
         {
             InitializeComponent();
@@ -67,7 +66,7 @@ namespace Frontend
             rbtnPrimero.Checked = false;
             rbtnSegundo.Checked = false;
             cboMateria.SelectedIndex = -1;
-
+            dgvMateria.Rows.Clear();
         }
 
         private void habilitar(bool x)
@@ -94,6 +93,7 @@ namespace Frontend
             limpiar();
             habilitar(true);
             txtNombre.Focus();
+            oCarrera.Detalles.Clear();
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -136,7 +136,7 @@ namespace Frontend
             }
         }
 
-        private void btnAceptar_Click(object sender, EventArgs e)
+        private async void btnAceptar_Click(object sender, EventArgs e)
         {
             if (modo.Equals(Accion.CREATE) || modo.Equals(Accion.UPDATE) || modo.Equals(Accion.DELETE))
             {
@@ -166,12 +166,18 @@ namespace Frontend
                 }
                 if (modo.Equals(Accion.CREATE))
                 {
-                    GuardarCarreraAsync();
+                    oCarrera.Nombre = txtNombre.Text;
+                    oCarrera.Titulo = txtTitulo.Text;
+                    oCarrera.AnioMaximo = Convert.ToInt32(nudCantidadAnios.Value);
+                    MessageBox.Show(oCarrera.ToString());
+                    await GuardarCarreraAsync();
                     limpiar();
+                    await CargarListAsync();
+
                 }
                 else if (modo.Equals(Accion.UPDATE))
                 {
-                    EditarCarrera();
+                    await EditarCarreraAsync();
                     limpiar();
                 }
                 else if (modo.Equals(Accion.DELETE))
@@ -188,11 +194,11 @@ namespace Frontend
         public async Task<string> GuardarCarreraAsync()
         {
             string url = "https://localhost:44361/api/Carrera";
-            string datos = JsonConvert.SerializeObject((Carrera)lstCarrera.SelectedItem);
+            string datos = JsonConvert.SerializeObject(oCarrera);
             var resultado = await ClienteHttp.GetInstancia().PostAsync(url, datos);
             return resultado;
         }
-        public async Task<string> EditarCarrera()
+        public async Task<string> EditarCarreraAsync()
         {
             string url = "https://localhost:44361/api/Carrera";
             string datos = JsonConvert.SerializeObject((Carrera)lstCarrera.SelectedItem);
@@ -270,7 +276,7 @@ namespace Frontend
                 dgvMateria.Rows.Add(new object[] {String.Empty, detalle.Cuatrimestre, oAsignatura.Nombre, detalle.AnioDeCursado });
             }
 
-            ((Carrera)lstCarrera.SelectedItem).AgregarDetalle(detalle);
+            oCarrera.AgregarDetalle(detalle);
         }
         private bool ExisteMateriaEnGrilla(string text)
         {
@@ -303,7 +309,6 @@ namespace Frontend
             txtNombre.Text = oCarrera.Nombre;
             txtTitulo.Text = oCarrera.Titulo;
             nudCantidadAnios.Value = Convert.ToInt32(oCarrera.AnioMaximo);
-            //MessageBox.Show(((Carrera)(lstCarrera.SelectedItem)).ToString());
 
             foreach (DetalleCarrera detalle in oCarrera.Detalles)
             {
@@ -312,8 +317,6 @@ namespace Frontend
 
             
         }
-
-
         private async void lstCarrera_SelectedIndexChanged(object sender, EventArgs e)
         {
             dgvMateria.Rows.Clear();
@@ -324,7 +327,6 @@ namespace Frontend
         {
             await CargarComboAsync();
             await CargarListAsync();
-            //await CargarCampos(1);
         }
 
         private void btnMinimized_Click(object sender, EventArgs e)

@@ -177,20 +177,18 @@ namespace Backend.AccesoDatos.Implementaciones
             {
                 cnn.Open();
                 transaction = cnn.BeginTransaction();
-
+                // HACE FALTA TRAER EL PROXIMO ID PARA DETALLES
                 //MAESTRO CARRERA
                 SqlCommand cmd = new SqlCommand("SP_CREATE_CARRERAS", cnn, transaction);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@nombre", oCarrera.Nombre);
                 cmd.Parameters.AddWithValue("@nombre_titulo", oCarrera.Titulo);
                 cmd.Parameters.AddWithValue("@anio_maximo", oCarrera.AnioMaximo);
-                cmd.Parameters.AddWithValue("@id_carrera", oCarrera.IdCarrera);
-
+         
                 cmd.ExecuteNonQuery();
 
-
                 //DETALLE CARRERA
-
+                
                 foreach (DetalleCarrera item in oCarrera.Detalles)
                 {
                     SqlCommand comandoDetalle = new SqlCommand();
