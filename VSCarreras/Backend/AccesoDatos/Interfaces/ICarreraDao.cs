@@ -14,6 +14,7 @@ namespace Backend.AccesoDatos.Interfaces
         List<Asignatura> GetAsignaturas();
         bool SaveCarrera(Carrera oCarrera);
         bool SaveAsignatura(Asignatura oAsignatura);
+        bool SaveDatalle(DetalleCarrera oDetalle);
         bool DeleteCarreras(int id);
         bool DeleteDetalle(int id);
         bool DeleteAsignatura(int id);

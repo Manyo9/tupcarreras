@@ -21,8 +21,8 @@ namespace WebAPI.Controllers
             servicio = new ServiceFactory().CrearService();
         }
 
-        //GET: api/Carrera
-        //Trae todas las carreras
+        // GET api/Carrera
+        // Trae todas las carreras
         [HttpGet]
         public IActionResult GetCarreras()
         {
@@ -36,7 +36,7 @@ namespace WebAPI.Controllers
         {
             if (id == 0 || id == null)
             {
-                return BadRequest("Id es requerido!");
+                return BadRequest("missingParam");
             }
             else
             {
@@ -45,6 +45,7 @@ namespace WebAPI.Controllers
         }
 
         // POST api/Carrera
+        // Crea una nueva carrera
         [HttpPost]
         public IActionResult AgregarCarrera(Carrera oCarrera)
         {
@@ -59,6 +60,25 @@ namespace WebAPI.Controllers
             else {
                 return BadRequest(false);
             }               
+        }
+
+        // POST api/Carrera/id
+        // Edita una carrera
+        [HttpPost("{id}")]
+        public IActionResult EditarCarrera(Carrera oCarrera)
+        {
+            if (oCarrera.IdCarrera == 0 || oCarrera.AnioMaximo == null || oCarrera.AnioMaximo <= 0 || oCarrera.AnioMaximo >= 100 || oCarrera.Nombre.Trim() == "")
+            {
+                return BadRequest("missingParam");
+            }
+            else if (servicio.ActualizarCarrera(oCarrera))
+            {
+                return Ok(true);
+            }
+            else
+            {
+                return BadRequest(false);
+            }
         }
 
         // DELETE api/Carrera/1
@@ -89,6 +109,8 @@ namespace WebAPI.Controllers
             return Ok(servicio.ObtenerAsignaturas());
         }
 
+        // POST api/Carrera/asignaturas
+        // crea una nueva asignatura
         [HttpPost("asignaturas")]
         public IActionResult PostAsignatura(Asignatura oAsignatura)
         {
@@ -117,7 +139,7 @@ namespace WebAPI.Controllers
         {
             if (id == 0 || id == null)
             {
-                return BadRequest("missingId");
+                return BadRequest("missingParam");
             }
             else
             {
@@ -125,6 +147,8 @@ namespace WebAPI.Controllers
             }
         }
 
+        // POST /login/
+        // intenta loguear con las credenciales enviadas
         [HttpPost("/login/")]
         public IActionResult PostLogin(Credenciales oCredenciales)
         {
@@ -141,6 +165,25 @@ namespace WebAPI.Controllers
                 return NotFound(false);
             }
         }
+
+        [HttpPost("detalle")]
+        public IActionResult CreateDetalle(DetalleCarrera oDetalle)
+        {
+            if (oDetalle.IdDetalle == 0 || oDetalle.IdDetalle == null)
+            {
+                return BadRequest("missingParam");
+            }
+            else if (servicio.GuardarDetalle(oDetalle))
+            {
+                return Ok(true);
+            }
+            else
+            {
+                return BadRequest(false);
+            }
+        }
+        // POST api/Carrera/detalle/4
+        // Borra un detalle
         [HttpDelete("detalle/{id}")]
         public IActionResult DeleteDetalleById(int id)
         {
@@ -148,9 +191,13 @@ namespace WebAPI.Controllers
             {
                 return BadRequest("missingParam");
             }
+            else if (servicio.EliminarDetalle(id))
+            {
+                return Ok(true);
+            }
             else
             {
-                return Ok(servicio.EliminarDetalle(id));
+                return BadRequest(false);
             }
         }
     }

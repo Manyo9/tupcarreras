@@ -180,8 +180,12 @@ namespace Frontend
                 }
                 else if (modo.Equals(Accion.UPDATE))
                 {
-                    await EditarCarreraAsync();
+                    oCarrera.Nombre = txtNombre.Text;
+                    oCarrera.Titulo = txtTitulo.Text;
+                    oCarrera.AnioMaximo = Convert.ToInt32(nudCantidadAnios.Value);
+                    await EditarCarreraAsync(oCarrera.IdCarrera);
                     limpiar();
+                    await CargarListAsync();
                 }
             }
             else if (modo.Equals(Accion.DELETE))
@@ -203,10 +207,10 @@ namespace Frontend
             var resultado = await ClienteHttp.GetInstancia().PostAsync(url, datos);
             return resultado;
         }
-        public async Task<string> EditarCarreraAsync()
+        public async Task<string> EditarCarreraAsync(int n)
         {
-            string url = "https://localhost:44361/api/Carrera";
-            string datos = JsonConvert.SerializeObject((Carrera)lstCarrera.SelectedItem);
+            string url = "https://localhost:44361/api/Carrera/" + n.ToString();
+            string datos = JsonConvert.SerializeObject(oCarrera);
             var resultado = await ClienteHttp.GetInstancia().PostAsync(url, datos);
             return resultado;
         }
@@ -237,7 +241,7 @@ namespace Frontend
             lstCarrera.ValueMember = "idCarrera";
         }
 
-        private void btnMateria_Click(object sender, EventArgs e)
+        private async void btnMateria_Click(object sender, EventArgs e)
         {
 
             if (cboMateria.SelectedIndex == -1)
@@ -278,9 +282,16 @@ namespace Frontend
             {
                 detalle = new DetalleCarrera(Convert.ToInt32(nudAnioCursado.Value), cuatrimestre, oAsignatura);
                 dgvMateria.Rows.Add(new object[] {String.Empty, detalle.Cuatrimestre, oAsignatura.Nombre, detalle.AnioDeCursado });
-            }
+                oCarrera.AgregarDetalle(detalle);
 
-            oCarrera.AgregarDetalle(detalle);
+                if (modo.Equals(Accion.UPDATE)) 
+                {
+                    detalle.IdDetalle = oCarrera.IdCarrera;
+                    await CrearDetalleAsync(detalle);
+                    await CargarListAsync();
+                }
+
+            }           
         }
         private bool ExisteMateriaEnGrilla(string text)
         {
@@ -334,10 +345,16 @@ namespace Frontend
         {
             this.Dispose();
         }
+        public async Task<string> CrearDetalleAsync(DetalleCarrera oDetalle)
+        {
+            string url = "https://localhost:44361/api/Carrera/detalle/";
+            string datos = JsonConvert.SerializeObject(oDetalle);
+            var resultado = await ClienteHttp.GetInstancia().PostAsync(url, datos);
+            return resultado;
+        }
         public async Task<string> BorrarDetalleAsync(int n)
         {
             string url = "https://localhost:44361/api/Carrera/detalle/" + n.ToString();
-            string datos = JsonConvert.SerializeObject((Carrera)lstCarrera.SelectedItem);
             var resultado = await ClienteHttp.GetInstancia().DeleteAsync(url);
             return resultado;
         }

@@ -68,6 +68,11 @@ namespace Backend.Servicios
         {
             return dao.LoginIn(oCredenciales);
         }
+
+        public bool GuardarDetalle(DetalleCarrera oDetalle)
+        {
+            return dao.SaveDatalle(oDetalle);
+        }
     }
 }
 

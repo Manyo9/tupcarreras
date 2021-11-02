@@ -228,6 +228,7 @@ namespace Backend.AccesoDatos.Implementaciones
             {
                 transaction.Rollback();
                 flag = false;
+                throw;
             }
             finally
             {
@@ -249,6 +250,7 @@ namespace Backend.AccesoDatos.Implementaciones
                 cnn.Open();
                 transaction = cnn.BeginTransaction();
                 SqlCommand cmd = new SqlCommand("SP_UPDATE_CARRERAS", cnn, transaction);
+                cmd.CommandType = CommandType.StoredProcedure;
 
                 //MAESTRO CARRERA
                 cmd.Parameters.AddWithValue("@id_carrera", oCarrera.IdCarrera);
@@ -306,6 +308,7 @@ namespace Backend.AccesoDatos.Implementaciones
             catch (Exception)
             {
                 transaction.Rollback();
+                flag = false;
                 throw;
             }
 
@@ -414,6 +417,7 @@ namespace Backend.AccesoDatos.Implementaciones
                 cmd.Parameters.AddWithValue("nom_usuario", oCredenciales.Usuario);
                 cmd.Parameters.AddWithValue("contrasenia", oCredenciales.Password);                
                 tabla.Load(cmd.ExecuteReader());
+
                 if(tabla.Rows.Count==0||tabla==null)
                 {
                     return false;
@@ -433,6 +437,39 @@ namespace Backend.AccesoDatos.Implementaciones
                 if (cnn != null && cnn.State == ConnectionState.Open)
                     cnn.Close();
             }
+        }
+        public bool SaveDatalle(DetalleCarrera oDetalle)
+        {
+            SqlConnection cnn = new SqlConnection(cadena);
+            SqlTransaction transaction = null;
+            bool flag = true;
+
+            try
+            {
+                cnn.Open();
+                transaction = cnn.BeginTransaction();
+                SqlCommand cmd = new SqlCommand("SP_CREATE_DETALLES", cnn, transaction);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@id_carrera", oDetalle.IdDetalle);
+                cmd.Parameters.AddWithValue("@anio_cursado", oDetalle.AnioDeCursado);
+                cmd.Parameters.AddWithValue("@cuatrimestre", oDetalle.Cuatrimestre);
+                cmd.Parameters.AddWithValue("@id_asignatura", oDetalle.Materia.IdAsignatura);
+                cmd.ExecuteNonQuery();
+                transaction.Commit();
+            }
+            catch (Exception)
+            {
+                transaction.Rollback();
+                flag = false;
+                throw;
+            }
+
+            finally
+            {
+                if (cnn != null && cnn.State == ConnectionState.Open)
+                    cnn.Close();
+            }
+            return flag;
         }
     }
 }
