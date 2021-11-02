@@ -65,6 +65,7 @@ namespace Frontend
             this.txtContraseña.Location = new System.Drawing.Point(77, 293);
             this.txtContraseña.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtContraseña.Name = "txtContraseña";
+            this.txtContraseña.PasswordChar = '*';
             this.txtContraseña.Size = new System.Drawing.Size(234, 18);
             this.txtContraseña.TabIndex = 4;
             // 
