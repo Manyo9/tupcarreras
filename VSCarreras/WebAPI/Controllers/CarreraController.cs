@@ -109,6 +109,23 @@ namespace WebAPI.Controllers
             return Ok(servicio.ObtenerAsignaturas());
         }
 
+        [HttpPost("asignaturas/{id}")]
+        public IActionResult EditarAsignatura(Asignatura oAsignatura)
+        {
+            if (oAsignatura.IdAsignatura == 0 || oAsignatura.IdAsignatura == null || oAsignatura.Nombre.Trim() == "")
+            {
+                return BadRequest("missingParam");
+            }
+            else if (servicio.ActualizarAsignatura(oAsignatura))
+            {
+                return Ok(true);
+            }
+            else
+            {
+                return BadRequest(false);
+            }
+        }
+
         // POST api/Carrera/asignaturas
         // crea una nueva asignatura
         [HttpPost("asignaturas")]

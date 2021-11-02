@@ -328,8 +328,8 @@ namespace Backend.AccesoDatos.Implementaciones
             try
             {
                 cnn.Open();
-                SqlCommand cmd = new SqlCommand("SP_UPDATE_ASIGNATURAS", cnn, transaction);
                 transaction = cnn.BeginTransaction();
+                SqlCommand cmd = new SqlCommand("SP_UPDATE_ASIGNATURAS", cnn, transaction);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@id_asignatura", oAsignatura.IdAsignatura);
                 cmd.Parameters.AddWithValue("@nombre_asignatura", oAsignatura.Nombre);
@@ -379,14 +379,13 @@ namespace Backend.AccesoDatos.Implementaciones
         {
             SqlConnection cnn = new SqlConnection(cadena);
             SqlTransaction transaction = null;
-            SqlCommand cmd = new SqlCommand("SP_DELETE_ASIGNATURAS", cnn, transaction);
-            cmd.CommandType = CommandType.StoredProcedure;
-
             bool flag = true;
             try
             {
                 cnn.Open();
                 transaction = cnn.BeginTransaction();
+                SqlCommand cmd = new SqlCommand("SP_DELETE_ASIGNATURAS", cnn, transaction);
+                cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("id_asignatura", id);
                 cmd.ExecuteNonQuery();
                 transaction.Commit();

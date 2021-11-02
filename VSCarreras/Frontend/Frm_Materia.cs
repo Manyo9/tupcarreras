@@ -33,6 +33,7 @@ namespace Frontend
         private Accion modo;
 
         List<Asignatura> materias = new List<Asignatura>();
+        Asignatura oMateria = new Asignatura();
         public Frm_Materia()
         {
             InitializeComponent();
@@ -52,11 +53,6 @@ namespace Frontend
             CargarFormAsync();
         }
 
-        private void cboMateriasCargadas_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //   .Text= cboMateriasCargadas.SelectedValue.ToString();  //aca muestra el id del objeto seleccionado en el combo 
-            //txtNombreMateria ???
-        }
         private void limpiar()
         {
             txtNombreMateria.Text = "";
@@ -89,13 +85,8 @@ namespace Frontend
 
         private async void btnBorrar_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Se borrará la materia, desea seguir?",
-                         "BORRAR", MessageBoxButtons.YesNo, MessageBoxIcon.Question,
-                         MessageBoxDefaultButton.Button2) == DialogResult.Yes)
-            {
-                string resultado = await BorrarMateria(((Asignatura)(lstMaterias.SelectedItem)).IdAsignatura);
-            }
-
+            modo = Accion.DELETE;
+            habilitar(true);
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -119,15 +110,16 @@ namespace Frontend
         public async Task CargarFormAsync()
         {
             await CargarComboAsync();
-            CargarCampo();
         }
         public void CargarCampo()
         {
-            txtNombreMateria.Text = ((Asignatura)(lstMaterias.SelectedItem)).Nombre;
+            txtNombreMateria.Text = oMateria.Nombre;
         }
 
         private void lstMaterias_SelectedIndexChanged(object sender, EventArgs e)
         {
+            oMateria.Nombre = ((Asignatura)(lstMaterias.SelectedItem)).Nombre;
+            oMateria.IdAsignatura = ((Asignatura)(lstMaterias.SelectedItem)).IdAsignatura;
             CargarCampo();
         }
 
@@ -135,6 +127,7 @@ namespace Frontend
         {
             modo = Accion.READ;
             habilitar(false);
+            limpiar();
             txtNombreMateria.Focus();
         }
 
@@ -144,6 +137,60 @@ namespace Frontend
             var resultado = await ClienteHttp.GetInstancia().DeleteAsync(url);
             return resultado;
         }
+        public async Task<string> GuardarMateriaAsync(Asignatura asignatura)
+        {
+            string url = "https://localhost:44361/api/Carrera/asignaturas/";
+            string datos = JsonConvert.SerializeObject(asignatura);
+            var resultado = await ClienteHttp.GetInstancia().PostAsync(url, datos);
+            return resultado;
+        }
+        public async Task<string> EditarMateriaAsync(int n)
+        {
+            string url = "https://localhost:44361/api/Carrera/asignaturas/" + n.ToString();
+            string datos = JsonConvert.SerializeObject(oMateria);
+            var resultado = await ClienteHttp.GetInstancia().PostAsync(url,datos);
+            return resultado;
+        }
 
+        private async void btnAplicar_Click(object sender, EventArgs e)
+        {
+            if (modo.Equals(Accion.CREATE) || modo.Equals(Accion.UPDATE))
+            {
+                if (txtNombreMateria.Text.Trim() == "")
+                {
+                    MessageBox.Show("Debe ingresar un nombre de materia", "Validacion", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtNombreMateria.Focus();
+                    return;
+                }
+                if (modo.Equals(Accion.CREATE))
+                {
+                    oMateria.Nombre = txtNombreMateria.Text;
+                    await GuardarMateriaAsync(oMateria);
+                    limpiar();
+                    await CargarComboAsync();
+                    habilitar(false);
+
+                }
+                else if (modo.Equals(Accion.UPDATE))
+                {
+                    oMateria.Nombre = txtNombreMateria.Text;
+                    await EditarMateriaAsync(oMateria.IdAsignatura);
+                    limpiar();
+                    await CargarComboAsync();
+                    habilitar(false);
+                }
+            }
+            else if (modo.Equals(Accion.DELETE))
+            {
+                if (MessageBox.Show("Se borrará permanentemente , desea seguir?",
+                              "BORRAR", MessageBoxButtons.YesNo, MessageBoxIcon.Question,
+                            MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                {
+                    await BorrarMateria(oMateria.IdAsignatura);
+                    limpiar();
+                    await CargarComboAsync();
+                }
+            }
+        }
     }
 }
