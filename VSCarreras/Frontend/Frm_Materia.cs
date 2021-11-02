@@ -30,10 +30,9 @@ namespace Frontend
                 message.Result = (IntPtr)HTCAPTION;
         }
 
-
-
         private ClienteHttp cliente;
         private Accion modo;
+
         List<Asignatura> materias = new List<Asignatura>();
         public Frm_Materia()
         {
@@ -68,28 +67,35 @@ namespace Frontend
         {
 
             txtNombreMateria.Enabled = x;
+            btnAgregar.Enabled = !x;
             btnEditar.Enabled = !x;
-            btnBorrar.Enabled = x;
+            btnBorrar.Enabled = !x;
             lstMaterias.Enabled = !x;
-          
+
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
+            modo = Accion.CREATE;
+            limpiar();
             habilitar(true);
             txtNombreMateria.Focus();
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
+            modo = Accion.UPDATE;
             habilitar(true);
         }
 
-        private void btnBorrar_Click(object sender, EventArgs e)
+        private async void btnBorrar_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Se borrará la materia, desea seguir?",
                          "BORRAR", MessageBoxButtons.YesNo, MessageBoxIcon.Question,
-                         MessageBoxDefaultButton.Button2) == DialogResult.Yes) ;
+                         MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+            {
+                string resultado = await BorrarMateria(((Asignatura)(lstMaterias.SelectedItem)).IdAsignatura);
+            }
 
         }
 
@@ -118,7 +124,7 @@ namespace Frontend
         }
         public void CargarCampo()
         {
-            txtNombreMateria.Text = materias[lstMaterias.SelectedIndex].Nombre;
+            txtNombreMateria.Text = ((Asignatura)(lstMaterias.SelectedItem)).Nombre;
         }
 
         private void lstMaterias_SelectedIndexChanged(object sender, EventArgs e)
@@ -126,10 +132,19 @@ namespace Frontend
             CargarCampo();
         }
 
-        //private void btnRefrescar_Click(object sender, EventArgs e)
-        //{
-        //    MessageBox.Show(materias.ToString());
-        //    CargarCampo();
-        //}
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            modo = Accion.READ;
+            habilitar(false);
+            txtNombreMateria.Focus();
+        }
+
+        public async Task<string> BorrarMateria(int n)
+        {
+            string url = "https://localhost:44361/api/Carrera/asignaturas/"+ n.ToString();
+            var resultado = await ClienteHttp.GetInstancia().DeleteAsync(url);
+            return resultado;
+        }
+
     }
 }

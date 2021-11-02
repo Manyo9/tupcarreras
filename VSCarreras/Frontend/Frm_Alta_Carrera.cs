@@ -80,7 +80,6 @@ namespace Frontend
             rbtnAnual.Enabled = x;
             rbtnPrimero.Enabled = x;
             rbtnSegundo.Enabled = x;
-            btnCancelar.Enabled = x;
             btnNuevo.Enabled = !x;
             btnEditar.Enabled = !x;
             btnBorrar.Enabled = !x;
