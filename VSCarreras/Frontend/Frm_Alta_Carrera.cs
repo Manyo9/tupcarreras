@@ -176,6 +176,7 @@ namespace Frontend
                     await GuardarCarreraAsync();
                     limpiar();
                     await CargarListAsync();
+                    habilitar(false);
 
                 }
                 else if (modo.Equals(Accion.UPDATE))
@@ -186,6 +187,7 @@ namespace Frontend
                     await EditarCarreraAsync(oCarrera.IdCarrera);
                     limpiar();
                     await CargarListAsync();
+                    habilitar(false);
                 }
             }
             else if (modo.Equals(Accion.DELETE))
@@ -198,6 +200,7 @@ namespace Frontend
                     limpiar();
                     await CargarListAsync();
                 }
+                habilitar(false);
             }
         }
         public async Task<string> GuardarCarreraAsync()
