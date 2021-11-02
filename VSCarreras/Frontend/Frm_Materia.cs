@@ -190,6 +190,7 @@ namespace Frontend
                     limpiar();
                     await CargarComboAsync();
                 }
+                habilitar(false);
             }
         }
     }
