@@ -15,7 +15,7 @@ namespace Backend.Servicios
         public bool GuardarCarrera(Carrera oCarrera);
         public bool GuardarAsignatura(Asignatura oAsignatura);
         public bool EliminarCarrera(int id);
-        public bool EliminarDetalle(List<int> lst);
+        public bool EliminarDetalle(int id);
         public bool EliminarAsignatura(int id);
         public bool ActualizarCarrera(Carrera oCarrera);
         public bool ActualizarAsignatura(Asignatura oAsignatura);

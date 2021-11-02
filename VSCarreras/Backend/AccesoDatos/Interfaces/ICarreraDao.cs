@@ -15,7 +15,7 @@ namespace Backend.AccesoDatos.Interfaces
         bool SaveCarrera(Carrera oCarrera);
         bool SaveAsignatura(Asignatura oAsignatura);
         bool DeleteCarreras(int id);
-        bool DeleteDetalle(List<int> lst);
+        bool DeleteDetalle(int id);
         bool DeleteAsignatura(int id);
         bool UpdateCarreras(Carrera oCarrera);
         bool UpdateAsignatura(Asignatura oAsignatura);

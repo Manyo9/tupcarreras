@@ -292,7 +292,7 @@ namespace Frontend
         {
             if (dgvMateria.CurrentCell.ColumnIndex == 4)
             {
-                ((Carrera)lstCarrera.SelectedItem).QuitarDetalle(dgvMateria.CurrentRow.Index);
+                oCarrera.QuitarDetalle(dgvMateria.CurrentRow.Index);
                 dgvMateria.Rows.Remove(dgvMateria.CurrentRow);
             }
         }

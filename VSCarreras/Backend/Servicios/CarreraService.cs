@@ -37,9 +37,9 @@ namespace Backend.Servicios
             return dao.DeleteCarreras(id);
         }
 
-        public bool EliminarDetalle(List<int> lst)
+        public bool EliminarDetalle(int id)
         {
-            return dao.DeleteDetalle(lst);
+            return dao.DeleteDetalle(id);
         }
 
         public bool GuardarAsignatura(Asignatura oAsignatura)

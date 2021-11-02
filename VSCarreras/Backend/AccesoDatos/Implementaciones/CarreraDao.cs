@@ -14,6 +14,7 @@ namespace Backend.AccesoDatos.Implementaciones
     {
 
         private static CarreraDao Instancia;
+        private static readonly string cadena = @"Data Source=.\SQLEXPRESS;Initial Catalog=carreras;Integrated Security=True";
         private CarreraDao()
         {
         }
@@ -28,14 +29,11 @@ namespace Backend.AccesoDatos.Implementaciones
         }
         public bool DeleteCarreras(int id)
         {
-            SqlConnection cnn = new SqlConnection(@"Data Source=.\SQLEXPRESS;Initial Catalog=carreras;Integrated Security=True");
+            SqlConnection cnn = new SqlConnection(cadena);
             SqlTransaction transaction = null;
 
             Carrera oCarrera = new Carrera();
             oCarrera = GetCarrerasById(id);
-
-
-
 
             bool flag = true;
             try
@@ -69,9 +67,9 @@ namespace Backend.AccesoDatos.Implementaciones
             return flag;
         }
 
-        public bool DeleteDetalle(List<int> lst)
+        public bool DeleteDetalle(int id)
         {
-            SqlConnection cnn = new SqlConnection(@"Data Source=.\SQLEXPRESS;Initial Catalog=carreras;Integrated Security=True");
+            SqlConnection cnn = new SqlConnection(cadena);
             SqlTransaction transaction = null;
             bool flag = true;
 
@@ -79,13 +77,11 @@ namespace Backend.AccesoDatos.Implementaciones
             {
                 cnn.Open();
                 transaction = cnn.BeginTransaction();
-                foreach (int id in lst)
-                {
-                    SqlCommand cmd = new SqlCommand("SP_DELETE_DETALLES", cnn, transaction);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("id_detalle", id);
-                    cmd.ExecuteNonQuery();
-                }
+
+                SqlCommand cmd = new SqlCommand("SP_DELETE_DETALLES", cnn, transaction);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("id_detalle", id);
+                cmd.ExecuteNonQuery();
 
                 transaction.Commit();
             }
@@ -107,7 +103,7 @@ namespace Backend.AccesoDatos.Implementaciones
         public List<Asignatura> GetAsignaturas()
         {
             List<Asignatura> lst = new List<Asignatura>();
-            SqlConnection cnn = new SqlConnection(@"Data Source=.\SQLEXPRESS;Initial Catalog=carreras;Integrated Security=True");
+            SqlConnection cnn = new SqlConnection(cadena);
 
             cnn.Open();
             SqlCommand cmd = new SqlCommand("SP_READ_ASIGNATURAS", cnn);
@@ -130,20 +126,18 @@ namespace Backend.AccesoDatos.Implementaciones
         public Carrera GetCarrerasById(int id)
         {
             Carrera oCarrera = new Carrera();
-            SqlConnection cnn = new SqlConnection(@"Data Source=.\SQLEXPRESS;Initial Catalog=carreras;Integrated Security=True");
+            SqlConnection cnn = new SqlConnection(cadena);
 
 
             cnn.Open();
             SqlCommand cmd = new SqlCommand("SP_READ_CARRERAS_BY_ID", cnn);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("id_carrera", id);
-            DataTable tabla = new DataTable();
 
+            DataTable tabla = new DataTable();
             tabla.Load(cmd.ExecuteReader());
-            //SqlDataReader reader = cmd.ExecuteReader();
             bool esPrimerRegistro = true;
 
-            //while (reader.Read())
             foreach(DataRow row in tabla.Rows)
             {
                 if (esPrimerRegistro)
@@ -155,7 +149,6 @@ namespace Backend.AccesoDatos.Implementaciones
                     oCarrera.IdCarrera = Convert.ToInt32(row["id_carrera"].ToString());
                     esPrimerRegistro = false;
                 }
-
 
                 DetalleCarrera oDetalle = new DetalleCarrera();
                 oDetalle.IdDetalle = Convert.ToInt32(row["id_detalle"].ToString());
@@ -173,7 +166,7 @@ namespace Backend.AccesoDatos.Implementaciones
         public bool SaveCarrera(Carrera oCarrera)
         {
             SqlTransaction transaction = null;
-            SqlConnection cnn = new SqlConnection(@"Data Source=.\SQLEXPRESS;Initial Catalog=carreras;Integrated Security=True");
+            SqlConnection cnn = new SqlConnection(cadena);
 
             cnn.Open();
             SqlCommand cmdId = new SqlCommand("SP_PROXIMO_ID",cnn); 
@@ -226,7 +219,6 @@ namespace Backend.AccesoDatos.Implementaciones
             {
                 transaction.Rollback();
                 flag = false;
-
             }
             finally
             {
@@ -238,7 +230,7 @@ namespace Backend.AccesoDatos.Implementaciones
 
         public bool UpdateCarreras(Carrera oCarrera)
         {
-            SqlConnection cnn = new SqlConnection(@"Data Source=.\SQLEXPRESS;Initial Catalog=carreras;Integrated Security=True");
+            SqlConnection cnn = new SqlConnection(cadena);
             SqlTransaction transaction = null;
 
             bool flag = true;
@@ -255,8 +247,6 @@ namespace Backend.AccesoDatos.Implementaciones
                 cmd.Parameters.AddWithValue("@titulo", oCarrera.Titulo);
                 cmd.Parameters.AddWithValue("@anio_maximo", oCarrera.AnioMaximo);
                 cmd.ExecuteNonQuery();
-
-
 
                 foreach (DetalleCarrera item in oCarrera.Detalles)
                 {
@@ -290,7 +280,7 @@ namespace Backend.AccesoDatos.Implementaciones
 
         public bool SaveAsignatura(Asignatura oAsignatura)
         {
-            SqlConnection cnn = new SqlConnection(@"Data Source=.\SQLEXPRESS;Initial Catalog=carreras;Integrated Security=True");
+            SqlConnection cnn = new SqlConnection(cadena);
             SqlTransaction transaction = null;
             bool flag = true;
 
@@ -319,7 +309,7 @@ namespace Backend.AccesoDatos.Implementaciones
         }
         public bool UpdateAsignatura(Asignatura oAsignatura)
         {
-            SqlConnection cnn = new SqlConnection(@"Data Source=.\SQLEXPRESS;Initial Catalog=carreras;Integrated Security=True");
+            SqlConnection cnn = new SqlConnection(cadena);
             SqlTransaction transaction = null;
             bool flag = true;
 
@@ -352,8 +342,7 @@ namespace Backend.AccesoDatos.Implementaciones
         public List<Carrera> GetCarreras()
         {
             List<Carrera> lst = new List<Carrera>();
-
-            SqlConnection cnn = new SqlConnection(@"Data Source=.\SQLEXPRESS;Initial Catalog=carreras;Integrated Security=True");
+            SqlConnection cnn = new SqlConnection(cadena);
             SqlCommand cmd = new SqlCommand("SP_READ_CARRERAS", cnn);
             cmd.CommandType = CommandType.StoredProcedure;
             DataTable tabla = new DataTable();
@@ -376,9 +365,8 @@ namespace Backend.AccesoDatos.Implementaciones
 
         public bool DeleteAsignatura(int id)
         {
-            SqlConnection cnn = new SqlConnection(@"Data Source=.\SQLEXPRESS;Initial Catalog=carreras;Integrated Security=True");
+            SqlConnection cnn = new SqlConnection(cadena);
             SqlTransaction transaction = null;
-
             SqlCommand cmd = new SqlCommand("SP_DELETE_ASIGNATURAS", cnn, transaction);
             cmd.CommandType = CommandType.StoredProcedure;
 
@@ -407,7 +395,7 @@ namespace Backend.AccesoDatos.Implementaciones
 
         public bool LoginIn(Credenciales oCredenciales)
         {
-            SqlConnection cnn = new SqlConnection(@"Data Source=.\SQLEXPRESS;Initial Catalog=carreras;Integrated Security=True");
+            SqlConnection cnn = new SqlConnection(cadena);
             DataTable tabla = new DataTable();
             try
             {
@@ -437,6 +425,5 @@ namespace Backend.AccesoDatos.Implementaciones
                     cnn.Close();
             }
         }
-
     }
 }
