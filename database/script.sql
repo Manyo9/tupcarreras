@@ -133,3 +133,13 @@ create procedure SP_LOGIN
 as
 	select * from Usuarios where @nom_usuario = nom_usuario and @contrasenia = contrasenia
 go
+
+--traer siguiente num
+CREATE PROCEDURE [dbo].[SP_PROXIMO_ID]
+@next int OUTPUT
+AS
+BEGIN
+	SET @next = (SELECT (IDENT_CURRENT ('Carreras'))+1);
+	return @next
+END
+GO
