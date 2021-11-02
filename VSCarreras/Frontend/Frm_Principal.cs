@@ -35,6 +35,10 @@ namespace Frontend
             nuevo.ShowDialog();
         }
 
-      
+        private void acercaDeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Programa desarrollado por el Grupo 16:\n" +
+                "Agustin Mangini, Pablo Monticoli y Marisa Fenoglio ");
+        }
     }
 }

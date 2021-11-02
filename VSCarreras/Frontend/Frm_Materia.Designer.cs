@@ -56,9 +56,9 @@ namespace Frontend
             this.label1.Location = new System.Drawing.Point(68, 80);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(109, 17);
+            this.label1.Size = new System.Drawing.Size(124, 17);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Nombre Materia";
+            this.label1.Text = "NOMBRE MATERIA";
             // 
             // txtNombreMateria
             // 
@@ -105,7 +105,7 @@ namespace Frontend
             // 
             // btnEditar
             // 
-            this.btnEditar.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.btnEditar.BackColor = System.Drawing.Color.RoyalBlue;
             this.btnEditar.FlatAppearance.BorderSize = 0;
             this.btnEditar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEditar.Font = new System.Drawing.Font("Gadugi", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -121,7 +121,7 @@ namespace Frontend
             // 
             // btnBorrar
             // 
-            this.btnBorrar.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnBorrar.BackColor = System.Drawing.Color.CornflowerBlue;
             this.btnBorrar.FlatAppearance.BorderSize = 0;
             this.btnBorrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBorrar.Font = new System.Drawing.Font("Gadugi", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -143,9 +143,9 @@ namespace Frontend
             this.label3.Location = new System.Drawing.Point(68, 151);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(121, 17);
+            this.label3.Size = new System.Drawing.Size(145, 17);
             this.label3.TabIndex = 9;
-            this.label3.Text = "Materias Cargadas";
+            this.label3.Text = "MATERIAS CARGADAS";
             // 
             // panel1
             // 
@@ -163,7 +163,7 @@ namespace Frontend
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Gadugi", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(11, 9);
+            this.label2.Location = new System.Drawing.Point(11, 7);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(177, 16);
             this.label2.TabIndex = 13;
@@ -172,7 +172,7 @@ namespace Frontend
             // btnMinimize
             // 
             this.btnMinimize.Image = ((System.Drawing.Image)(resources.GetObject("btnMinimize.Image")));
-            this.btnMinimize.Location = new System.Drawing.Point(666, 8);
+            this.btnMinimize.Location = new System.Drawing.Point(666, 6);
             this.btnMinimize.Name = "btnMinimize";
             this.btnMinimize.Size = new System.Drawing.Size(20, 23);
             this.btnMinimize.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -183,7 +183,7 @@ namespace Frontend
             // btnClose
             // 
             this.btnClose.Image = global::Frontend.Properties.Resources.Pasted_20211101_130216_preview_rev_1;
-            this.btnClose.Location = new System.Drawing.Point(695, 6);
+            this.btnClose.Location = new System.Drawing.Point(695, 5);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(20, 23);
             this.btnClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -207,12 +207,17 @@ namespace Frontend
             // 
             // btnCancelar
             // 
+            this.btnCancelar.BackColor = System.Drawing.Color.MidnightBlue;
+            this.btnCancelar.FlatAppearance.BorderSize = 0;
+            this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancelar.Font = new System.Drawing.Font("Gadugi", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnCancelar.ForeColor = System.Drawing.Color.White;
             this.btnCancelar.Location = new System.Drawing.Point(535, 353);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(128, 40);
             this.btnCancelar.TabIndex = 13;
             this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.UseVisualStyleBackColor = false;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // Frm_Materia
@@ -236,7 +241,6 @@ namespace Frontend
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "Frm_Materia";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Administrador de materias";
             this.Load += new System.EventHandler(this.Frm_Materia_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
