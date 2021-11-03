@@ -248,4 +248,4 @@ insert into Detalles_carrera (id_carrera,anio_cursado,cuatrimestre,id_asignatura
 values(3,2,'S',54)--BROMATOLOGIA
 
 --usuarios
-insert into Usuarios values ('grupo16','changuito')
+insert into Usuarios values ('loschangos','changuito')
