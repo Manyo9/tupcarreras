@@ -81,7 +81,7 @@ namespace Frontend
             // salirToolStripMenuItem
             // 
             this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
-            this.salirToolStripMenuItem.Size = new System.Drawing.Size(96, 22);
+            this.salirToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.salirToolStripMenuItem.Text = "Salir";
             this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
             // 
@@ -96,8 +96,8 @@ namespace Frontend
             // nuevaMateriaToolStripMenuItem
             // 
             this.nuevaMateriaToolStripMenuItem.Name = "nuevaMateriaToolStripMenuItem";
-            this.nuevaMateriaToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
-            this.nuevaMateriaToolStripMenuItem.Text = "Nueva Materia";
+            this.nuevaMateriaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.nuevaMateriaToolStripMenuItem.Text = "Gestionar Materias";
             this.nuevaMateriaToolStripMenuItem.Click += new System.EventHandler(this.nuevaMateriaToolStripMenuItem_Click);
             // 
             // carreraToolStripMenuItem
@@ -111,8 +111,8 @@ namespace Frontend
             // nuevaCarreraToolStripMenuItem
             // 
             this.nuevaCarreraToolStripMenuItem.Name = "nuevaCarreraToolStripMenuItem";
-            this.nuevaCarreraToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
-            this.nuevaCarreraToolStripMenuItem.Text = "Nueva Carrera";
+            this.nuevaCarreraToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.nuevaCarreraToolStripMenuItem.Text = "Gestionar Carreras";
             this.nuevaCarreraToolStripMenuItem.Click += new System.EventHandler(this.nuevaCarreraToolStripMenuItem_Click);
             // 
             // reporteToolStripMenuItem
@@ -126,7 +126,7 @@ namespace Frontend
             // generarReporteToolStripMenuItem
             // 
             this.generarReporteToolStripMenuItem.Name = "generarReporteToolStripMenuItem";
-            this.generarReporteToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
+            this.generarReporteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.generarReporteToolStripMenuItem.Text = "Generar Reporte";
             this.generarReporteToolStripMenuItem.Click += new System.EventHandler(this.generarReporteToolStripMenuItem_Click);
             // 
