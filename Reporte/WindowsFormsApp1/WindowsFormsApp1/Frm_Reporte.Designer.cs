@@ -1,5 +1,5 @@
 ﻿
-namespace ReporteCarreras
+namespace WindowsFormsApp1
 {
     partial class Frm_Reporte
     {
@@ -32,22 +32,22 @@ namespace ReporteCarreras
             this.components = new System.ComponentModel.Container();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
-            this.DSListado = new ReporteCarreras.DSListado();
-            this.DTListadoBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.DTListadoTableAdapter = new ReporteCarreras.DSListadoTableAdapters.DTListadoTableAdapter();
-            this.dTListadoBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.DSListado = new WindowsFormsApp1.DSListado();
+            this.Repo_CarreraBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.Repo_CarreraTableAdapter = new WindowsFormsApp1.DSListadoTableAdapters.Repo_CarreraTableAdapter();
+            this.repoCarreraBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.DSListado)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DTListadoBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dTListadoBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Repo_CarreraBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repoCarreraBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // reportViewer1
             // 
             this.reportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
             reportDataSource1.Name = "DataSet1";
-            reportDataSource1.Value = this.dTListadoBindingSource1;
+            reportDataSource1.Value = this.repoCarreraBindingSource;
             this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
-            this.reportViewer1.LocalReport.ReportEmbeddedResource = "ReporteCarreras.ListadoCarreras.rdlc";
+            this.reportViewer1.LocalReport.ReportEmbeddedResource = "WindowsFormsApp1.ReporteCarrera.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(0, 0);
             this.reportViewer1.Name = "reportViewer1";
             this.reportViewer1.ServerReport.BearerToken = null;
@@ -59,19 +59,19 @@ namespace ReporteCarreras
             this.DSListado.DataSetName = "DSListado";
             this.DSListado.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // DTListadoBindingSource
+            // Repo_CarreraBindingSource
             // 
-            this.DTListadoBindingSource.DataMember = "DTListado";
-            this.DTListadoBindingSource.DataSource = this.DSListado;
+            this.Repo_CarreraBindingSource.DataMember = "Repo_Carrera";
+            this.Repo_CarreraBindingSource.DataSource = this.DSListado;
             // 
-            // DTListadoTableAdapter
+            // Repo_CarreraTableAdapter
             // 
-            this.DTListadoTableAdapter.ClearBeforeFill = true;
+            this.Repo_CarreraTableAdapter.ClearBeforeFill = true;
             // 
-            // dTListadoBindingSource1
+            // repoCarreraBindingSource
             // 
-            this.dTListadoBindingSource1.DataMember = "DTListado";
-            this.dTListadoBindingSource1.DataSource = this.DSListado;
+            this.repoCarreraBindingSource.DataMember = "Repo_Carrera";
+            this.repoCarreraBindingSource.DataSource = this.DSListado;
             // 
             // Frm_Reporte
             // 
@@ -80,11 +80,11 @@ namespace ReporteCarreras
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.reportViewer1);
             this.Name = "Frm_Reporte";
-            this.Text = "Reporte Carreras";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Frm_Reporte_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DSListado)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DTListadoBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dTListadoBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Repo_CarreraBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repoCarreraBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -92,10 +92,10 @@ namespace ReporteCarreras
         #endregion
 
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
-        private System.Windows.Forms.BindingSource DTListadoBindingSource;
+        private System.Windows.Forms.BindingSource Repo_CarreraBindingSource;
         private DSListado DSListado;
-        private DSListadoTableAdapters.DTListadoTableAdapter DTListadoTableAdapter;
-        private System.Windows.Forms.BindingSource dTListadoBindingSource1;
+        private DSListadoTableAdapters.Repo_CarreraTableAdapter Repo_CarreraTableAdapter;
+        private System.Windows.Forms.BindingSource repoCarreraBindingSource;
     }
 }
 

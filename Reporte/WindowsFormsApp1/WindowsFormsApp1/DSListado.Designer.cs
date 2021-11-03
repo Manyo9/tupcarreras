@@ -10,7 +10,7 @@
 
 #pragma warning disable 1591
 
-namespace ReporteCarreras {
+namespace WindowsFormsApp1 {
     
     
     /// <summary>
@@ -24,7 +24,7 @@ namespace ReporteCarreras {
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
     public partial class DSListado : global::System.Data.DataSet {
         
-        private DTListadoDataTable tableDTListado;
+        private Repo_CarreraDataTable tableRepo_Carrera;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -54,8 +54,8 @@ namespace ReporteCarreras {
             if ((this.DetermineSchemaSerializationMode(info, context) == global::System.Data.SchemaSerializationMode.IncludeSchema)) {
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
-                if ((ds.Tables["DTListado"] != null)) {
-                    base.Tables.Add(new DTListadoDataTable(ds.Tables["DTListado"]));
+                if ((ds.Tables["Repo_Carrera"] != null)) {
+                    base.Tables.Add(new Repo_CarreraDataTable(ds.Tables["Repo_Carrera"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -79,9 +79,9 @@ namespace ReporteCarreras {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public DTListadoDataTable DTListado {
+        public Repo_CarreraDataTable Repo_Carrera {
             get {
-                return this.tableDTListado;
+                return this.tableRepo_Carrera;
             }
         }
         
@@ -152,8 +152,8 @@ namespace ReporteCarreras {
                 this.Reset();
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXml(reader);
-                if ((ds.Tables["DTListado"] != null)) {
-                    base.Tables.Add(new DTListadoDataTable(ds.Tables["DTListado"]));
+                if ((ds.Tables["Repo_Carrera"] != null)) {
+                    base.Tables.Add(new Repo_CarreraDataTable(ds.Tables["Repo_Carrera"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -188,10 +188,10 @@ namespace ReporteCarreras {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         internal void InitVars(bool initTable) {
-            this.tableDTListado = ((DTListadoDataTable)(base.Tables["DTListado"]));
+            this.tableRepo_Carrera = ((Repo_CarreraDataTable)(base.Tables["Repo_Carrera"]));
             if ((initTable == true)) {
-                if ((this.tableDTListado != null)) {
-                    this.tableDTListado.InitVars();
+                if ((this.tableRepo_Carrera != null)) {
+                    this.tableRepo_Carrera.InitVars();
                 }
             }
         }
@@ -204,13 +204,13 @@ namespace ReporteCarreras {
             this.Namespace = "http://tempuri.org/DSListado.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
-            this.tableDTListado = new DTListadoDataTable();
-            base.Tables.Add(this.tableDTListado);
+            this.tableRepo_Carrera = new Repo_CarreraDataTable();
+            base.Tables.Add(this.tableRepo_Carrera);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        private bool ShouldSerializeDTListado() {
+        private bool ShouldSerializeRepo_Carrera() {
             return false;
         }
         
@@ -270,25 +270,25 @@ namespace ReporteCarreras {
         }
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        public delegate void DTListadoRowChangeEventHandler(object sender, DTListadoRowChangeEvent e);
+        public delegate void Repo_CarreraRowChangeEventHandler(object sender, Repo_CarreraRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class DTListadoDataTable : global::System.Data.TypedTableBase<DTListadoRow> {
+        public partial class Repo_CarreraDataTable : global::System.Data.TypedTableBase<Repo_CarreraRow> {
+            
+            private global::System.Data.DataColumn columnid_carrera;
+            
+            private global::System.Data.DataColumn columnColumn1;
             
             private global::System.Data.DataColumn columnnombre_carrera;
             
-            private global::System.Data.DataColumn columnanio_cursado;
-            
-            private global::System.Data.DataColumn columnnombre_asignatura;
-            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public DTListadoDataTable() {
-                this.TableName = "DTListado";
+            public Repo_CarreraDataTable() {
+                this.TableName = "Repo_Carrera";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -296,7 +296,7 @@ namespace ReporteCarreras {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            internal DTListadoDataTable(global::System.Data.DataTable table) {
+            internal Repo_CarreraDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -313,9 +313,25 @@ namespace ReporteCarreras {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            protected DTListadoDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected Repo_CarreraDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn id_carreraColumn {
+                get {
+                    return this.columnid_carrera;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn Column1Column {
+                get {
+                    return this.columnColumn1;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -323,22 +339,6 @@ namespace ReporteCarreras {
             public global::System.Data.DataColumn nombre_carreraColumn {
                 get {
                     return this.columnnombre_carrera;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn anio_cursadoColumn {
-                get {
-                    return this.columnanio_cursado;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn nombre_asignaturaColumn {
-                get {
-                    return this.columnnombre_asignatura;
                 }
             }
             
@@ -353,47 +353,47 @@ namespace ReporteCarreras {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public DTListadoRow this[int index] {
+            public Repo_CarreraRow this[int index] {
                 get {
-                    return ((DTListadoRow)(this.Rows[index]));
+                    return ((Repo_CarreraRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public event DTListadoRowChangeEventHandler DTListadoRowChanging;
+            public event Repo_CarreraRowChangeEventHandler Repo_CarreraRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public event DTListadoRowChangeEventHandler DTListadoRowChanged;
+            public event Repo_CarreraRowChangeEventHandler Repo_CarreraRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public event DTListadoRowChangeEventHandler DTListadoRowDeleting;
+            public event Repo_CarreraRowChangeEventHandler Repo_CarreraRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public event DTListadoRowChangeEventHandler DTListadoRowDeleted;
+            public event Repo_CarreraRowChangeEventHandler Repo_CarreraRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void AddDTListadoRow(DTListadoRow row) {
+            public void AddRepo_CarreraRow(Repo_CarreraRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public DTListadoRow AddDTListadoRow(string nombre_carrera, byte anio_cursado, string nombre_asignatura) {
-                DTListadoRow rowDTListadoRow = ((DTListadoRow)(this.NewRow()));
+            public Repo_CarreraRow AddRepo_CarreraRow(int id_carrera, int Column1, string nombre_carrera) {
+                Repo_CarreraRow rowRepo_CarreraRow = ((Repo_CarreraRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        nombre_carrera,
-                        anio_cursado,
-                        nombre_asignatura};
-                rowDTListadoRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowDTListadoRow);
-                return rowDTListadoRow;
+                        id_carrera,
+                        Column1,
+                        nombre_carrera};
+                rowRepo_CarreraRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowRepo_CarreraRow);
+                return rowRepo_CarreraRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                DTListadoDataTable cln = ((DTListadoDataTable)(base.Clone()));
+                Repo_CarreraDataTable cln = ((Repo_CarreraDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -401,54 +401,54 @@ namespace ReporteCarreras {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new DTListadoDataTable();
+                return new Repo_CarreraDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             internal void InitVars() {
+                this.columnid_carrera = base.Columns["id_carrera"];
+                this.columnColumn1 = base.Columns["Column1"];
                 this.columnnombre_carrera = base.Columns["nombre_carrera"];
-                this.columnanio_cursado = base.Columns["anio_cursado"];
-                this.columnnombre_asignatura = base.Columns["nombre_asignatura"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             private void InitClass() {
+                this.columnid_carrera = new global::System.Data.DataColumn("id_carrera", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnid_carrera);
+                this.columnColumn1 = new global::System.Data.DataColumn("Column1", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnColumn1);
                 this.columnnombre_carrera = new global::System.Data.DataColumn("nombre_carrera", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnnombre_carrera);
-                this.columnanio_cursado = new global::System.Data.DataColumn("anio_cursado", typeof(byte), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnanio_cursado);
-                this.columnnombre_asignatura = new global::System.Data.DataColumn("nombre_asignatura", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnnombre_asignatura);
+                this.columnColumn1.ReadOnly = true;
                 this.columnnombre_carrera.MaxLength = 70;
-                this.columnnombre_asignatura.MaxLength = 60;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public DTListadoRow NewDTListadoRow() {
-                return ((DTListadoRow)(this.NewRow()));
+            public Repo_CarreraRow NewRepo_CarreraRow() {
+                return ((Repo_CarreraRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new DTListadoRow(builder);
+                return new Repo_CarreraRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(DTListadoRow);
+                return typeof(Repo_CarreraRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.DTListadoRowChanged != null)) {
-                    this.DTListadoRowChanged(this, new DTListadoRowChangeEvent(((DTListadoRow)(e.Row)), e.Action));
+                if ((this.Repo_CarreraRowChanged != null)) {
+                    this.Repo_CarreraRowChanged(this, new Repo_CarreraRowChangeEvent(((Repo_CarreraRow)(e.Row)), e.Action));
                 }
             }
             
@@ -456,8 +456,8 @@ namespace ReporteCarreras {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.DTListadoRowChanging != null)) {
-                    this.DTListadoRowChanging(this, new DTListadoRowChangeEvent(((DTListadoRow)(e.Row)), e.Action));
+                if ((this.Repo_CarreraRowChanging != null)) {
+                    this.Repo_CarreraRowChanging(this, new Repo_CarreraRowChangeEvent(((Repo_CarreraRow)(e.Row)), e.Action));
                 }
             }
             
@@ -465,8 +465,8 @@ namespace ReporteCarreras {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.DTListadoRowDeleted != null)) {
-                    this.DTListadoRowDeleted(this, new DTListadoRowChangeEvent(((DTListadoRow)(e.Row)), e.Action));
+                if ((this.Repo_CarreraRowDeleted != null)) {
+                    this.Repo_CarreraRowDeleted(this, new Repo_CarreraRowChangeEvent(((Repo_CarreraRow)(e.Row)), e.Action));
                 }
             }
             
@@ -474,14 +474,14 @@ namespace ReporteCarreras {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.DTListadoRowDeleting != null)) {
-                    this.DTListadoRowDeleting(this, new DTListadoRowChangeEvent(((DTListadoRow)(e.Row)), e.Action));
+                if ((this.Repo_CarreraRowDeleting != null)) {
+                    this.Repo_CarreraRowDeleting(this, new Repo_CarreraRowChangeEvent(((Repo_CarreraRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void RemoveDTListadoRow(DTListadoRow row) {
+            public void RemoveRepo_CarreraRow(Repo_CarreraRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -508,7 +508,7 @@ namespace ReporteCarreras {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "DTListadoDataTable";
+                attribute2.FixedValue = "Repo_CarreraDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -552,15 +552,47 @@ namespace ReporteCarreras {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class DTListadoRow : global::System.Data.DataRow {
+        public partial class Repo_CarreraRow : global::System.Data.DataRow {
             
-            private DTListadoDataTable tableDTListado;
+            private Repo_CarreraDataTable tableRepo_Carrera;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            internal DTListadoRow(global::System.Data.DataRowBuilder rb) : 
+            internal Repo_CarreraRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableDTListado = ((DTListadoDataTable)(this.Table));
+                this.tableRepo_Carrera = ((Repo_CarreraDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public int id_carrera {
+                get {
+                    try {
+                        return ((int)(this[this.tableRepo_Carrera.id_carreraColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'id_carrera\' de la tabla \'Repo_Carrera\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableRepo_Carrera.id_carreraColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public int Column1 {
+                get {
+                    try {
+                        return ((int)(this[this.tableRepo_Carrera.Column1Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Column1\' de la tabla \'Repo_Carrera\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableRepo_Carrera.Column1Column] = value;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -568,83 +600,51 @@ namespace ReporteCarreras {
             public string nombre_carrera {
                 get {
                     try {
-                        return ((string)(this[this.tableDTListado.nombre_carreraColumn]));
+                        return ((string)(this[this.tableRepo_Carrera.nombre_carreraColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'nombre_carrera\' de la tabla \'DTListado\' es DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'nombre_carrera\' de la tabla \'Repo_Carrera\' es DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDTListado.nombre_carreraColumn] = value;
+                    this[this.tableRepo_Carrera.nombre_carreraColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public byte anio_cursado {
-                get {
-                    try {
-                        return ((byte)(this[this.tableDTListado.anio_cursadoColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'anio_cursado\' de la tabla \'DTListado\' es DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableDTListado.anio_cursadoColumn] = value;
-                }
+            public bool Isid_carreraNull() {
+                return this.IsNull(this.tableRepo_Carrera.id_carreraColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public string nombre_asignatura {
-                get {
-                    try {
-                        return ((string)(this[this.tableDTListado.nombre_asignaturaColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'nombre_asignatura\' de la tabla \'DTListado\' es DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableDTListado.nombre_asignaturaColumn] = value;
-                }
+            public void Setid_carreraNull() {
+                this[this.tableRepo_Carrera.id_carreraColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsColumn1Null() {
+                return this.IsNull(this.tableRepo_Carrera.Column1Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetColumn1Null() {
+                this[this.tableRepo_Carrera.Column1Column] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool Isnombre_carreraNull() {
-                return this.IsNull(this.tableDTListado.nombre_carreraColumn);
+                return this.IsNull(this.tableRepo_Carrera.nombre_carreraColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void Setnombre_carreraNull() {
-                this[this.tableDTListado.nombre_carreraColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool Isanio_cursadoNull() {
-                return this.IsNull(this.tableDTListado.anio_cursadoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void Setanio_cursadoNull() {
-                this[this.tableDTListado.anio_cursadoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool Isnombre_asignaturaNull() {
-                return this.IsNull(this.tableDTListado.nombre_asignaturaColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void Setnombre_asignaturaNull() {
-                this[this.tableDTListado.nombre_asignaturaColumn] = global::System.Convert.DBNull;
+                this[this.tableRepo_Carrera.nombre_carreraColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -652,22 +652,22 @@ namespace ReporteCarreras {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        public class DTListadoRowChangeEvent : global::System.EventArgs {
+        public class Repo_CarreraRowChangeEvent : global::System.EventArgs {
             
-            private DTListadoRow eventRow;
+            private Repo_CarreraRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public DTListadoRowChangeEvent(DTListadoRow row, global::System.Data.DataRowAction action) {
+            public Repo_CarreraRowChangeEvent(Repo_CarreraRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public DTListadoRow Row {
+            public Repo_CarreraRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -683,7 +683,7 @@ namespace ReporteCarreras {
         }
     }
 }
-namespace ReporteCarreras.DSListadoTableAdapters {
+namespace WindowsFormsApp1.DSListadoTableAdapters {
     
     
     /// <summary>
@@ -695,7 +695,7 @@ namespace ReporteCarreras.DSListadoTableAdapters {
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class DTListadoTableAdapter : global::System.ComponentModel.Component {
+    public partial class Repo_CarreraTableAdapter : global::System.ComponentModel.Component {
         
         private global::System.Data.SqlClient.SqlDataAdapter _adapter;
         
@@ -709,7 +709,7 @@ namespace ReporteCarreras.DSListadoTableAdapters {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        public DTListadoTableAdapter() {
+        public Repo_CarreraTableAdapter() {
             this.ClearBeforeFill = true;
         }
         
@@ -806,10 +806,10 @@ namespace ReporteCarreras.DSListadoTableAdapters {
             this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "DTListado";
+            tableMapping.DataSetTable = "Repo_Carrera";
+            tableMapping.ColumnMappings.Add("id_carrera", "id_carrera");
+            tableMapping.ColumnMappings.Add("Column1", "Column1");
             tableMapping.ColumnMappings.Add("nombre_carrera", "nombre_carrera");
-            tableMapping.ColumnMappings.Add("anio_cursado", "anio_cursado");
-            tableMapping.ColumnMappings.Add("nombre_asignatura", "nombre_asignatura");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -826,18 +826,16 @@ namespace ReporteCarreras.DSListadoTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT        Carreras.nombre_carrera, Detalles_carrera.anio_cursado, Asignaturas.nombre_asignatura
-FROM            Carreras INNER JOIN
-                         Detalles_carrera ON Carreras.id_carrera = Detalles_carrera.id_carrera INNER JOIN
-                         Asignaturas ON Detalles_carrera.id_asignatura = Asignaturas.id_asignatura";
-            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[0].CommandText = "dbo.Repo_Carrera";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(DSListado.DTListadoDataTable dataTable) {
+        public virtual int Fill(DSListado.Repo_CarreraDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -850,9 +848,9 @@ FROM            Carreras INNER JOIN
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual DSListado.DTListadoDataTable GetData() {
+        public virtual DSListado.Repo_CarreraDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            DSListado.DTListadoDataTable dataTable = new DSListado.DTListadoDataTable();
+            DSListado.Repo_CarreraDataTable dataTable = new DSListado.Repo_CarreraDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }

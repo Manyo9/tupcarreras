@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ReporteCarreras
+namespace WindowsFormsApp1
 {
     public partial class Frm_Reporte : Form
     {
@@ -17,10 +17,10 @@ namespace ReporteCarreras
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void Frm_Reporte_Load(object sender, EventArgs e)
         {
-            // TODO: esta línea de código carga datos en la tabla 'DSListado.DTListado' Puede moverla o quitarla según sea necesario.
-            this.DTListadoTableAdapter.Fill(this.DSListado.DTListado);
+            // TODO: esta línea de código carga datos en la tabla 'DSListado.Repo_Carrera' Puede moverla o quitarla según sea necesario.
+            this.Repo_CarreraTableAdapter.Fill(this.DSListado.Repo_Carrera);
 
             this.reportViewer1.RefreshReport();
         }
