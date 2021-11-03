@@ -128,7 +128,7 @@ namespace Frontend
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("¿Está seguro que desea cancelar?", "Salir", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult result = MessageBox.Show("¿Está seguro que desea salir?", "Salir", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
                 this.Dispose();
@@ -292,6 +292,7 @@ namespace Frontend
                     detalle.IdDetalle = oCarrera.IdCarrera;
                     await CrearDetalleAsync(detalle);
                     await CargarListAsync();
+                    habilitar(false);
                 }
 
             }           
@@ -373,9 +374,14 @@ namespace Frontend
                 }
                 else if (modo.Equals(Accion.UPDATE))
                 {
-                    await BorrarDetalleAsync(Convert.ToInt32(dgvMateria.CurrentRow.Cells["id"].Value));
-                    oCarrera.QuitarDetalle(dgvMateria.CurrentRow.Index);
-                    dgvMateria.Rows.Remove(dgvMateria.CurrentRow);
+                    if (MessageBox.Show("Se borrará permanentemente , desea seguir?",
+                              "BORRAR", MessageBoxButtons.YesNo, MessageBoxIcon.Question,
+                            MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                    {
+                        await BorrarDetalleAsync(Convert.ToInt32(dgvMateria.CurrentRow.Cells["id"].Value));
+                        oCarrera.QuitarDetalle(dgvMateria.CurrentRow.Index);
+                        dgvMateria.Rows.Remove(dgvMateria.CurrentRow);
+                    }
                 }
             }
         }
